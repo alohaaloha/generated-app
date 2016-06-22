@@ -1,0 +1,15 @@
+version: '2'
+services:
+    pinf_pro-app:
+        image: pinf_pro
+        external_links:
+            - pinf_pro-mysql:mysql
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/pinf_pro?useUnicode=true&characterEncoding=utf8&useSSL=false
+        ports:
+            - 8080:8080
+    pinf_pro-mysql:
+        extends:
+            file: mysql.yml
+            service: pinf_pro-mysql

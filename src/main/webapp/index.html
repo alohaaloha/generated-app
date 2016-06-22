@@ -21,7 +21,7 @@
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak></div>
+    <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak></div>-->
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
         <div class="well" ui-view="content"></div>
@@ -85,6 +85,18 @@
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-link.directive.js"></script>
     <script src="app/layouts/error/error.state.js"></script>
+    <script src="app/entities/naseljeno-mesto/naseljeno-mesto.state.js"></script>
+    <script src="app/entities/naseljeno-mesto/naseljeno-mesto.service.js"></script>
+    <script src="app/entities/naseljeno-mesto/naseljeno-mesto.controller.js"></script>
+    <script src="app/entities/naseljeno-mesto/naseljeno-mesto-dialog.controller.js"></script>
+    <script src="app/entities/naseljeno-mesto/naseljeno-mesto-detail.controller.js"></script>
+    <script src="app/entities/naseljeno-mesto/naseljeno-mesto-delete-dialog.controller.js"></script>
+    <script src="app/entities/drzava/drzava.state.js"></script>
+    <script src="app/entities/drzava/drzava.service.js"></script>
+    <script src="app/entities/drzava/drzava.controller.js"></script>
+    <script src="app/entities/drzava/drzava-dialog.controller.js"></script>
+    <script src="app/entities/drzava/drzava-detail.controller.js"></script>
+    <script src="app/entities/drzava/drzava-delete-dialog.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort.directive.js"></script>

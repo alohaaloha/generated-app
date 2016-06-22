@@ -1,0 +1,35 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "drzava",
+            "otherEntityName": "drzava",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "dr_naziv"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nm_naziv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "60"
+        },
+        {
+            "fieldName": "nm_pttoznaka",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "12"
+        }
+    ],
+    "changelogDate": "20160622183741",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "naseljeno_mesto",
+    "pagination": "no"
+}

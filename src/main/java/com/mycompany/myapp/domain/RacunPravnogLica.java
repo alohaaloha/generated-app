@@ -43,7 +43,7 @@ public class RacunPravnogLica implements Serializable {
     private Banka banka;
 
     @ManyToOne
-    private Klijent klijent;
+    private Klijent vlasnik;
 
     @OneToMany(mappedBy = "racunPravnogLica")
     @JsonIgnore
@@ -99,11 +99,11 @@ public class RacunPravnogLica implements Serializable {
     }
 
     public Klijent getKlijent() {
-        return klijent;
+        return vlasnik;
     }
 
     public void setKlijent(Klijent klijent) {
-        this.klijent = klijent;
+        this.vlasnik = klijent;
     }
 
     public Set<DnevnoStanjeRacuna> getDnevnoStanjeRacunas() {

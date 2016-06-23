@@ -7,7 +7,7 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipName": "klijent",
+            "relationshipName": "vlasnik",
             "otherEntityName": "klijent",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
@@ -16,7 +16,7 @@
             "relationshipName": "dnevnoStanjeRacuna",
             "otherEntityName": "dnevnoStanjeRacuna",
             "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "racunPravnogLica"
+            "otherEntityRelationshipName": "dnevniIzvodBanke"
         },
         {
             "relationshipName": "valuta",

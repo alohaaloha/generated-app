@@ -56,7 +56,7 @@ public class DnevnoStanjeRacuna implements Serializable {
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
     @ManyToOne
-    private RacunPravnogLica dnevniIzvodBanke;
+    private RacunPravnogLica racunPravnogLica;
 
     public Long getId() {
         return id;
@@ -123,11 +123,11 @@ public class DnevnoStanjeRacuna implements Serializable {
     }
 
     public RacunPravnogLica getDnevniIzvodBanke() {
-        return dnevniIzvodBanke;
+        return racunPravnogLica;
     }
 
     public void setDnevniIzvodBanke(RacunPravnogLica racunPravnogLica) {
-        this.dnevniIzvodBanke = racunPravnogLica;
+        this.racunPravnogLica = racunPravnogLica;
     }
 
     @Override

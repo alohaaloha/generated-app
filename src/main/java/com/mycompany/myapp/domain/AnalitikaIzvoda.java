@@ -106,7 +106,7 @@ public class AnalitikaIzvoda implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RTGS> porukaMT103S = new HashSet<>();
 
-    @OneToMany(mappedBy = "brojStavke")
+    @OneToMany(mappedBy = "analitikaIzvoda")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<StavkaKliringa> porukaMT102S = new HashSet<>();

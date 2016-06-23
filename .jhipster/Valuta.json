@@ -1,0 +1,72 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "drzava",
+            "otherEntityName": "drzava",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "kliring",
+            "otherEntityName": "kliring",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "valuta"
+        },
+        {
+            "relationshipName": "osnovnaValuta",
+            "otherEntityName": "kursUValuti",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "osnovnaValuta"
+        },
+        {
+            "relationshipName": "premaValuti",
+            "otherEntityName": "kursUValuti",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "premaValuti"
+        },
+        {
+            "relationshipName": "racunPravnogLica",
+            "otherEntityName": "racunPravnogLica",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "valuta"
+        },
+        {
+            "relationshipName": "analitikaIzvoda",
+            "otherEntityName": "analitikaIzvoda",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "valutaPlacanja"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "zvanicnaSifra",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "3"
+        },
+        {
+            "fieldName": "nazivValute",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "domicilna",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623172444",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "valuta",
+    "pagination": "no"
+}

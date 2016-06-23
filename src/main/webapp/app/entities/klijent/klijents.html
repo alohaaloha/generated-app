@@ -19,11 +19,16 @@
             <thead>
                 <tr>
                     <th><span>ID</span></th>
-                    <th><span>Naziv Klijenta</span></th>
+                    <th><span>Naziv Pravnog Lica</span></th>
+                    <th><span>Ime</span></th>
+                    <th><span>Prezime</span></th>
+                    <th><span>Jmbg</span></th>
                     <th><span>Adresa</span></th>
                     <th><span>Telefon</span></th>
                     <th><span>Fax</span></th>
                     <th><span>Email</span></th>
+                    <th><span>Pib</span></th>
+                    <th><span>Sifra Delatnosti</span></th>
                     <th><span>Pravno Lice</span></th>
                     <th><span>Naseljeno Mesto</span></th>
                     <th></th>
@@ -32,11 +37,16 @@
             <tbody>
                 <tr ng-repeat="klijent in vm.klijents track by klijent.id">
                     <td><a ui-sref="klijent-detail({id:klijent.id})">{{klijent.id}}</a></td>
-                    <td>{{klijent.nazivKlijenta}}</td>
+                    <td>{{klijent.nazivPravnogLica}}</td>
+                    <td>{{klijent.ime}}</td>
+                    <td>{{klijent.prezime}}</td>
+                    <td>{{klijent.jmbg}}</td>
                     <td>{{klijent.adresa}}</td>
                     <td>{{klijent.telefon}}</td>
                     <td>{{klijent.fax}}</td>
                     <td>{{klijent.email}}</td>
+                    <td>{{klijent.pib}}</td>
+                    <td>{{klijent.sifraDelatnosti}}</td>
                     <td>
                         <a ui-sref="pravno-lice-detail({id:klijent.pravnoLice.id})">{{klijent.pravnoLice.id}}</a>
                     </td>

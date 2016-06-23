@@ -1,0 +1,74 @@
+<div>
+    <h2>Kurs U Valutis</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="kurs-u-valuti.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Kurs U Valuti
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Redni Broj</span></th>
+                    <th><span>Kurs Kupovni</span></th>
+                    <th><span>Kurs Srednji</span></th>
+                    <th><span>Kurs Prodajni</span></th>
+                    <th><span>Osnovna Valuta</span></th>
+                    <th><span>Prema Valuti</span></th>
+                    <th><span>Kursna Lista</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="kursUValuti in vm.kursUValutis track by kursUValuti.id">
+                    <td><a ui-sref="kurs-u-valuti-detail({id:kursUValuti.id})">{{kursUValuti.id}}</a></td>
+                    <td>{{kursUValuti.redniBroj}}</td>
+                    <td>{{kursUValuti.kursKupovni}}</td>
+                    <td>{{kursUValuti.kursSrednji}}</td>
+                    <td>{{kursUValuti.kursProdajni}}</td>
+                    <td>
+                        <a ui-sref="valuta-detail({id:kursUValuti.osnovnaValuta.id})">{{kursUValuti.osnovnaValuta.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="valuta-detail({id:kursUValuti.premaValuti.id})">{{kursUValuti.premaValuti.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="kursna-lista-detail({id:kursUValuti.kursnaLista.id})">{{kursUValuti.kursnaLista.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="kurs-u-valuti-detail({id:kursUValuti.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="kurs-u-valuti.edit({id:kursUValuti.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="kurs-u-valuti.delete({id:kursUValuti.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

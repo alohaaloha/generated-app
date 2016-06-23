@@ -11,10 +11,28 @@
     <include file="classpath:config/liquibase/changelog/20160623150224_added_entity_Banka.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160623151248_added_entity_DnevnoStanjeRacuna.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160623154112_added_entity_Klijent.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623162053_added_entity_Kliring.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623162522_added_entity_KursnaLista.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623163217_added_entity_KursUValuti.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623164421_added_entity_PravnoLice.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623170019_added_entity_RacunPravnogLica.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623170642_added_entity_RTGS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623171102_added_entity_StavkaKliringa.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623171256_added_entity_Ukidanje.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623172444_added_entity_Valuta.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623172658_added_entity_VrstaPlacanja.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20160622183741_added_entity_constraints_NaseljenoMesto.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160623144526_added_entity_constraints_AnalitikaIzvoda.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160623151248_added_entity_constraints_DnevnoStanjeRacuna.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160623154112_added_entity_constraints_Klijent.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623162053_added_entity_constraints_Kliring.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623162522_added_entity_constraints_KursnaLista.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623163217_added_entity_constraints_KursUValuti.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623170019_added_entity_constraints_RacunPravnogLica.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623170642_added_entity_constraints_RTGS.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623171102_added_entity_constraints_StavkaKliringa.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623171256_added_entity_constraints_Ukidanje.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623172444_added_entity_constraints_Valuta.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

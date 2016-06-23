@@ -1,0 +1,58 @@
+
+<div>
+    <h2><span>Kliring</span> {{vm.kliring.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Id Poruke</span></dt>
+        <dd>
+            <span>{{vm.kliring.idPoruke}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="pinfProApp.kliring.swwift_duznika">Swwift Duznika</span></dt>
+        <dd>
+            <span>{{vm.kliring.swwift_duznika}}</span>
+        </dd>
+        <hr>
+        <dt><span>Obracunski Racun Duznika</span></dt>
+        <dd>
+            <span>{{vm.kliring.obracunskiRacunDuznika}}</span>
+        </dd>
+        <hr>
+        <dt><span translate="pinfProApp.kliring.swift_poverioca">Swift Poverioca</span></dt>
+        <dd>
+            <span>{{vm.kliring.swift_poverioca}}</span>
+        </dd>
+        <hr>
+        <dt><span>Obracunski Racun Poverioca</span></dt>
+        <dd>
+            <span>{{vm.kliring.obracunskiRacunPoverioca}}</span>
+        </dd>
+        <hr>
+        <dt><span>Ukupan Iznos</span></dt>
+        <dd>
+            <span>{{vm.kliring.ukupanIznos}}</span>
+        </dd>
+        <hr>
+        <dt><span>Datum Valute</span></dt>
+        <dd>
+            <span>{{vm.kliring.datumValute | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Datum</span></dt>
+        <dd>
+            <span>{{vm.kliring.datum | date:'medium'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Valuta</span></dt>
+        <dd>
+            <a ui-sref="valuta-detail({id:vm.kliring.valuta.id})">{{vm.kliring.valuta.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

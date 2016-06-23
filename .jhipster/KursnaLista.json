@@ -1,0 +1,44 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "banka",
+            "otherEntityName": "banka",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "kursUValuti",
+            "otherEntityName": "kursUValuti",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "kursnaLista"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datum",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "brojKursneListe",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datumPrimene",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623162522",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "kursna_lista",
+    "pagination": "no"
+}

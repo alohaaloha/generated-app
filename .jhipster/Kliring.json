@@ -1,0 +1,89 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "stavkaKliringa",
+            "otherEntityName": "stavkaKliringa",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "kliring"
+        },
+        {
+            "relationshipName": "valuta",
+            "otherEntityName": "valuta",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "idPoruke",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "50"
+        },
+        {
+            "fieldName": "swwift_duznika",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "8"
+        },
+        {
+            "fieldName": "obracunskiRacunDuznika",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
+            "fieldName": "swift_poverioca",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "8"
+        },
+        {
+            "fieldName": "obracunskiRacunPoverioca",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
+            "fieldName": "ukupanIznos",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datumValute",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datum",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623162053",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "kliring",
+    "pagination": "no"
+}

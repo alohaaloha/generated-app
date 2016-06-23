@@ -1,0 +1,72 @@
+<div>
+    <h2>Racun Pravnog Licas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="racun-pravnog-lica.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Racun Pravnog Lica
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Broj Racuna</span></th>
+                    <th><span>Datum Otvaranja</span></th>
+                    <th><span>Vazenje</span></th>
+                    <th><span>Banka</span></th>
+                    <th><span>Klijent</span></th>
+                    <th><span>Valuta</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="racunPravnogLica in vm.racunPravnogLicas track by racunPravnogLica.id">
+                    <td><a ui-sref="racun-pravnog-lica-detail({id:racunPravnogLica.id})">{{racunPravnogLica.id}}</a></td>
+                    <td>{{racunPravnogLica.brojRacuna}}</td>
+                    <td>{{racunPravnogLica.datumOtvaranja | date:'medium'}}</td>
+                    <td>{{racunPravnogLica.vazenje}}</td>
+                    <td>
+                        <a ui-sref="banka-detail({id:racunPravnogLica.banka.id})">{{racunPravnogLica.banka.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="klijent-detail({id:racunPravnogLica.klijent.id})">{{racunPravnogLica.klijent.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="valuta-detail({id:racunPravnogLica.valuta.id})">{{racunPravnogLica.valuta.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="racun-pravnog-lica-detail({id:racunPravnogLica.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="racun-pravnog-lica.edit({id:racunPravnogLica.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="racun-pravnog-lica.delete({id:racunPravnogLica.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

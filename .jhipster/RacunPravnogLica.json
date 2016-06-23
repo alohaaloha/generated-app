@@ -1,0 +1,64 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "banka",
+            "otherEntityName": "banka",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "klijent",
+            "otherEntityName": "klijent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "dnevnoStanjeRacuna",
+            "otherEntityName": "dnevnoStanjeRacuna",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "racunPravnogLica"
+        },
+        {
+            "relationshipName": "valuta",
+            "otherEntityName": "valuta",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "ukidanje",
+            "otherEntityName": "ukidanje",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "racunPravnogLica"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "brojRacuna",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
+            "fieldName": "datumOtvaranja",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "vazenje",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623170019",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "racun_pravnog_lica",
+    "pagination": "no"
+}

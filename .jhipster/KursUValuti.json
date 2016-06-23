@@ -1,0 +1,57 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "osnovnaValuta",
+            "otherEntityName": "valuta",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "premaValuti",
+            "otherEntityName": "valuta",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "kursnaLista",
+            "otherEntityName": "kursnaLista",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "redniBroj",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "kursKupovni",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "kursSrednji",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "kursProdajni",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623163217",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "kurs_u_valuti",
+    "pagination": "no"
+}

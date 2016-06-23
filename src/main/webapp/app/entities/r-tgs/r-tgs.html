@@ -1,0 +1,68 @@
+<div>
+    <h2>Rtgs</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="r-tgs.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Rtgs
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Id Poruke</span></th>
+                    <th><span>Swift Kod Banke Duznika</span></th>
+                    <th><span>Obracunski Racun Banke Duznika</span></th>
+                    <th><span>Swift Kod Banke Poverioca</span></th>
+                    <th><span>Obracunski Racun Banke Poverioca</span></th>
+                    <th><span>Broj Stavke</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="rTGS in vm.rTGS track by rTGS.id">
+                    <td><a ui-sref="r-tgs-detail({id:rTGS.id})">{{rTGS.id}}</a></td>
+                    <td>{{rTGS.idPoruke}}</td>
+                    <td>{{rTGS.swiftKodBankeDuznika}}</td>
+                    <td>{{rTGS.obracunskiRacunBankeDuznika}}</td>
+                    <td>{{rTGS.swiftKodBankePoverioca}}</td>
+                    <td>{{rTGS.obracunskiRacunBankePoverioca}}</td>
+                    <td>
+                        <a ui-sref="analitika-izvoda-detail({id:rTGS.brojStavke.id})">{{rTGS.brojStavke.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="r-tgs-detail({id:rTGS.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="r-tgs.edit({id:rTGS.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="r-tgs.delete({id:rTGS.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

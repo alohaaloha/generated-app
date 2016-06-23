@@ -21,13 +21,41 @@
     ],
     "fields": [
         {
-            "fieldName": "nazivKlijenta",
+            "fieldName": "nazivPravnogLica",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "120"
+        },
+        {
+            "fieldName": "ime",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required",
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": "120"
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "prezime",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "jmbg",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "13",
+            "fieldValidateRulesMaxlength": "13"
         },
         {
             "fieldName": "adresa",
@@ -61,6 +89,19 @@
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "pib",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "9"
+        },
+        {
+            "fieldName": "sifraDelatnosti",
+            "fieldType": "Integer"
         }
     ],
     "changelogDate": "20160623154112",

@@ -41,8 +41,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class KlijentResourceIntTest {
 
-    private static final String DEFAULT_NAZIV_KLIJENTA = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-    private static final String UPDATED_NAZIV_KLIJENTA = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+    private static final String DEFAULT_NAZIV_PRAVNOG_LICA = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    private static final String UPDATED_NAZIV_PRAVNOG_LICA = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+    private static final String DEFAULT_IME = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    private static final String UPDATED_IME = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+    private static final String DEFAULT_PREZIME = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    private static final String UPDATED_PREZIME = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+    private static final String DEFAULT_JMBG = "AAAAAAAAAAAAA";
+    private static final String UPDATED_JMBG = "BBBBBBBBBBBBB";
     private static final String DEFAULT_ADRESA = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     private static final String UPDATED_ADRESA = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
     private static final String DEFAULT_TELEFON = "AAAAAAAAAAAAAAAAAAAA";
@@ -51,6 +57,11 @@ public class KlijentResourceIntTest {
     private static final String UPDATED_FAX = "BBBBBBBBBBBBBBBBBBBB";
     private static final String DEFAULT_EMAIL = "AAAAAAAAAAAAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBBBBBBBBBBBB";
+    private static final String DEFAULT_PIB = "AAAAAAAAA";
+    private static final String UPDATED_PIB = "BBBBBBBBB";
+
+    private static final Integer DEFAULT_SIFRA_DELATNOSTI = 1;
+    private static final Integer UPDATED_SIFRA_DELATNOSTI = 2;
 
     @Inject
     private KlijentRepository klijentRepository;
@@ -78,11 +89,16 @@ public class KlijentResourceIntTest {
     @Before
     public void initTest() {
         klijent = new Klijent();
-        klijent.setNazivKlijenta(DEFAULT_NAZIV_KLIJENTA);
+        klijent.setNazivPravnogLica(DEFAULT_NAZIV_PRAVNOG_LICA);
+        klijent.setIme(DEFAULT_IME);
+        klijent.setPrezime(DEFAULT_PREZIME);
+        klijent.setJmbg(DEFAULT_JMBG);
         klijent.setAdresa(DEFAULT_ADRESA);
         klijent.setTelefon(DEFAULT_TELEFON);
         klijent.setFax(DEFAULT_FAX);
         klijent.setEmail(DEFAULT_EMAIL);
+        klijent.setPib(DEFAULT_PIB);
+        klijent.setSifraDelatnosti(DEFAULT_SIFRA_DELATNOSTI);
     }
 
     @Test
@@ -101,19 +117,60 @@ public class KlijentResourceIntTest {
         List<Klijent> klijents = klijentRepository.findAll();
         assertThat(klijents).hasSize(databaseSizeBeforeCreate + 1);
         Klijent testKlijent = klijents.get(klijents.size() - 1);
-        assertThat(testKlijent.getNazivKlijenta()).isEqualTo(DEFAULT_NAZIV_KLIJENTA);
+        assertThat(testKlijent.getNazivPravnogLica()).isEqualTo(DEFAULT_NAZIV_PRAVNOG_LICA);
+        assertThat(testKlijent.getIme()).isEqualTo(DEFAULT_IME);
+        assertThat(testKlijent.getPrezime()).isEqualTo(DEFAULT_PREZIME);
+        assertThat(testKlijent.getJmbg()).isEqualTo(DEFAULT_JMBG);
         assertThat(testKlijent.getAdresa()).isEqualTo(DEFAULT_ADRESA);
         assertThat(testKlijent.getTelefon()).isEqualTo(DEFAULT_TELEFON);
         assertThat(testKlijent.getFax()).isEqualTo(DEFAULT_FAX);
         assertThat(testKlijent.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testKlijent.getPib()).isEqualTo(DEFAULT_PIB);
+        assertThat(testKlijent.getSifraDelatnosti()).isEqualTo(DEFAULT_SIFRA_DELATNOSTI);
     }
 
     @Test
     @Transactional
-    public void checkNazivKlijentaIsRequired() throws Exception {
+    public void checkImeIsRequired() throws Exception {
         int databaseSizeBeforeTest = klijentRepository.findAll().size();
         // set the field null
-        klijent.setNazivKlijenta(null);
+        klijent.setIme(null);
+
+        // Create the Klijent, which fails.
+
+        restKlijentMockMvc.perform(post("/api/klijents")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(klijent)))
+                .andExpect(status().isBadRequest());
+
+        List<Klijent> klijents = klijentRepository.findAll();
+        assertThat(klijents).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkPrezimeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = klijentRepository.findAll().size();
+        // set the field null
+        klijent.setPrezime(null);
+
+        // Create the Klijent, which fails.
+
+        restKlijentMockMvc.perform(post("/api/klijents")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(klijent)))
+                .andExpect(status().isBadRequest());
+
+        List<Klijent> klijents = klijentRepository.findAll();
+        assertThat(klijents).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkJmbgIsRequired() throws Exception {
+        int databaseSizeBeforeTest = klijentRepository.findAll().size();
+        // set the field null
+        klijent.setJmbg(null);
 
         // Create the Klijent, which fails.
 
@@ -146,6 +203,24 @@ public class KlijentResourceIntTest {
 
     @Test
     @Transactional
+    public void checkPibIsRequired() throws Exception {
+        int databaseSizeBeforeTest = klijentRepository.findAll().size();
+        // set the field null
+        klijent.setPib(null);
+
+        // Create the Klijent, which fails.
+
+        restKlijentMockMvc.perform(post("/api/klijents")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(klijent)))
+                .andExpect(status().isBadRequest());
+
+        List<Klijent> klijents = klijentRepository.findAll();
+        assertThat(klijents).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllKlijents() throws Exception {
         // Initialize the database
         klijentRepository.saveAndFlush(klijent);
@@ -155,11 +230,16 @@ public class KlijentResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(klijent.getId().intValue())))
-                .andExpect(jsonPath("$.[*].nazivKlijenta").value(hasItem(DEFAULT_NAZIV_KLIJENTA.toString())))
+                .andExpect(jsonPath("$.[*].nazivPravnogLica").value(hasItem(DEFAULT_NAZIV_PRAVNOG_LICA.toString())))
+                .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME.toString())))
+                .andExpect(jsonPath("$.[*].prezime").value(hasItem(DEFAULT_PREZIME.toString())))
+                .andExpect(jsonPath("$.[*].jmbg").value(hasItem(DEFAULT_JMBG.toString())))
                 .andExpect(jsonPath("$.[*].adresa").value(hasItem(DEFAULT_ADRESA.toString())))
                 .andExpect(jsonPath("$.[*].telefon").value(hasItem(DEFAULT_TELEFON.toString())))
                 .andExpect(jsonPath("$.[*].fax").value(hasItem(DEFAULT_FAX.toString())))
-                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+                .andExpect(jsonPath("$.[*].pib").value(hasItem(DEFAULT_PIB.toString())))
+                .andExpect(jsonPath("$.[*].sifraDelatnosti").value(hasItem(DEFAULT_SIFRA_DELATNOSTI)));
     }
 
     @Test
@@ -173,11 +253,16 @@ public class KlijentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(klijent.getId().intValue()))
-            .andExpect(jsonPath("$.nazivKlijenta").value(DEFAULT_NAZIV_KLIJENTA.toString()))
+            .andExpect(jsonPath("$.nazivPravnogLica").value(DEFAULT_NAZIV_PRAVNOG_LICA.toString()))
+            .andExpect(jsonPath("$.ime").value(DEFAULT_IME.toString()))
+            .andExpect(jsonPath("$.prezime").value(DEFAULT_PREZIME.toString()))
+            .andExpect(jsonPath("$.jmbg").value(DEFAULT_JMBG.toString()))
             .andExpect(jsonPath("$.adresa").value(DEFAULT_ADRESA.toString()))
             .andExpect(jsonPath("$.telefon").value(DEFAULT_TELEFON.toString()))
             .andExpect(jsonPath("$.fax").value(DEFAULT_FAX.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.pib").value(DEFAULT_PIB.toString()))
+            .andExpect(jsonPath("$.sifraDelatnosti").value(DEFAULT_SIFRA_DELATNOSTI));
     }
 
     @Test
@@ -198,11 +283,16 @@ public class KlijentResourceIntTest {
         // Update the klijent
         Klijent updatedKlijent = new Klijent();
         updatedKlijent.setId(klijent.getId());
-        updatedKlijent.setNazivKlijenta(UPDATED_NAZIV_KLIJENTA);
+        updatedKlijent.setNazivPravnogLica(UPDATED_NAZIV_PRAVNOG_LICA);
+        updatedKlijent.setIme(UPDATED_IME);
+        updatedKlijent.setPrezime(UPDATED_PREZIME);
+        updatedKlijent.setJmbg(UPDATED_JMBG);
         updatedKlijent.setAdresa(UPDATED_ADRESA);
         updatedKlijent.setTelefon(UPDATED_TELEFON);
         updatedKlijent.setFax(UPDATED_FAX);
         updatedKlijent.setEmail(UPDATED_EMAIL);
+        updatedKlijent.setPib(UPDATED_PIB);
+        updatedKlijent.setSifraDelatnosti(UPDATED_SIFRA_DELATNOSTI);
 
         restKlijentMockMvc.perform(put("/api/klijents")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -213,11 +303,16 @@ public class KlijentResourceIntTest {
         List<Klijent> klijents = klijentRepository.findAll();
         assertThat(klijents).hasSize(databaseSizeBeforeUpdate);
         Klijent testKlijent = klijents.get(klijents.size() - 1);
-        assertThat(testKlijent.getNazivKlijenta()).isEqualTo(UPDATED_NAZIV_KLIJENTA);
+        assertThat(testKlijent.getNazivPravnogLica()).isEqualTo(UPDATED_NAZIV_PRAVNOG_LICA);
+        assertThat(testKlijent.getIme()).isEqualTo(UPDATED_IME);
+        assertThat(testKlijent.getPrezime()).isEqualTo(UPDATED_PREZIME);
+        assertThat(testKlijent.getJmbg()).isEqualTo(UPDATED_JMBG);
         assertThat(testKlijent.getAdresa()).isEqualTo(UPDATED_ADRESA);
         assertThat(testKlijent.getTelefon()).isEqualTo(UPDATED_TELEFON);
         assertThat(testKlijent.getFax()).isEqualTo(UPDATED_FAX);
         assertThat(testKlijent.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testKlijent.getPib()).isEqualTo(UPDATED_PIB);
+        assertThat(testKlijent.getSifraDelatnosti()).isEqualTo(UPDATED_SIFRA_DELATNOSTI);
     }
 
     @Test

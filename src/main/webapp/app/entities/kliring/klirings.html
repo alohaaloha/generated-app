@@ -1,0 +1,74 @@
+<div>
+    <h2>Klirings</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="kliring.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Kliring
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Id Poruke</span></th>
+                    <th><span translate="pinfProApp.kliring.swwift_duznika">Swwift Duznika</span></th>
+                    <th><span>Obracunski Racun Duznika</span></th>
+                    <th><span translate="pinfProApp.kliring.swift_poverioca">Swift Poverioca</span></th>
+                    <th><span>Obracunski Racun Poverioca</span></th>
+                    <th><span>Ukupan Iznos</span></th>
+                    <th><span>Datum Valute</span></th>
+                    <th><span>Datum</span></th>
+                    <th><span>Valuta</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="kliring in vm.klirings track by kliring.id">
+                    <td><a ui-sref="kliring-detail({id:kliring.id})">{{kliring.id}}</a></td>
+                    <td>{{kliring.idPoruke}}</td>
+                    <td>{{kliring.swwift_duznika}}</td>
+                    <td>{{kliring.obracunskiRacunDuznika}}</td>
+                    <td>{{kliring.swift_poverioca}}</td>
+                    <td>{{kliring.obracunskiRacunPoverioca}}</td>
+                    <td>{{kliring.ukupanIznos}}</td>
+                        <td>{{kliring.datumValute | date:'mediumDate'}}</td>
+                    <td>{{kliring.datum | date:'medium'}}</td>
+                    <td>
+                        <a ui-sref="valuta-detail({id:kliring.valuta.id})">{{kliring.valuta.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="kliring-detail({id:kliring.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="kliring.edit({id:kliring.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="kliring.delete({id:kliring.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

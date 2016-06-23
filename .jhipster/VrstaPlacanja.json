@@ -1,0 +1,33 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "analitikaIzvoda",
+            "otherEntityName": "analitikaIzvoda",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vrstaPlacanja"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "oznakaVrstePlacanja",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nazivVrstePlacanja",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "120"
+        }
+    ],
+    "changelogDate": "20160623172658",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "vrsta_placanja",
+    "pagination": "no"
+}

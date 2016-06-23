@@ -25,10 +25,24 @@ public class Klijent implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     @Size(max = 120)
-    @Column(name = "naziv_klijenta", length = 120, nullable = false)
-    private String nazivKlijenta;
+    @Column(name = "naziv_pravnog_lica", length = 120)
+    private String nazivPravnogLica;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "ime", length = 30, nullable = false)
+    private String ime;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "prezime", length = 30, nullable = false)
+    private String prezime;
+
+    @NotNull
+    @Size(min = 13, max = 13)
+    @Column(name = "jmbg", length = 13, nullable = false)
+    private String jmbg;
 
     @NotNull
     @Size(max = 30)
@@ -46,6 +60,14 @@ public class Klijent implements Serializable {
     @Size(max = 20)
     @Column(name = "email", length = 20)
     private String email;
+
+    @NotNull
+    @Size(max = 9)
+    @Column(name = "pib", length = 9, nullable = false)
+    private String pib;
+
+    @Column(name = "sifra_delatnosti")
+    private Integer sifraDelatnosti;
 
     @OneToMany(mappedBy = "vlasnik")
     @JsonIgnore
@@ -66,12 +88,36 @@ public class Klijent implements Serializable {
         this.id = id;
     }
 
-    public String getNazivKlijenta() {
-        return nazivKlijenta;
+    public String getNazivPravnogLica() {
+        return nazivPravnogLica;
     }
 
-    public void setNazivKlijenta(String nazivKlijenta) {
-        this.nazivKlijenta = nazivKlijenta;
+    public void setNazivPravnogLica(String nazivPravnogLica) {
+        this.nazivPravnogLica = nazivPravnogLica;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public String getJmbg() {
+        return jmbg;
+    }
+
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
     }
 
     public String getAdresa() {
@@ -104,6 +150,22 @@ public class Klijent implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPib() {
+        return pib;
+    }
+
+    public void setPib(String pib) {
+        this.pib = pib;
+    }
+
+    public Integer getSifraDelatnosti() {
+        return sifraDelatnosti;
+    }
+
+    public void setSifraDelatnosti(Integer sifraDelatnosti) {
+        this.sifraDelatnosti = sifraDelatnosti;
     }
 
     public Set<RacunPravnogLica> getRacunis() {
@@ -154,11 +216,16 @@ public class Klijent implements Serializable {
     public String toString() {
         return "Klijent{" +
             "id=" + id +
-            ", nazivKlijenta='" + nazivKlijenta + "'" +
+            ", nazivPravnogLica='" + nazivPravnogLica + "'" +
+            ", ime='" + ime + "'" +
+            ", prezime='" + prezime + "'" +
+            ", jmbg='" + jmbg + "'" +
             ", adresa='" + adresa + "'" +
             ", telefon='" + telefon + "'" +
             ", fax='" + fax + "'" +
             ", email='" + email + "'" +
+            ", pib='" + pib + "'" +
+            ", sifraDelatnosti='" + sifraDelatnosti + "'" +
             '}';
     }
 }

@@ -14,18 +14,66 @@
                     ng-model="vm.klijent.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_nazivKlijenta">Naziv Klijenta</label>
-            <input type="text" class="form-control" name="nazivKlijenta" id="field_nazivKlijenta"
-                    ng-model="vm.klijent.nazivKlijenta"
-                    required ng-maxlength="120" />
-            <div ng-show="editForm.nazivKlijenta.$invalid">
+            <label class="control-label" for="field_nazivPravnogLica">Naziv Pravnog Lica</label>
+            <input type="text" class="form-control" name="nazivPravnogLica" id="field_nazivPravnogLica"
+                    ng-model="vm.klijent.nazivPravnogLica"
+                    ng-maxlength="120" />
+            <div ng-show="editForm.nazivPravnogLica.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.nazivKlijenta.$error.required">
+                    ng-show="editForm.nazivPravnogLica.$error.maxlength">
+                    This field cannot be longer than 120 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_ime">Ime</label>
+            <input type="text" class="form-control" name="ime" id="field_ime"
+                    ng-model="vm.klijent.ime"
+                    required ng-maxlength="30" />
+            <div ng-show="editForm.ime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ime.$error.required">
                     This field is required.
                 </p>
                 <p class="help-block"
-                    ng-show="editForm.nazivKlijenta.$error.maxlength">
-                    This field cannot be longer than 120 characters.
+                    ng-show="editForm.ime.$error.maxlength">
+                    This field cannot be longer than 30 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_prezime">Prezime</label>
+            <input type="text" class="form-control" name="prezime" id="field_prezime"
+                    ng-model="vm.klijent.prezime"
+                    required ng-maxlength="30" />
+            <div ng-show="editForm.prezime.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.prezime.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.prezime.$error.maxlength">
+                    This field cannot be longer than 30 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_jmbg">Jmbg</label>
+            <input type="text" class="form-control" name="jmbg" id="field_jmbg"
+                    ng-model="vm.klijent.jmbg"
+                    required ng-minlength="13" ng-maxlength="13" />
+            <div ng-show="editForm.jmbg.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.jmbg.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.jmbg.$error.minlength" translate-value-min="13">
+                    This field is required to be at least 13 characters.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.jmbg.$error.maxlength">
+                    This field cannot be longer than 13 characters.
                 </p>
             </div>
         </div>
@@ -80,6 +128,28 @@
                     This field cannot be longer than 20 characters.
                 </p>
             </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_pib">Pib</label>
+            <input type="text" class="form-control" name="pib" id="field_pib"
+                    ng-model="vm.klijent.pib"
+                    required ng-maxlength="9" />
+            <div ng-show="editForm.pib.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pib.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.pib.$error.maxlength">
+                    This field cannot be longer than 9 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sifraDelatnosti">Sifra Delatnosti</label>
+            <input type="number" class="form-control" name="sifraDelatnosti" id="field_sifraDelatnosti"
+                    ng-model="vm.klijent.sifraDelatnosti"
+                     />
         </div>
 
         <div class="form-group">

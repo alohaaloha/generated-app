@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span>Kurs U Valuti</span> {{vm.kursUValuti.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Redni Broj</span></dt>
+        <dd>
+            <span>{{vm.kursUValuti.redniBroj}}</span>
+        </dd>
+        <hr>
+        <dt><span>Kurs Kupovni</span></dt>
+        <dd>
+            <span>{{vm.kursUValuti.kursKupovni}}</span>
+        </dd>
+        <hr>
+        <dt><span>Kurs Srednji</span></dt>
+        <dd>
+            <span>{{vm.kursUValuti.kursSrednji}}</span>
+        </dd>
+        <hr>
+        <dt><span>Kurs Prodajni</span></dt>
+        <dd>
+            <span>{{vm.kursUValuti.kursProdajni}}</span>
+        </dd>
+        <hr>
+        <dt><span>Osnovna Valuta</span></dt>
+        <dd>
+            <a ui-sref="valuta-detail({id:vm.kursUValuti.osnovnaValuta.id})">{{vm.kursUValuti.osnovnaValuta.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>Prema Valuti</span></dt>
+        <dd>
+            <a ui-sref="valuta-detail({id:vm.kursUValuti.premaValuti.id})">{{vm.kursUValuti.premaValuti.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>Kursna Lista</span></dt>
+        <dd>
+            <a ui-sref="kursna-lista-detail({id:vm.kursUValuti.kursnaLista.id})">{{vm.kursUValuti.kursnaLista.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

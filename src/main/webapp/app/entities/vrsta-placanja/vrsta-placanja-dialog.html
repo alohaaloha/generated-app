@@ -1,0 +1,58 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myVrstaPlacanjaLabel">Create or edit a Vrsta Placanja</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.vrstaPlacanja.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.vrstaPlacanja.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_oznakaVrstePlacanja">Oznaka Vrste Placanja</label>
+            <input type="number" class="form-control" name="oznakaVrstePlacanja" id="field_oznakaVrstePlacanja"
+                    ng-model="vm.vrstaPlacanja.oznakaVrstePlacanja"
+                    required />
+            <div ng-show="editForm.oznakaVrstePlacanja.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.oznakaVrstePlacanja.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.oznakaVrstePlacanja.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nazivVrstePlacanja">Naziv Vrste Placanja</label>
+            <input type="text" class="form-control" name="nazivVrstePlacanja" id="field_nazivVrstePlacanja"
+                    ng-model="vm.vrstaPlacanja.nazivVrstePlacanja"
+                    required ng-maxlength="120" />
+            <div ng-show="editForm.nazivVrstePlacanja.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nazivVrstePlacanja.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.nazivVrstePlacanja.$error.maxlength">
+                    This field cannot be longer than 120 characters.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

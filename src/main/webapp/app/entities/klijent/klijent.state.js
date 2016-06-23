@@ -62,11 +62,16 @@
                     resolve: {
                         entity: function () {
                             return {
-                                nazivKlijenta: null,
+                                nazivPravnogLica: null,
+                                ime: null,
+                                prezime: null,
+                                jmbg: null,
                                 adresa: null,
                                 telefon: null,
                                 fax: null,
                                 email: null,
+                                pib: null,
+                                sifraDelatnosti: null,
                                 id: null
                             };
                         }

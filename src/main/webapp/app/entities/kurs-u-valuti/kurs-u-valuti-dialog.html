@@ -1,0 +1,108 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myKursUValutiLabel">Create or edit a Kurs U Valuti</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.kursUValuti.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.kursUValuti.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_redniBroj">Redni Broj</label>
+            <input type="number" class="form-control" name="redniBroj" id="field_redniBroj"
+                    ng-model="vm.kursUValuti.redniBroj"
+                    required />
+            <div ng-show="editForm.redniBroj.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.redniBroj.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.redniBroj.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_kursKupovni">Kurs Kupovni</label>
+            <input type="number" class="form-control" name="kursKupovni" id="field_kursKupovni"
+                    ng-model="vm.kursUValuti.kursKupovni"
+                    required />
+            <div ng-show="editForm.kursKupovni.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.kursKupovni.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.kursKupovni.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_kursSrednji">Kurs Srednji</label>
+            <input type="number" class="form-control" name="kursSrednji" id="field_kursSrednji"
+                    ng-model="vm.kursUValuti.kursSrednji"
+                    required />
+            <div ng-show="editForm.kursSrednji.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.kursSrednji.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.kursSrednji.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_kursProdajni">Kurs Prodajni</label>
+            <input type="number" class="form-control" name="kursProdajni" id="field_kursProdajni"
+                    ng-model="vm.kursUValuti.kursProdajni"
+                    required />
+            <div ng-show="editForm.kursProdajni.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.kursProdajni.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.kursProdajni.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_osnovnaValuta">Osnovna Valuta</label>
+            <select class="form-control" id="field_osnovnaValuta" name="osnovnaValuta" ng-model="vm.kursUValuti.osnovnaValuta" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_premaValuti">Prema Valuti</label>
+            <select class="form-control" id="field_premaValuti" name="premaValuti" ng-model="vm.kursUValuti.premaValuti" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_kursnaLista">Kursna Lista</label>
+            <select class="form-control" id="field_kursnaLista" name="kursnaLista" ng-model="vm.kursUValuti.kursnaLista" ng-options="kursnaLista as kursnaLista.id for kursnaLista in vm.kursnalistas track by kursnaLista.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

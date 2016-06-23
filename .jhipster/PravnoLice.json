@@ -1,0 +1,28 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "imeOdgovornogLica",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prezimeOdgovornogLica",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "jmbg",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160623164421",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "pravno_lice",
+    "pagination": "no"
+}

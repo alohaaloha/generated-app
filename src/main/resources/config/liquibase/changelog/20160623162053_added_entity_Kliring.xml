@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <!--
+        Added the entity Kliring.
+    -->
+    <changeSet id="20160623162053-1" author="jhipster">
+        <createTable tableName="kliring">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_poruke" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="swwift_duznika" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="obracunski_racun_duznika" type="varchar(18)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="swift_poverioca" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="obracunski_racun_poverioca" type="varchar(18)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="ukupan_iznos" type="double">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="datum_valute" type="date">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="datum" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="valuta_id" type="bigint"/>
+            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="kliring" columnName="datum" columnDataType="datetime"/>
+        
+    </changeSet>
+</databaseChangeLog>

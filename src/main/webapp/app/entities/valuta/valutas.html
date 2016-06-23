@@ -1,0 +1,64 @@
+<div>
+    <h2>Valutas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="valuta.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Valuta
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Zvanicna Sifra</span></th>
+                    <th><span>Naziv Valute</span></th>
+                    <th><span>Domicilna</span></th>
+                    <th><span>Drzava</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="valuta in vm.valutas track by valuta.id">
+                    <td><a ui-sref="valuta-detail({id:valuta.id})">{{valuta.id}}</a></td>
+                    <td>{{valuta.zvanicnaSifra}}</td>
+                    <td>{{valuta.nazivValute}}</td>
+                    <td>{{valuta.domicilna}}</td>
+                    <td>
+                        <a ui-sref="drzava-detail({id:valuta.drzava.id})">{{valuta.drzava.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="valuta-detail({id:valuta.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="valuta.edit({id:valuta.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="valuta.delete({id:valuta.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity KursUValuti.
+    -->
+    <changeSet id="20160623163217-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="osnovna_valuta_id"
+                                 baseTableName="kurs_u_valuti"
+                                 constraintName="fk_kursuvaluti_osnovnavaluta_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valuta"/>
+
+        <addForeignKeyConstraint baseColumnNames="prema_valuti_id"
+                                 baseTableName="kurs_u_valuti"
+                                 constraintName="fk_kursuvaluti_premavaluti_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valuta"/>
+
+        <addForeignKeyConstraint baseColumnNames="kursna_lista_id"
+                                 baseTableName="kurs_u_valuti"
+                                 constraintName="fk_kursuvaluti_kursnalista_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kursna_lista"/>
+
+    </changeSet>
+</databaseChangeLog>

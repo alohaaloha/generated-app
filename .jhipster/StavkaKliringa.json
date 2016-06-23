@@ -1,0 +1,22 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "kliring",
+            "otherEntityName": "kliring",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "analitikaIzvoda",
+            "otherEntityName": "analitikaIzvoda",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20160623171102",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "stavka_kliringa",
+    "pagination": "no"
+}

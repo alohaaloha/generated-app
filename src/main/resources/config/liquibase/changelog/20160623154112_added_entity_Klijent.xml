@@ -21,7 +21,19 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="naziv_klijenta" type="varchar(120)">
+            <column name="naziv_pravnog_lica" type="varchar(120)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ime" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="prezime" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="jmbg" type="varchar(13)">
                 <constraints nullable="false" />
             </column>
             
@@ -38,6 +50,14 @@
             </column>
             
             <column name="email" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="pib" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="sifra_delatnosti" type="integer">
                 <constraints nullable="true" />
             </column>
             

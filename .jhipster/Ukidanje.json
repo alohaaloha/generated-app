@@ -1,0 +1,33 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "racunPravnogLica",
+            "otherEntityName": "racunPravnogLica",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datumUkidanja",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenosNaRacun",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "changelogDate": "20160623171256",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "ukidanje",
+    "pagination": "no"
+}

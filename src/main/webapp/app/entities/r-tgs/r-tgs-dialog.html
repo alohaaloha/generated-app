@@ -1,0 +1,112 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRTGSLabel">Create or edit a Rtgs</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.rTGS.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.rTGS.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_idPoruke">Id Poruke</label>
+            <input type="text" class="form-control" name="idPoruke" id="field_idPoruke"
+                    ng-model="vm.rTGS.idPoruke"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.idPoruke.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.idPoruke.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.idPoruke.$error.maxlength">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_swiftKodBankeDuznika">Swift Kod Banke Duznika</label>
+            <input type="text" class="form-control" name="swiftKodBankeDuznika" id="field_swiftKodBankeDuznika"
+                    ng-model="vm.rTGS.swiftKodBankeDuznika"
+                    required ng-maxlength="8" />
+            <div ng-show="editForm.swiftKodBankeDuznika.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.swiftKodBankeDuznika.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.swiftKodBankeDuznika.$error.maxlength">
+                    This field cannot be longer than 8 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_obracunskiRacunBankeDuznika">Obracunski Racun Banke Duznika</label>
+            <input type="text" class="form-control" name="obracunskiRacunBankeDuznika" id="field_obracunskiRacunBankeDuznika"
+                    ng-model="vm.rTGS.obracunskiRacunBankeDuznika"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.obracunskiRacunBankeDuznika.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunBankeDuznika.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunBankeDuznika.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_swiftKodBankePoverioca">Swift Kod Banke Poverioca</label>
+            <input type="text" class="form-control" name="swiftKodBankePoverioca" id="field_swiftKodBankePoverioca"
+                    ng-model="vm.rTGS.swiftKodBankePoverioca"
+                    required ng-maxlength="8" />
+            <div ng-show="editForm.swiftKodBankePoverioca.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.swiftKodBankePoverioca.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.swiftKodBankePoverioca.$error.maxlength">
+                    This field cannot be longer than 8 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_obracunskiRacunBankePoverioca">Obracunski Racun Banke Poverioca</label>
+            <input type="text" class="form-control" name="obracunskiRacunBankePoverioca" id="field_obracunskiRacunBankePoverioca"
+                    ng-model="vm.rTGS.obracunskiRacunBankePoverioca"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.obracunskiRacunBankePoverioca.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunBankePoverioca.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunBankePoverioca.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_brojStavke">Broj Stavke</label>
+            <select class="form-control" id="field_brojStavke" name="brojStavke" ng-model="vm.rTGS.brojStavke" ng-options="analitikaIzvoda as analitikaIzvoda.id for analitikaIzvoda in vm.analitikaizvodas track by analitikaIzvoda.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

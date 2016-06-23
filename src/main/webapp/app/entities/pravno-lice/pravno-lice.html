@@ -1,0 +1,60 @@
+<div>
+    <h2>Pravno Lice</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="pravno-lice.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Pravno Lice
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Ime Odgovornog Lica</span></th>
+                    <th><span>Prezime Odgovornog Lica</span></th>
+                    <th><span>Jmbg</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pravnoLice in vm.pravnoLice track by pravnoLice.id">
+                    <td><a ui-sref="pravno-lice-detail({id:pravnoLice.id})">{{pravnoLice.id}}</a></td>
+                    <td>{{pravnoLice.imeOdgovornogLica}}</td>
+                    <td>{{pravnoLice.prezimeOdgovornogLica}}</td>
+                    <td>{{pravnoLice.jmbg}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="pravno-lice-detail({id:pravnoLice.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pravno-lice.edit({id:pravnoLice.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="pravno-lice.delete({id:pravnoLice.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

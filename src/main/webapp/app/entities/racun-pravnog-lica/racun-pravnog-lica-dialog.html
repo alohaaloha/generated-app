@@ -1,0 +1,96 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRacunPravnogLicaLabel">Create or edit a Racun Pravnog Lica</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.racunPravnogLica.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.racunPravnogLica.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_brojRacuna">Broj Racuna</label>
+            <input type="text" class="form-control" name="brojRacuna" id="field_brojRacuna"
+                    ng-model="vm.racunPravnogLica.brojRacuna"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.brojRacuna.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.brojRacuna.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.brojRacuna.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_datumOtvaranja">Datum Otvaranja</label>
+                <div class="input-group">
+                    <input id="field_datumOtvaranja" type="text" class="form-control" name="datumOtvaranja" datetime-picker="{{dateformat}}" ng-model="vm.racunPravnogLica.datumOtvaranja" is-open="vm.datePickerOpenStatus.datumOtvaranja"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datumOtvaranja')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.datumOtvaranja.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.datumOtvaranja.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.datumOtvaranja.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_vazenje">Vazenje</label>
+            <input type="number" class="form-control" name="vazenje" id="field_vazenje"
+                    ng-model="vm.racunPravnogLica.vazenje"
+                    required />
+            <div ng-show="editForm.vazenje.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.vazenje.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.vazenje.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_banka">Banka</label>
+            <select class="form-control" id="field_banka" name="banka" ng-model="vm.racunPravnogLica.banka" ng-options="banka as banka.id for banka in vm.bankas track by banka.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_klijent">Klijent</label>
+            <select class="form-control" id="field_klijent" name="klijent" ng-model="vm.racunPravnogLica.klijent" ng-options="klijent as klijent.id for klijent in vm.klijents track by klijent.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_valuta">Valuta</label>
+            <select class="form-control" id="field_valuta" name="valuta" ng-model="vm.racunPravnogLica.valuta" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

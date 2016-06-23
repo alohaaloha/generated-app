@@ -1,0 +1,62 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "brojStavke",
+            "otherEntityName": "analitikaIzvoda",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "idPoruke",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "50"
+        },
+        {
+            "fieldName": "swiftKodBankeDuznika",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "8"
+        },
+        {
+            "fieldName": "obracunskiRacunBankeDuznika",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
+            "fieldName": "swiftKodBankePoverioca",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "8"
+        },
+        {
+            "fieldName": "obracunskiRacunBankePoverioca",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        }
+    ],
+    "changelogDate": "20160623170642",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "rtgs",
+    "pagination": "no"
+}

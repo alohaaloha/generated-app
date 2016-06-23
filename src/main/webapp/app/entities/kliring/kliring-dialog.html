@@ -1,0 +1,164 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myKliringLabel">Create or edit a Kliring</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.kliring.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.kliring.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_idPoruke">Id Poruke</label>
+            <input type="text" class="form-control" name="idPoruke" id="field_idPoruke"
+                    ng-model="vm.kliring.idPoruke"
+                    required ng-maxlength="50" />
+            <div ng-show="editForm.idPoruke.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.idPoruke.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.idPoruke.$error.maxlength">
+                    This field cannot be longer than 50 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pinfProApp.kliring.swwift_duznika" for="field_swwift_duznika">Swwift Duznika</label>
+            <input type="text" class="form-control" name="swwift_duznika" id="field_swwift_duznika"
+                    ng-model="vm.kliring.swwift_duznika"
+                    required ng-maxlength="8" />
+            <div ng-show="editForm.swwift_duznika.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.swwift_duznika.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.swwift_duznika.$error.maxlength">
+                    This field cannot be longer than 8 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_obracunskiRacunDuznika">Obracunski Racun Duznika</label>
+            <input type="text" class="form-control" name="obracunskiRacunDuznika" id="field_obracunskiRacunDuznika"
+                    ng-model="vm.kliring.obracunskiRacunDuznika"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.obracunskiRacunDuznika.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunDuznika.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunDuznika.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="pinfProApp.kliring.swift_poverioca" for="field_swift_poverioca">Swift Poverioca</label>
+            <input type="text" class="form-control" name="swift_poverioca" id="field_swift_poverioca"
+                    ng-model="vm.kliring.swift_poverioca"
+                    required ng-maxlength="8" />
+            <div ng-show="editForm.swift_poverioca.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.swift_poverioca.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.swift_poverioca.$error.maxlength">
+                    This field cannot be longer than 8 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_obracunskiRacunPoverioca">Obracunski Racun Poverioca</label>
+            <input type="text" class="form-control" name="obracunskiRacunPoverioca" id="field_obracunskiRacunPoverioca"
+                    ng-model="vm.kliring.obracunskiRacunPoverioca"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.obracunskiRacunPoverioca.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunPoverioca.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacunPoverioca.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_ukupanIznos">Ukupan Iznos</label>
+            <input type="number" class="form-control" name="ukupanIznos" id="field_ukupanIznos"
+                    ng-model="vm.kliring.ukupanIznos"
+                    required />
+            <div ng-show="editForm.ukupanIznos.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.ukupanIznos.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.ukupanIznos.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_datumValute">Datum Valute</label>
+                <div class="input-group">
+                    <input id="field_datumValute" type="text" class="form-control" name="datumValute" uib-datepicker-popup="{{dateformat}}" ng-model="vm.kliring.datumValute" is-open="vm.datePickerOpenStatus.datumValute"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datumValute')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.datumValute.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.datumValute.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_datum">Datum</label>
+                <div class="input-group">
+                    <input id="field_datum" type="text" class="form-control" name="datum" datetime-picker="{{dateformat}}" ng-model="vm.kliring.datum" is-open="vm.datePickerOpenStatus.datum"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datum')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.datum.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.datum.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.datum.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_valuta">Valuta</label>
+            <select class="form-control" id="field_valuta" name="valuta" ng-model="vm.kliring.valuta" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

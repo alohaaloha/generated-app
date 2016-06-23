@@ -23,7 +23,7 @@
                     <th><span>Datum Otvaranja</span></th>
                     <th><span>Vazenje</span></th>
                     <th><span>Banka</span></th>
-                    <th><span>Klijent</span></th>
+                    <th><span>Vlasnik</span></th>
                     <th><span>Valuta</span></th>
                     <th></th>
                 </tr>
@@ -38,7 +38,7 @@
                         <a ui-sref="banka-detail({id:racunPravnogLica.banka.id})">{{racunPravnogLica.banka.id}}</a>
                     </td>
                     <td>
-                        <a ui-sref="klijent-detail({id:racunPravnogLica.klijent.id})">{{racunPravnogLica.klijent.id}}</a>
+                        <a ui-sref="klijent-detail({id:racunPravnogLica.vlasnik.id})">{{racunPravnogLica.vlasnik.id}}</a>
                     </td>
                     <td>
                         <a ui-sref="valuta-detail({id:racunPravnogLica.valuta.id})">{{racunPravnogLica.valuta.id}}</a>

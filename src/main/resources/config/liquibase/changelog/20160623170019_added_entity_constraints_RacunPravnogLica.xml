@@ -14,9 +14,9 @@
                                  referencedColumnNames="id"
                                  referencedTableName="banka"/>
 
-        <addForeignKeyConstraint baseColumnNames="klijent_id"
+        <addForeignKeyConstraint baseColumnNames="vlasnik_id"
                                  baseTableName="racun_pravnog_lica"
-                                 constraintName="fk_racunpravnoglica_klijent_id"
+                                 constraintName="fk_racunpravnoglica_vlasnik_id"
                                  referencedColumnNames="id"
                                  referencedTableName="klijent"/>
 

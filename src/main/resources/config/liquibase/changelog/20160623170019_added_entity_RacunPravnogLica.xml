@@ -34,7 +34,7 @@
             </column>
             
             <column name="banka_id" type="bigint"/>
-            <column name="klijent_id" type="bigint"/>
+            <column name="vlasnik_id" type="bigint"/>
             <column name="valuta_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>

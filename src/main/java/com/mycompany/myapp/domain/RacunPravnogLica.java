@@ -45,7 +45,7 @@ public class RacunPravnogLica implements Serializable {
     @ManyToOne
     private Klijent vlasnik;
 
-    @OneToMany(mappedBy = "racunPravnogLica")
+    @OneToMany(mappedBy = "dnevniIzvodBanke")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<DnevnoStanjeRacuna> dnevnoStanjeRacunas = new HashSet<>();
@@ -98,11 +98,11 @@ public class RacunPravnogLica implements Serializable {
         this.banka = banka;
     }
 
-    public Klijent getKlijent() {
+    public Klijent getVlasnik() {
         return vlasnik;
     }
 
-    public void setKlijent(Klijent klijent) {
+    public void setVlasnik(Klijent klijent) {
         this.vlasnik = klijent;
     }
 

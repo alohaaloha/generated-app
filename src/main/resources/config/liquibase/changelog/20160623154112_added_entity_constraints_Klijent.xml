@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Klijent.
+    -->
+    <changeSet id="20160623154112-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="pravno_lice_id"
+                                 baseTableName="klijent"
+                                 constraintName="fk_klijent_pravnolice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pravno_lice"/>
+
+        <addForeignKeyConstraint baseColumnNames="naseljeno_mesto_id"
+                                 baseTableName="klijent"
+                                 constraintName="fk_klijent_naseljenomesto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="naseljeno_mesto"/>
+
+    </changeSet>
+</databaseChangeLog>

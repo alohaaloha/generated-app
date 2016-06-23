@@ -1,0 +1,262 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAnalitikaIzvodaLabel">Create or edit a Analitika Izvoda</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.analitikaIzvoda.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.analitikaIzvoda.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_duznik">Duznik</label>
+            <input type="text" class="form-control" name="duznik" id="field_duznik"
+                    ng-model="vm.analitikaIzvoda.duznik"
+                    required ng-maxlength="256" />
+            <div ng-show="editForm.duznik.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.duznik.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.duznik.$error.maxlength">
+                    This field cannot be longer than 256 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_svrha">Svrha</label>
+            <input type="text" class="form-control" name="svrha" id="field_svrha"
+                    ng-model="vm.analitikaIzvoda.svrha"
+                    required ng-maxlength="256" />
+            <div ng-show="editForm.svrha.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.svrha.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.svrha.$error.maxlength">
+                    This field cannot be longer than 256 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_poverilac">Poverilac</label>
+            <input type="text" class="form-control" name="poverilac" id="field_poverilac"
+                    ng-model="vm.analitikaIzvoda.poverilac"
+                    required ng-maxlength="256" />
+            <div ng-show="editForm.poverilac.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.poverilac.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.poverilac.$error.maxlength">
+                    This field cannot be longer than 256 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_datumPrijema">Datum Prijema</label>
+                <div class="input-group">
+                    <input id="field_datumPrijema" type="text" class="form-control" name="datumPrijema" datetime-picker="{{dateformat}}" ng-model="vm.analitikaIzvoda.datumPrijema" is-open="vm.datePickerOpenStatus.datumPrijema"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datumPrijema')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.datumPrijema.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.datumPrijema.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.datumPrijema.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_datumValute">Datum Valute</label>
+                <div class="input-group">
+                    <input id="field_datumValute" type="text" class="form-control" name="datumValute" datetime-picker="{{dateformat}}" ng-model="vm.analitikaIzvoda.datumValute" is-open="vm.datePickerOpenStatus.datumValute"
+                    required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('datumValute')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.datumValute.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.datumValute.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.datumValute.$error.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_racunDuznika">Racun Duznika</label>
+            <input type="text" class="form-control" name="racunDuznika" id="field_racunDuznika"
+                    ng-model="vm.analitikaIzvoda.racunDuznika"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.racunDuznika.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.racunDuznika.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.racunDuznika.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_modelZaduzenja">Model Zaduzenja</label>
+            <input type="number" class="form-control" name="modelZaduzenja" id="field_modelZaduzenja"
+                    ng-model="vm.analitikaIzvoda.modelZaduzenja"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_pozivNaBrojZaduzenja">Poziv Na Broj Zaduzenja</label>
+            <input type="text" class="form-control" name="pozivNaBrojZaduzenja" id="field_pozivNaBrojZaduzenja"
+                    ng-model="vm.analitikaIzvoda.pozivNaBrojZaduzenja"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.pozivNaBrojZaduzenja.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pozivNaBrojZaduzenja.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_racunPoverioca">Racun Poverioca</label>
+            <input type="text" class="form-control" name="racunPoverioca" id="field_racunPoverioca"
+                    ng-model="vm.analitikaIzvoda.racunPoverioca"
+                    ng-maxlength="18" />
+            <div ng-show="editForm.racunPoverioca.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.racunPoverioca.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_modelOdobrenja">Model Odobrenja</label>
+            <input type="number" class="form-control" name="modelOdobrenja" id="field_modelOdobrenja"
+                    ng-model="vm.analitikaIzvoda.modelOdobrenja"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_pozivNaBrojOdobrenja">Poziv Na Broj Odobrenja</label>
+            <input type="text" class="form-control" name="pozivNaBrojOdobrenja" id="field_pozivNaBrojOdobrenja"
+                    ng-model="vm.analitikaIzvoda.pozivNaBrojOdobrenja"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.pozivNaBrojOdobrenja.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pozivNaBrojOdobrenja.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_isHitno">Is Hitno</label>
+            <input type="checkbox" class="form-control" name="isHitno" id="field_isHitno"
+                    ng-model="vm.analitikaIzvoda.isHitno"
+                     />
+            <div ng-show="editForm.isHitno.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isHitno.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_iznos">Iznos</label>
+            <input type="number" class="form-control" name="iznos" id="field_iznos"
+                    ng-model="vm.analitikaIzvoda.iznos"
+                    required />
+            <div ng-show="editForm.iznos.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.iznos.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.iznos.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tipGreske">Tip Greske</label>
+            <input type="number" class="form-control" name="tipGreske" id="field_tipGreske"
+                    ng-model="vm.analitikaIzvoda.tipGreske"
+                    required max="9" />
+            <div ng-show="editForm.tipGreske.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tipGreske.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.tipGreske.$error.max">
+                    This field cannot be more than 9.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.tipGreske.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                    ng-model="vm.analitikaIzvoda.status"
+                    ng-maxlength="1" />
+            <div ng-show="editForm.status.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.status.$error.maxlength">
+                    This field cannot be longer than 1 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_dnevnoStanjeRacuna">Dnevno Stanje Racuna</label>
+            <select class="form-control" id="field_dnevnoStanjeRacuna" name="dnevnoStanjeRacuna" ng-model="vm.analitikaIzvoda.dnevnoStanjeRacuna" ng-options="dnevnoStanjeRacuna as dnevnoStanjeRacuna.id for dnevnoStanjeRacuna in vm.dnevnostanjeracunas track by dnevnoStanjeRacuna.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_naseljenoMesto">Naseljeno Mesto</label>
+            <select class="form-control" id="field_naseljenoMesto" name="naseljenoMesto" ng-model="vm.analitikaIzvoda.naseljenoMesto" ng-options="naseljenoMesto as naseljenoMesto.id for naseljenoMesto in vm.naseljenomestos track by naseljenoMesto.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_vrstaPlacanja">Vrsta Placanja</label>
+            <select class="form-control" id="field_vrstaPlacanja" name="vrstaPlacanja" ng-model="vm.analitikaIzvoda.vrstaPlacanja" ng-options="vrstaPlacanja as vrstaPlacanja.id for vrstaPlacanja in vm.vrstaplacanjas track by vrstaPlacanja.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_valutaPlacanja">Valuta Placanja</label>
+            <select class="form-control" id="field_valutaPlacanja" name="valutaPlacanja" ng-model="vm.analitikaIzvoda.valutaPlacanja" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

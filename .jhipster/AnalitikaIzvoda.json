@@ -1,0 +1,161 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "dnevnoStanjeRacuna",
+            "otherEntityName": "dnevnoStanjeRacuna",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "naseljenoMesto",
+            "otherEntityName": "naseljenoMesto",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "vrstaPlacanja",
+            "otherEntityName": "vrstaPlacanja",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "valutaPlacanja",
+            "otherEntityName": "valuta",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "porukaMT103",
+            "otherEntityName": "rTGS",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "brojStavke"
+        },
+        {
+            "relationshipName": "porukaMT102",
+            "otherEntityName": "stavkaKliringa",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "brojStavke"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "duznik",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "256"
+        },
+        {
+            "fieldName": "svrha",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "256"
+        },
+        {
+            "fieldName": "poverilac",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "256"
+        },
+        {
+            "fieldName": "datumPrijema",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datumValute",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "racunDuznika",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
+            "fieldName": "modelZaduzenja",
+            "fieldType": "Integer",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "pozivNaBrojZaduzenja",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "racunPoverioca",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
+            "fieldName": "modelOdobrenja",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pozivNaBrojOdobrenja",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "isHitno",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "iznos",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipGreske",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "max"
+            ],
+            "fieldValidateRulesMax": "9"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "1"
+        }
+    ],
+    "changelogDate": "20160623144526",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "analitika_izvoda",
+    "pagination": "no"
+}

@@ -7,7 +7,14 @@
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160622183149_added_entity_Drzava.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160622183741_added_entity_NaseljenoMesto.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623144526_added_entity_AnalitikaIzvoda.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623150224_added_entity_Banka.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623151248_added_entity_DnevnoStanjeRacuna.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623154112_added_entity_Klijent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20160622183741_added_entity_constraints_NaseljenoMesto.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623144526_added_entity_constraints_AnalitikaIzvoda.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623151248_added_entity_constraints_DnevnoStanjeRacuna.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160623154112_added_entity_constraints_Klijent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

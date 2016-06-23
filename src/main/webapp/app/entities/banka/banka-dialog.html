@@ -1,0 +1,154 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myBankaLabel">Create or edit a Banka</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.banka.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.banka.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sifraBanke">Sifra Banke</label>
+            <input type="text" class="form-control" name="sifraBanke" id="field_sifraBanke"
+                    ng-model="vm.banka.sifraBanke"
+                    required ng-maxlength="3" />
+            <div ng-show="editForm.sifraBanke.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.sifraBanke.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.sifraBanke.$error.maxlength">
+                    This field cannot be longer than 3 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_pib">Pib</label>
+            <input type="text" class="form-control" name="pib" id="field_pib"
+                    ng-model="vm.banka.pib"
+                    required ng-maxlength="10" />
+            <div ng-show="editForm.pib.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.pib.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.pib.$error.maxlength">
+                    This field cannot be longer than 10 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_naziv">Naziv</label>
+            <input type="text" class="form-control" name="naziv" id="field_naziv"
+                    ng-model="vm.banka.naziv"
+                    required ng-maxlength="120" />
+            <div ng-show="editForm.naziv.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.naziv.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.naziv.$error.maxlength">
+                    This field cannot be longer than 120 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_adresa">Adresa</label>
+            <input type="text" class="form-control" name="adresa" id="field_adresa"
+                    ng-model="vm.banka.adresa"
+                    required ng-maxlength="120" />
+            <div ng-show="editForm.adresa.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.adresa.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.adresa.$error.maxlength">
+                    This field cannot be longer than 120 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.banka.email"
+                    ng-maxlength="128" />
+            <div ng-show="editForm.email.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.email.$error.maxlength">
+                    This field cannot be longer than 128 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_web">Web</label>
+            <input type="text" class="form-control" name="web" id="field_web"
+                    ng-model="vm.banka.web"
+                    ng-maxlength="128" />
+            <div ng-show="editForm.web.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.web.$error.maxlength">
+                    This field cannot be longer than 128 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_telefon">Telefon</label>
+            <input type="text" class="form-control" name="telefon" id="field_telefon"
+                    ng-model="vm.banka.telefon"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.telefon.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.telefon.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fax">Fax</label>
+            <input type="text" class="form-control" name="fax" id="field_fax"
+                    ng-model="vm.banka.fax"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.fax.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fax.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_bankaInt">Banka Int</label>
+            <input type="number" class="form-control" name="bankaInt" id="field_bankaInt"
+                    ng-model="vm.banka.bankaInt"
+                    required />
+            <div ng-show="editForm.bankaInt.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.bankaInt.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.bankaInt.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,11 +1,14 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -34,6 +37,11 @@ public class NaseljenoMesto implements Serializable {
 
     @ManyToOne
     private Drzava drzava;
+
+    @OneToMany(mappedBy = "naseljenoMesto")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -65,6 +73,14 @@ public class NaseljenoMesto implements Serializable {
 
     public void setDrzava(Drzava drzava) {
         this.drzava = drzava;
+    }
+
+    public Set<AnalitikaIzvoda> getAnalitikaIzvodas() {
+        return analitikaIzvodas;
+    }
+
+    public void setAnalitikaIzvodas(Set<AnalitikaIzvoda> analitikaIzvodas) {
+        this.analitikaIzvodas = analitikaIzvodas;
     }
 
     @Override

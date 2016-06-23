@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('DrzavaDetailController', DrzavaDetailController);
 
-    DrzavaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Drzava', 'NaseljenoMesto'];
+    DrzavaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'Drzava', 'NaseljenoMesto', 'Valuta'];
 
-    function DrzavaDetailController($scope, $rootScope, $stateParams, entity, Drzava, NaseljenoMesto) {
+    function DrzavaDetailController($scope, $rootScope, $stateParams, entity, Drzava, NaseljenoMesto, Valuta) {
         var vm = this;
         vm.drzava = entity;
         

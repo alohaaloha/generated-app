@@ -1,0 +1,106 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myKlijentLabel">Create or edit a Klijent</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.klijent.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.klijent.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nazivKlijenta">Naziv Klijenta</label>
+            <input type="text" class="form-control" name="nazivKlijenta" id="field_nazivKlijenta"
+                    ng-model="vm.klijent.nazivKlijenta"
+                    required ng-maxlength="120" />
+            <div ng-show="editForm.nazivKlijenta.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.nazivKlijenta.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.nazivKlijenta.$error.maxlength">
+                    This field cannot be longer than 120 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_adresa">Adresa</label>
+            <input type="text" class="form-control" name="adresa" id="field_adresa"
+                    ng-model="vm.klijent.adresa"
+                    required ng-maxlength="30" />
+            <div ng-show="editForm.adresa.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.adresa.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.adresa.$error.maxlength">
+                    This field cannot be longer than 30 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_telefon">Telefon</label>
+            <input type="text" class="form-control" name="telefon" id="field_telefon"
+                    ng-model="vm.klijent.telefon"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.telefon.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.telefon.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fax">Fax</label>
+            <input type="text" class="form-control" name="fax" id="field_fax"
+                    ng-model="vm.klijent.fax"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.fax.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.fax.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                    ng-model="vm.klijent.email"
+                    ng-maxlength="20" />
+            <div ng-show="editForm.email.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.email.$error.maxlength">
+                    This field cannot be longer than 20 characters.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="field_pravnoLice">Pravno Lice</label>
+            <select class="form-control" id="field_pravnoLice" name="pravnoLice" ng-model="vm.klijent.pravnoLice" ng-options="pravnoLice as pravnoLice.id for pravnoLice in vm.pravnolice track by pravnoLice.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_naseljenoMesto">Naseljeno Mesto</label>
+            <select class="form-control" id="field_naseljenoMesto" name="naseljenoMesto" ng-model="vm.klijent.naseljenoMesto" ng-options="naseljenoMesto as naseljenoMesto.id for naseljenoMesto in vm.naseljenomestos track by naseljenoMesto.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

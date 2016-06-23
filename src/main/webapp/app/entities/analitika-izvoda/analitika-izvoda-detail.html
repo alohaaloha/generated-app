@@ -1,0 +1,108 @@
+
+<div>
+    <h2><span>Analitika Izvoda</span> {{vm.analitikaIzvoda.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Duznik</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.duznik}}</span>
+        </dd>
+        <hr>
+        <dt><span>Svrha</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.svrha}}</span>
+        </dd>
+        <hr>
+        <dt><span>Poverilac</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.poverilac}}</span>
+        </dd>
+        <hr>
+        <dt><span>Datum Prijema</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.datumPrijema | date:'medium'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Datum Valute</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.datumValute | date:'medium'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Racun Duznika</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.racunDuznika}}</span>
+        </dd>
+        <hr>
+        <dt><span>Model Zaduzenja</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.modelZaduzenja}}</span>
+        </dd>
+        <hr>
+        <dt><span>Poziv Na Broj Zaduzenja</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.pozivNaBrojZaduzenja}}</span>
+        </dd>
+        <hr>
+        <dt><span>Racun Poverioca</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.racunPoverioca}}</span>
+        </dd>
+        <hr>
+        <dt><span>Model Odobrenja</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.modelOdobrenja}}</span>
+        </dd>
+        <hr>
+        <dt><span>Poziv Na Broj Odobrenja</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.pozivNaBrojOdobrenja}}</span>
+        </dd>
+        <hr>
+        <dt><span>Is Hitno</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.isHitno}}</span>
+        </dd>
+        <hr>
+        <dt><span>Iznos</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.iznos}}</span>
+        </dd>
+        <hr>
+        <dt><span>Tip Greske</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.tipGreske}}</span>
+        </dd>
+        <hr>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{vm.analitikaIzvoda.status}}</span>
+        </dd>
+        <hr>
+        <dt><span>Dnevno Stanje Racuna</span></dt>
+        <dd>
+            <a ui-sref="dnevno-stanje-racuna-detail({id:vm.analitikaIzvoda.dnevnoStanjeRacuna.id})">{{vm.analitikaIzvoda.dnevnoStanjeRacuna.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>Naseljeno Mesto</span></dt>
+        <dd>
+            <a ui-sref="naseljeno-mesto-detail({id:vm.analitikaIzvoda.naseljenoMesto.id})">{{vm.analitikaIzvoda.naseljenoMesto.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>Vrsta Placanja</span></dt>
+        <dd>
+            <a ui-sref="vrsta-placanja-detail({id:vm.analitikaIzvoda.vrstaPlacanja.id})">{{vm.analitikaIzvoda.vrstaPlacanja.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>Valuta Placanja</span></dt>
+        <dd>
+            <a ui-sref="valuta-detail({id:vm.analitikaIzvoda.valutaPlacanja.id})">{{vm.analitikaIzvoda.valutaPlacanja.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

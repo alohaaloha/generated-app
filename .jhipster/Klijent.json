@@ -1,0 +1,71 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "racuni",
+            "otherEntityName": "racunPravnogLica",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "vlasnik"
+        },
+        {
+            "relationshipName": "pravnoLice",
+            "otherEntityName": "pravnoLice",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "naseljenoMesto",
+            "otherEntityName": "naseljenoMesto",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nazivKlijenta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "120"
+        },
+        {
+            "fieldName": "adresa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "telefon",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "fax",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        }
+    ],
+    "changelogDate": "20160623154112",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "klijent",
+    "pagination": "no"
+}

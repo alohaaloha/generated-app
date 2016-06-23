@@ -5,6 +5,12 @@
             "otherEntityName": "naseljenoMesto",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "drzava"
+        },
+        {
+            "relationshipName": "drzavnaValuta",
+            "otherEntityName": "valuta",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "drzava"
         }
     ],
     "fields": [

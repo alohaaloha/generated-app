@@ -1,0 +1,98 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "kursPoslovneBanke",
+            "otherEntityName": "kursnaLista",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "banka"
+        },
+        {
+            "relationshipName": "racunPravnogLica",
+            "otherEntityName": "racunPravnogLica",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "banka"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "sifraBanke",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "3"
+        },
+        {
+            "fieldName": "pib",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "naziv",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "120"
+        },
+        {
+            "fieldName": "adresa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "120"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "128"
+        },
+        {
+            "fieldName": "web",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "128"
+        },
+        {
+            "fieldName": "telefon",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "fax",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "bankaInt",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623150224",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "banka",
+    "pagination": "no"
+}

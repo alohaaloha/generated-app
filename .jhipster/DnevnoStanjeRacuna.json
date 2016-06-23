@@ -1,0 +1,65 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "analitikaIzvoda",
+            "otherEntityName": "analitikaIzvoda",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "dnevnoStanjeRacuna"
+        },
+        {
+            "relationshipName": "dnevniIzvodBanke",
+            "otherEntityName": "racunPravnogLica",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "brojIzvoda",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datum",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prethodnoStanje",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prometUKorist",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prometNaTeret",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "novoStanje",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20160623151248",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "dnevno_stanje_racuna",
+    "pagination": "no"
+}

@@ -1,0 +1,100 @@
+<div>
+    <h2>Analitika Izvodas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="analitika-izvoda.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Analitika Izvoda
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Duznik</span></th>
+                    <th><span>Svrha</span></th>
+                    <th><span>Poverilac</span></th>
+                    <th><span>Datum Prijema</span></th>
+                    <th><span>Datum Valute</span></th>
+                    <th><span>Racun Duznika</span></th>
+                    <th><span>Model Zaduzenja</span></th>
+                    <th><span>Poziv Na Broj Zaduzenja</span></th>
+                    <th><span>Racun Poverioca</span></th>
+                    <th><span>Model Odobrenja</span></th>
+                    <th><span>Poziv Na Broj Odobrenja</span></th>
+                    <th><span>Is Hitno</span></th>
+                    <th><span>Iznos</span></th>
+                    <th><span>Tip Greske</span></th>
+                    <th><span>Status</span></th>
+                    <th><span>Dnevno Stanje Racuna</span></th>
+                    <th><span>Naseljeno Mesto</span></th>
+                    <th><span>Vrsta Placanja</span></th>
+                    <th><span>Valuta Placanja</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="analitikaIzvoda in vm.analitikaIzvodas track by analitikaIzvoda.id">
+                    <td><a ui-sref="analitika-izvoda-detail({id:analitikaIzvoda.id})">{{analitikaIzvoda.id}}</a></td>
+                    <td>{{analitikaIzvoda.duznik}}</td>
+                    <td>{{analitikaIzvoda.svrha}}</td>
+                    <td>{{analitikaIzvoda.poverilac}}</td>
+                    <td>{{analitikaIzvoda.datumPrijema | date:'medium'}}</td>
+                    <td>{{analitikaIzvoda.datumValute | date:'medium'}}</td>
+                    <td>{{analitikaIzvoda.racunDuznika}}</td>
+                    <td>{{analitikaIzvoda.modelZaduzenja}}</td>
+                    <td>{{analitikaIzvoda.pozivNaBrojZaduzenja}}</td>
+                    <td>{{analitikaIzvoda.racunPoverioca}}</td>
+                    <td>{{analitikaIzvoda.modelOdobrenja}}</td>
+                    <td>{{analitikaIzvoda.pozivNaBrojOdobrenja}}</td>
+                    <td>{{analitikaIzvoda.isHitno}}</td>
+                    <td>{{analitikaIzvoda.iznos}}</td>
+                    <td>{{analitikaIzvoda.tipGreske}}</td>
+                    <td>{{analitikaIzvoda.status}}</td>
+                    <td>
+                        <a ui-sref="dnevno-stanje-racuna-detail({id:analitikaIzvoda.dnevnoStanjeRacuna.id})">{{analitikaIzvoda.dnevnoStanjeRacuna.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="naseljeno-mesto-detail({id:analitikaIzvoda.naseljenoMesto.id})">{{analitikaIzvoda.naseljenoMesto.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="vrsta-placanja-detail({id:analitikaIzvoda.vrstaPlacanja.id})">{{analitikaIzvoda.vrstaPlacanja.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="valuta-detail({id:analitikaIzvoda.valutaPlacanja.id})">{{analitikaIzvoda.valutaPlacanja.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="analitika-izvoda-detail({id:analitikaIzvoda.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="analitika-izvoda.edit({id:analitikaIzvoda.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="analitika-izvoda.delete({id:analitikaIzvoda.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

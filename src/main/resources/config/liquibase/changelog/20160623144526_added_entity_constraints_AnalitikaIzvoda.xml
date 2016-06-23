@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity AnalitikaIzvoda.
+    -->
+    <changeSet id="20160623144526-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="dnevno_stanje_racuna_id"
+                                 baseTableName="analitika_izvoda"
+                                 constraintName="fk_analitikaizvoda_dnevnostanjeracuna_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dnevno_stanje_racuna"/>
+
+        <addForeignKeyConstraint baseColumnNames="naseljeno_mesto_id"
+                                 baseTableName="analitika_izvoda"
+                                 constraintName="fk_analitikaizvoda_naseljenomesto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="naseljeno_mesto"/>
+
+        <addForeignKeyConstraint baseColumnNames="vrsta_placanja_id"
+                                 baseTableName="analitika_izvoda"
+                                 constraintName="fk_analitikaizvoda_vrstaplacanja_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vrsta_placanja"/>
+
+        <addForeignKeyConstraint baseColumnNames="valuta_placanja_id"
+                                 baseTableName="analitika_izvoda"
+                                 constraintName="fk_analitikaizvoda_valutaplacanja_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valuta"/>
+
+    </changeSet>
+</databaseChangeLog>

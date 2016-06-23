@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('NaseljenoMestoDetailController', NaseljenoMestoDetailController);
 
-    NaseljenoMestoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'NaseljenoMesto', 'Drzava'];
+    NaseljenoMestoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'entity', 'NaseljenoMesto', 'Drzava', 'AnalitikaIzvoda'];
 
-    function NaseljenoMestoDetailController($scope, $rootScope, $stateParams, entity, NaseljenoMesto, Drzava) {
+    function NaseljenoMestoDetailController($scope, $rootScope, $stateParams, entity, NaseljenoMesto, Drzava, AnalitikaIzvoda) {
         var vm = this;
         vm.naseljenoMesto = entity;
         

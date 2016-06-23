@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity DnevnoStanjeRacuna.
+    -->
+    <changeSet id="20160623151248-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="dnevni_izvod_banke_id"
+                                 baseTableName="dnevno_stanje_racuna"
+                                 constraintName="fk_dnevnostanjeracuna_dnevniizvodbanke_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="racun_pravnog_lica"/>
+
+    </changeSet>
+</databaseChangeLog>

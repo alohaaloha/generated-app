@@ -35,6 +35,11 @@ public class Drzava implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<NaseljenoMesto> naseljenoMestos = new HashSet<>();
 
+    @OneToMany(mappedBy = "drzava")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Valuta> drzavnaValutas = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -57,6 +62,14 @@ public class Drzava implements Serializable {
 
     public void setNaseljenoMestos(Set<NaseljenoMesto> naseljenoMestos) {
         this.naseljenoMestos = naseljenoMestos;
+    }
+
+    public Set<Valuta> getDrzavnaValutas() {
+        return drzavnaValutas;
+    }
+
+    public void setDrzavnaValutas(Set<Valuta> valutas) {
+        this.drzavnaValutas = valutas;
     }
 
     @Override

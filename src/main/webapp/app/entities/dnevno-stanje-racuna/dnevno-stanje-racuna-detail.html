@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span>Dnevno Stanje Racuna</span> {{vm.dnevnoStanjeRacuna.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Broj Izvoda</span></dt>
+        <dd>
+            <span>{{vm.dnevnoStanjeRacuna.brojIzvoda}}</span>
+        </dd>
+        <hr>
+        <dt><span>Datum</span></dt>
+        <dd>
+            <span>{{vm.dnevnoStanjeRacuna.datum | date:'medium'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Prethodno Stanje</span></dt>
+        <dd>
+            <span>{{vm.dnevnoStanjeRacuna.prethodnoStanje}}</span>
+        </dd>
+        <hr>
+        <dt><span>Promet U Korist</span></dt>
+        <dd>
+            <span>{{vm.dnevnoStanjeRacuna.prometUKorist}}</span>
+        </dd>
+        <hr>
+        <dt><span>Promet Na Teret</span></dt>
+        <dd>
+            <span>{{vm.dnevnoStanjeRacuna.prometNaTeret}}</span>
+        </dd>
+        <hr>
+        <dt><span>Novo Stanje</span></dt>
+        <dd>
+            <span>{{vm.dnevnoStanjeRacuna.novoStanje}}</span>
+        </dd>
+        <hr>
+        <dt><span>Dnevni Izvod Banke</span></dt>
+        <dd>
+            <a ui-sref="racun-pravnog-lica-detail({id:vm.dnevnoStanjeRacuna.dnevniIzvodBanke.id})">{{vm.dnevnoStanjeRacuna.dnevniIzvodBanke.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

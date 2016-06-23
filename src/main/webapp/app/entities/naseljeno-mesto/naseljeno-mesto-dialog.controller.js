@@ -5,12 +5,13 @@
         .module('pinfProApp')
         .controller('NaseljenoMestoDialogController', NaseljenoMestoDialogController);
 
-    NaseljenoMestoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'NaseljenoMesto', 'Drzava'];
+    NaseljenoMestoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'NaseljenoMesto', 'Drzava', 'AnalitikaIzvoda'];
 
-    function NaseljenoMestoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, NaseljenoMesto, Drzava) {
+    function NaseljenoMestoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, NaseljenoMesto, Drzava, AnalitikaIzvoda) {
         var vm = this;
         vm.naseljenoMesto = entity;
         vm.drzavas = Drzava.query();
+        vm.analitikaizvodas = AnalitikaIzvoda.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

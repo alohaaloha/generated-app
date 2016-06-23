@@ -1,0 +1,48 @@
+
+<div>
+    <h2><span>Klijent</span> {{vm.klijent.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Naziv Klijenta</span></dt>
+        <dd>
+            <span>{{vm.klijent.nazivKlijenta}}</span>
+        </dd>
+        <hr>
+        <dt><span>Adresa</span></dt>
+        <dd>
+            <span>{{vm.klijent.adresa}}</span>
+        </dd>
+        <hr>
+        <dt><span>Telefon</span></dt>
+        <dd>
+            <span>{{vm.klijent.telefon}}</span>
+        </dd>
+        <hr>
+        <dt><span>Fax</span></dt>
+        <dd>
+            <span>{{vm.klijent.fax}}</span>
+        </dd>
+        <hr>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{vm.klijent.email}}</span>
+        </dd>
+        <hr>
+        <dt><span>Pravno Lice</span></dt>
+        <dd>
+            <a ui-sref="pravno-lice-detail({id:vm.klijent.pravnoLice.id})">{{vm.klijent.pravnoLice.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>Naseljeno Mesto</span></dt>
+        <dd>
+            <a ui-sref="naseljeno-mesto-detail({id:vm.klijent.naseljenoMesto.id})">{{vm.klijent.naseljenoMesto.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

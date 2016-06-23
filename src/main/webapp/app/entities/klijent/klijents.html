@@ -1,0 +1,72 @@
+<div>
+    <h2>Klijents</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="klijent.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Klijent
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Naziv Klijenta</span></th>
+                    <th><span>Adresa</span></th>
+                    <th><span>Telefon</span></th>
+                    <th><span>Fax</span></th>
+                    <th><span>Email</span></th>
+                    <th><span>Pravno Lice</span></th>
+                    <th><span>Naseljeno Mesto</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="klijent in vm.klijents track by klijent.id">
+                    <td><a ui-sref="klijent-detail({id:klijent.id})">{{klijent.id}}</a></td>
+                    <td>{{klijent.nazivKlijenta}}</td>
+                    <td>{{klijent.adresa}}</td>
+                    <td>{{klijent.telefon}}</td>
+                    <td>{{klijent.fax}}</td>
+                    <td>{{klijent.email}}</td>
+                    <td>
+                        <a ui-sref="pravno-lice-detail({id:klijent.pravnoLice.id})">{{klijent.pravnoLice.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="naseljeno-mesto-detail({id:klijent.naseljenoMesto.id})">{{klijent.naseljenoMesto.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="klijent-detail({id:klijent.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="klijent.edit({id:klijent.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="klijent.delete({id:klijent.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

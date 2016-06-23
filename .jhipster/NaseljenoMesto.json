@@ -5,6 +5,12 @@
             "otherEntityName": "drzava",
             "relationshipType": "many-to-one",
             "otherEntityField": "dr_naziv"
+        },
+        {
+            "relationshipName": "analitikaIzvoda",
+            "otherEntityName": "analitikaIzvoda",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "naseljenoMesto"
         }
     ],
     "fields": [

@@ -1,24 +1,33 @@
 <div ng-cloak>
     <div class="row">
         <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
+            <span class="bank img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1>Banka homepage!</h1>
-            <p class="lead">Welcome</p>
+            <h1>NAJJAČA BANKA</h1>
+            <p class="lead">Dobrodošli na sistem Najjače banke.</p>
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
+                    Prijavljeni ste na sistem kao <b>{{vm.account.firstName}} {{vm.account.lastName}}</b>.
+                </div>
+
+                <div class="alert alert-danger" ng-switch-when="false">
+                    Niste prijavljeni !
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
+                    Prijavite se u sistem<br/><br/>
+                    <button type="submit" class="btn btn-primary" ng-click="vm.login()">Prijavljivanje</button>
+                </div>
+
+                <!--<div class="alert alert-warning" ng-switch-when="false">
                     If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
+                </div>-->
 
-                <div class="alert alert-warning" ng-switch-when="false">
+                <!--<div class="alert alert-warning" ng-switch-when="false">
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
+                </div>-->
             </div>
 
         <!--    <p>

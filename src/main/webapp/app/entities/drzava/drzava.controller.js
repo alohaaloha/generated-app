@@ -5,9 +5,23 @@
         .module('pinfProApp')
         .controller('DrzavaController', DrzavaController);
 
-    DrzavaController.$inject = ['$scope', '$state', 'Drzava'];
+    DrzavaController.$inject = ['$scope', '$state', 'Drzava', '$stateParams', '$rootScope'];
 
-    function DrzavaController ($scope, $state, Drzava) {
+    function DrzavaController ($scope, $state, Drzava, $stateParams, $rootScope) {
+
+
+        //ZOOM STUFF start-------------------------//
+        $scope.isZoom=$stateParams.isZoom;
+
+        $scope.pick=function(drzava){
+            console.log(drzava);
+            $rootScope.naseljenoMesto.drzava=drzava; //ladno mu treba ceo obj a ne samo id
+            $state.go("naseljeno-mesto.new");
+
+        }
+        //ZOOM STUFF end---------------------------//
+
+
         var vm = this;
         vm.drzavas = [];
         vm.loadAll = function() {

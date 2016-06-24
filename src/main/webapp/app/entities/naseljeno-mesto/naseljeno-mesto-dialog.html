@@ -1,20 +1,25 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<form name="editForm" role="form" novalidate  show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
         <h4 class="modal-title" id="myNaseljenoMestoLabel">Create or edit a Naseljeno Mesto</h4>
     </div>
+
+
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
+
         <div class="form-group" ng-show="vm.naseljenoMesto.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.naseljenoMesto.id" readonly />
         </div>
+
         <div class="form-group">
             <label class="control-label" translate="pinfProApp.naseljenoMesto.nm_naziv" for="field_nm_naziv">Nm Naziv</label>
+
             <input type="text" class="form-control" name="nm_naziv" id="field_nm_naziv"
                     ng-model="vm.naseljenoMesto.nm_naziv"
                     required ng-maxlength="60" />
@@ -46,19 +51,33 @@
             </div>
         </div>
 
+        <!-- DRZAVA COMBOBOX - replacujem
         <div class="form-group">
             <label for="field_drzava">Drzava</label>
             <select class="form-control" id="field_drzava" name="drzava" ng-model="vm.naseljenoMesto.drzava" ng-options="drzava as drzava.dr_naziv for drzava in vm.drzavas track by drzava.id">
                 <option value=""></option>
             </select>
         </div>
+        -->
+        <b>Drzava</b>
+        <input type="text" class="form-control"
+               ng-model="vm.naseljenoMesto.drzava"
+               required ng-maxlength="20" disabled />
+        <button ng-click="test()"
+                class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="hidden-xs hidden-sm"> Izbor... </span>
+        </button>
+
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+        <button type="submit" ng-click="vm.save()" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>
+
 </form>

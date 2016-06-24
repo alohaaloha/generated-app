@@ -72,7 +72,7 @@
                 }).result.then(function() {
                     $state.go('naseljeno-mesto', null, { reload: true });
                 }, function() {
-                    $state.go('naseljeno-mesto');
+                    //$state.go('naseljeno-mesto');
                 });
             }]
         })

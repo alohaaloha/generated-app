@@ -3,7 +3,7 @@
 
     angular
         .module('pinfProApp', [
-            'ngStorage', 
+            'ngStorage',
             'ngResource',
             'ngCookies',
             'ngAria',
@@ -18,9 +18,17 @@
         ])
         .run(run);
 
-    run.$inject = ['stateHandler'];
+    run.$inject = ['stateHandler', '$rootScope'];
 
-    function run(stateHandler) {
+    function run(stateHandler, $rootScope) {
         stateHandler.initialize();
+
+         /* ZOOM */
+        /*ALL ALL ENTITIES HERE AND SET IT TO NULL*/
+        $rootScope.naseljenoMesto=null;
+
+
+
+
     }
 })();

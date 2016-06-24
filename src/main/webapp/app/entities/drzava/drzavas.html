@@ -20,33 +20,66 @@
                 <tr>
                     <th><span>ID</span></th>
                     <th><span translate="pinfProApp.drzava.dr_naziv">Dr Naziv</span></th>
+                    <th><span>Naseljena mesta</span></th>
+                    <th><span>Valute</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="drzava in vm.drzavas track by drzava.id">
+
                     <td><a ui-sref="drzava-detail({id:drzava.id})">{{drzava.id}}</a></td>
+
                     <td>{{drzava.dr_naziv}}</td>
+
+                    <!--NASELJENA MESTA BTN-->
+                    <td>
+                        <!--ui-sref="drzava-detail({id:drzava.id})"-->
+                    <button type="submit"
+                            ng-click="gotoNaseljenaMesta(drzava)"
+                            class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <span class="hidden-xs hidden-sm"> Vidi... </span>
+                    </button>
+                    </td>
+
+                    <!--VALUTE BTN-->
+                    <td>
+                        <button type="submit"
+                                ng-click="gotoValute(drzava)"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm"> Vidi... </span>
+                        </button>
+                    </td>
+
+
+
                     <td class="text-right">
+
                         <div class="btn-group flex-btn-group-container">
+
                             <button type="submit"
                                     ui-sref="drzava-detail({id:drzava.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
+
                             <button type="submit"
                                     ui-sref="drzava.edit({id:drzava.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
+
                             <button type="submit"
                                     ui-sref="drzava.delete({id:drzava.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
+
                         </div>
                     </td>
                 </tr>

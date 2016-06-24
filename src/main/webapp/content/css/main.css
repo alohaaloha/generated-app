@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #000000;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -73,6 +73,7 @@ Browser Upgrade Prompt
     width: 347px;
     height: 497px;
    /* background: url("../images/hipster.png") no-repeat center top;*/
+    background: url("../images/bank.jpg") no-repeat center top;
     background-size: contain;
 }
 

@@ -1,7 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mycompany.myapp.domain.Drzava;
 import com.mycompany.myapp.domain.NaseljenoMesto;
+import com.mycompany.myapp.repository.DrzavaRepository;
 import com.mycompany.myapp.repository.NaseljenoMestoRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +30,15 @@ import java.util.Optional;
 public class NaseljenoMestoResource {
 
     private final Logger log = LoggerFactory.getLogger(NaseljenoMestoResource.class);
-        
+
     @Inject
     private NaseljenoMestoRepository naseljenoMestoRepository;
-    
+
+    @Inject
+    private DrzavaRepository drzavaRepository;
+
+
+
     /**
      * POST  /naseljeno-mestos : Create a new naseljenoMesto.
      *
@@ -91,6 +99,34 @@ public class NaseljenoMestoResource {
         List<NaseljenoMesto> naseljenoMestos = naseljenoMestoRepository.findAll();
         return naseljenoMestos;
     }
+
+
+
+    /**
+     * GET  /naseljeno-mestos : get all the naseljenoMestos.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of naseljenoMestos in body
+     */
+    @RequestMapping(value = "/naseljeno-mestos-by-drzava-id/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ArrayList<NaseljenoMesto> getAllNaseljenoMestosByDrzavaId(@PathVariable Long id) {
+        log.debug("REST request to get all NaseljenoMestos by drzava id");
+
+        //fetchtype EAGER me jabavao, ovako je prvo proradilo
+        Drzava drzava=drzavaRepository.findOne(id);
+        ArrayList<NaseljenoMesto> naseljenoMestos = new ArrayList<>();
+        for(NaseljenoMesto n: drzava.getNaseljenoMestos()){
+            naseljenoMestos.add(n);
+        }
+        return naseljenoMestos;
+    }
+
+
+
+
+
 
     /**
      * GET  /naseljeno-mestos/:id : get the "id" naseljenoMesto.

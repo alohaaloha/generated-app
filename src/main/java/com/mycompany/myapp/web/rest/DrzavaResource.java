@@ -27,10 +27,10 @@ import java.util.Optional;
 public class DrzavaResource {
 
     private final Logger log = LoggerFactory.getLogger(DrzavaResource.class);
-        
+
     @Inject
     private DrzavaRepository drzavaRepository;
-    
+
     /**
      * POST  /drzavas : Create a new drzava.
      *
@@ -105,6 +105,7 @@ public class DrzavaResource {
     public ResponseEntity<Drzava> getDrzava(@PathVariable Long id) {
         log.debug("REST request to get Drzava : {}", id);
         Drzava drzava = drzavaRepository.findOne(id);
+
         return Optional.ofNullable(drzava)
             .map(result -> new ResponseEntity<>(
                 result,

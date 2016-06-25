@@ -10,6 +10,11 @@
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
                     Prijavljeni ste na sistem kao <b>{{vm.account.firstName}} {{vm.account.lastName}}</b>.
+                    <button ng-click="test()"
+                            class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                        <span class="hidden-xs hidden-sm"> Izbor... </span>
+                    </button>
                 </div>
 
                 <div class="alert alert-danger" ng-switch-when="false">
@@ -19,6 +24,7 @@
                 <div class="alert alert-warning" ng-switch-when="false">
                     Prijavite se u sistem<br/><br/>
                     <button type="submit" class="btn btn-primary" ng-click="vm.login()">Prijavljivanje</button>
+
                 </div>
 
                 <!--<div class="alert alert-warning" ng-switch-when="false">

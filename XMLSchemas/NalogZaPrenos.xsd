@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.najjacabanka.com/"
+            targetNamespace="http://www.najjacabanka.com/"
+            elementFormDefault="qualified">
+    <xs:element name="nalog-za-prenos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="duznik" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="svrha-placanja" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="poverilac" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="datum-prijema" type="xs:dateTime" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="mesto-prijema" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="datum-valute" type="xs:dateTime" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="racun-duznika" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="model-zaduzenja" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="poziv-na-broj-zaduzenja" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="racun-poverioca" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="model-odobrenja" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="poziv-na-broj-odobrenja" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                <xs:element name="vrsta-placanja" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="valuta-placanja" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="iznos" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="hitno" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="tip-greske" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                <xs:element name="status" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

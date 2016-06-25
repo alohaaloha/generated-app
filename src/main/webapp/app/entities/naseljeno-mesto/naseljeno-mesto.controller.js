@@ -5,10 +5,19 @@
         .module('pinfProApp')
         .controller('NaseljenoMestoController', NaseljenoMestoController);
 
-    NaseljenoMestoController.$inject = ['$scope', '$state', 'NaseljenoMesto', '$stateParams', 'naseljenoMestoService'];
+    NaseljenoMestoController.$inject = ['$scope', '$state', 'NaseljenoMesto', '$stateParams', 'naseljenoMestoService', '$rootScope'];
 
-    function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, naseljenoMestoService) {
+    function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, naseljenoMestoService, $rootScope) {
         var vm = this;
+
+        //ZOOM STUFF start-------------------------//
+        $scope.isZoom = $stateParams.isZoom;
+        $scope.pick = function(naseljenoMesto){
+            console.log(naseljenoMesto);
+            $rootScope.klijent.naseljenoMesto = naseljenoMesto; //ladno mu treba ceo obj a ne samo id
+            $state.go("klijent.new");
+        }
+        //ZOOM STUFF end---------------------------//
 
         /*NASELJENA MESTA ZA POSLATI ID*/
         if($stateParams.drzava){

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- MODELUJE ISPLATNICU DJOKA UZIMA JEVROSIMU FTN-U -->
+
+<nalog-za-prenos xmlns="http://www.najjacabanka.com/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.najjacabanka.com/ file:/C:/Users/FS-LB/Desktop/PoslovnaInformatika/Projekat/pinf_pro/XMLSchemas/NalogZaPrenos.xsd">
+    <duznik>Uzimac Djoka</duznik>
+    <svrha-placanja>Probno placanje 2</svrha-placanja>
+    <poverilac>Poverilac Jevrosim FTN</poverilac>
+    <datum-prijema>2016-06-25T09:22:25</datum-prijema>
+    <mesto-prijema>Novi Sad</mesto-prijema>
+    <datum-valute>2016-06-25T06:00:00</datum-valute>
+    <racun-duznika>840-0000001710666-12</racun-duznika>
+    <model-zaduzenja>97</model-zaduzenja>
+    <poziv-na-broj-zaduzenja>11-11111-1-1111-11111</poziv-na-broj-zaduzenja>
+    <vrsta-placanja>289</vrsta-placanja>
+    <valuta-placanja>RSD</valuta-placanja>
+    <iznos>2000.00</iznos>
+    <hitno>nije</hitno>
+    <tip-greske>0</tip-greske>
+    <status></status>
+</nalog-za-prenos>

@@ -9,7 +9,6 @@
 
     function HomeController ($scope, Principal, LoginService, $state,  Upload, $timeout) {
         var vm = this;
-
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;

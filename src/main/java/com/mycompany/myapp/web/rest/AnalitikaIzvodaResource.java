@@ -1,6 +1,7 @@
 package com.mycompany.myapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.jcabi.xml.XMLDocument;
 import com.mycompany.myapp.domain.AnalitikaIzvoda;
 import com.mycompany.myapp.repository.AnalitikaIzvodaRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
@@ -11,9 +12,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -27,10 +36,57 @@ import java.util.Optional;
 public class AnalitikaIzvodaResource {
 
     private final Logger log = LoggerFactory.getLogger(AnalitikaIzvodaResource.class);
-        
+
     @Inject
     private AnalitikaIzvodaRepository analitikaIzvodaRepository;
-    
+
+
+     /* ANALITIKA IZVODA UPLOAD */
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/upload")
+    public void upload2(@RequestParam("file") MultipartFile file) throws IOException {
+
+        System.out.println("UPLOAD USAO");
+        byte[] bytes;
+
+        if (!file.isEmpty()) {
+            bytes = file.getBytes();
+            //store file in storage
+            //--------------------
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = null;
+            try {
+                builder = factory.newDocumentBuilder();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            }
+            /*THIS IS DOCUMENT THAT IS SENT*/
+            Document docThatIsSent = null;
+            try {
+                 docThatIsSent = builder.parse(new ByteArrayInputStream(bytes));
+            } catch (SAXException e) {
+                e.printStackTrace();
+            }
+
+            String xml = new XMLDocument(docThatIsSent).toString();
+            System.out.println("toString():"+xml);
+            //--------------------
+        }
+
+        System.out.println("KRAJ UPLOAD");
+    }
+
+
+
+
+
+
+
+
+
+
+
     /**
      * POST  /analitika-izvodas : Create a new analitikaIzvoda.
      *

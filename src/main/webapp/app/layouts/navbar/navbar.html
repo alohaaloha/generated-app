@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
+                <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" has-authority="ROLE_USER" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
@@ -47,13 +47,13 @@
                                 <span >Analitika Izvoda</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="banka" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Banka</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="dnevno-stanje-racuna" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Dnevno Stanje Racuna</span>
@@ -65,7 +65,7 @@
                                 <span >Klijent</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="kliring" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Kliring</span>
@@ -95,31 +95,31 @@
                                 <span >Racun Pravnog Lica</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="r-tgs" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >R Tgs</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="stavka-kliringa" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Stavka Kliringa</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="ukidanje" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Ukidanje</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="valuta" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Valuta</span>
                             </a>
                         </li>
-                        <li ui-sref-active="active" >
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN">
                             <a ui-sref="vrsta-placanja" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                 <span >Vrsta Placanja</span>

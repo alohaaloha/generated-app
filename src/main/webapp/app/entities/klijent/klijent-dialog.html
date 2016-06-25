@@ -1,5 +1,5 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<form name="editForm" role="form" novalidate show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -158,18 +158,27 @@
                 <option value=""></option>
             </select>
         </div>
-        <div class="form-group">
+        <!-- NASELJENO MESTO COMBOBOX - brisemo<div class="form-group">
             <label for="field_naseljenoMesto">Naseljeno Mesto</label>
             <select class="form-control" id="field_naseljenoMesto" name="naseljenoMesto" ng-model="vm.klijent.naseljenoMesto" ng-options="naseljenoMesto as naseljenoMesto.id for naseljenoMesto in vm.naseljenomestos track by naseljenoMesto.id">
                 <option value=""></option>
             </select>
-        </div>
+        </div>-->
+        <b>Naseljeno mesto</b>
+        <input type="text" class="form-control"
+               ng-model="vm.klijent.naseljenoMesto.nm_naziv"
+               required ng-maxlength="20" disabled />
+        <button ng-click="izbor()"
+                class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="hidden-xs hidden-sm"> Izbor... </span>
+        </button>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+        <button type="submit" ng-click="vm.save()" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>

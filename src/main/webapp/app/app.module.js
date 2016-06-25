@@ -26,7 +26,7 @@
          /* ZOOM */
         /*ALL ALL ENTITIES HERE AND SET IT TO NULL*/
         $rootScope.naseljenoMesto=null;
-
+        $rootScope.klijent=null;
 
 
 

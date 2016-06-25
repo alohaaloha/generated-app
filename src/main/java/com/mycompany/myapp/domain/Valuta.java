@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,8 @@ import java.util.Objects;
 /**
  * A Valuta.
  */
+@XmlRootElement(name="Valuta")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "valuta")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -25,6 +28,7 @@ public class Valuta implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @XmlAttribute
     @NotNull
     @Size(max = 3)
     @Column(name = "zvanicna_sifra", length = 3, nullable = false)

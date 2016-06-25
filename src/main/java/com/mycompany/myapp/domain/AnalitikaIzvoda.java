@@ -5,13 +5,21 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
+@XmlRootElement(name="Analitika izvoda")
+@XmlAccessorType(XmlAccessType.FIELD)
 /**
  * A AnalitikaIzvoda.
  */
@@ -26,48 +34,59 @@ public class AnalitikaIzvoda implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @XmlElement
     @NotNull
     @Size(max = 256)
     @Column(name = "duznik", length = 256, nullable = false)
     private String duznik;
 
+    @XmlElement
     @NotNull
     @Size(max = 256)
     @Column(name = "svrha", length = 256, nullable = false)
     private String svrha;
 
+    @XmlElement
     @NotNull
     @Size(max = 256)
     @Column(name = "poverilac", length = 256, nullable = false)
     private String poverilac;
 
+    @XmlElement
     @NotNull
     @Column(name = "datum_prijema", nullable = false)
     private ZonedDateTime datumPrijema;
 
+    @XmlElement
     @NotNull
     @Column(name = "datum_valute", nullable = false)
     private ZonedDateTime datumValute;
 
+    @XmlElement
     @NotNull
     @Size(max = 18)
     @Column(name = "racun_duznika", length = 18, nullable = false)
     private String racunDuznika;
 
+    @XmlElement
     @Column(name = "model_zaduzenja")
     private Integer modelZaduzenja;
 
+    @XmlElement
     @Size(max = 20)
     @Column(name = "poziv_na_broj_zaduzenja", length = 20)
     private String pozivNaBrojZaduzenja;
 
+    @XmlElement
     @Size(max = 18)
     @Column(name = "racun_poverioca", length = 18)
     private String racunPoverioca;
 
+    @XmlElement
     @Column(name = "model_odobrenja")
     private Integer modelOdobrenja;
 
+    @XmlElement
     @Size(max = 20)
     @Column(name = "poziv_na_broj_odobrenja", length = 20)
     private String pozivNaBrojOdobrenja;
@@ -76,6 +95,7 @@ public class AnalitikaIzvoda implements Serializable {
     @Column(name = "is_hitno", nullable = false)
     private Boolean isHitno;
 
+    @XmlElement
     @NotNull
     @Column(name = "iznos", nullable = false)
     private Double iznos;
@@ -98,6 +118,7 @@ public class AnalitikaIzvoda implements Serializable {
     @ManyToOne
     private VrstaPlacanja vrstaPlacanja;
 
+    @XmlElement
     @ManyToOne
     private Valuta valutaPlacanja;
 

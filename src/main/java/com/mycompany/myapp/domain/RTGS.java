@@ -4,13 +4,20 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A RTGS.
  */
+@XmlRootElement(name="RTGS")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "rtgs")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -18,37 +25,45 @@ public class RTGS implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @XmlAttribute(name="IDPoruke")
     @NotNull
     @Size(max = 50)
     @Column(name = "id_poruke", length = 50, nullable = false)
     private String idPoruke;
 
+    @XmlElement
     @NotNull
     @Size(max = 8)
     @Column(name = "swift_kod_banke_duznika", length = 8, nullable = false)
     private String swiftKodBankeDuznika;
 
+    @XmlElement
     @NotNull
     @Size(max = 18)
     @Column(name = "obracunski_racun_banke_duznika", length = 18, nullable = false)
     private String obracunskiRacunBankeDuznika;
 
+    @XmlElement
     @NotNull
     @Size(max = 8)
     @Column(name = "swift_kod_banke_poverioca", length = 8, nullable = false)
     private String swiftKodBankePoverioca;
 
+    @XmlElement
     @NotNull
     @Size(max = 18)
     @Column(name = "obracunski_racun_banke_poverioca", length = 18, nullable = false)
     private String obracunskiRacunBankePoverioca;
 
+    @XmlElement
     @ManyToOne
     private AnalitikaIzvoda brojStavke;
+
 
     public Long getId() {
         return id;
@@ -136,5 +151,20 @@ public class RTGS implements Serializable {
             ", swiftKodBankePoverioca='" + swiftKodBankePoverioca + "'" +
             ", obracunskiRacunBankePoverioca='" + obracunskiRacunBankePoverioca + "'" +
             '}';
+    }
+
+    public boolean exportToXml(OutputStream outputStream){
+        boolean ret = false;
+        try{
+            JAXBContext jaxbContext = JAXBContext.newInstance(RTGS.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.marshal(this, System.out);
+            ret = true;
+        } catch (Exception e){
+
+        }
+        return ret;
     }
 }

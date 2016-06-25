@@ -6,6 +6,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.*;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -16,6 +20,8 @@ import java.util.Objects;
 /**
  * A Kliring.
  */
+@XmlRootElement(name="Kliring")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "kliring")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -27,48 +33,58 @@ public class Kliring implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @XmlAttribute(name="IDPoruke")
     @NotNull
     @Size(max = 50)
     @Column(name = "id_poruke", length = 50, nullable = false)
     private String idPoruke;
 
+    @XmlElement
     @NotNull
     @Size(max = 8)
     @Column(name = "swwift_duznika", length = 8, nullable = false)
     private String swwift_duznika;
 
+    @XmlElement
     @NotNull
     @Size(max = 18)
     @Column(name = "obracunski_racun_duznika", length = 18, nullable = false)
     private String obracunskiRacunDuznika;
 
+    @XmlElement
     @NotNull
     @Size(max = 8)
     @Column(name = "swift_poverioca", length = 8, nullable = false)
     private String swift_poverioca;
 
+    @XmlElement
     @NotNull
     @Size(max = 18)
     @Column(name = "obracunski_racun_poverioca", length = 18, nullable = false)
     private String obracunskiRacunPoverioca;
 
+    @XmlElement
     @NotNull
     @Column(name = "ukupan_iznos", nullable = false)
     private Double ukupanIznos;
 
+    @XmlElement
     @NotNull
     @Column(name = "datum_valute", nullable = false)
     private LocalDate datumValute;
 
+    @XmlElement
     @NotNull
     @Column(name = "datum", nullable = false)
     private ZonedDateTime datum;
 
+    @XmlElement
     @OneToMany(mappedBy = "kliring")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<StavkaKliringa> stavkaKliringas = new HashSet<>();
 
+    @XmlElement
     @ManyToOne
     private Valuta valuta;
 
@@ -193,5 +209,25 @@ public class Kliring implements Serializable {
             ", datumValute='" + datumValute + "'" +
             ", datum='" + datum + "'" +
             '}';
+    }
+
+    /**
+     * Exports bean to xml.
+     * @param outputStream Defined output stream.
+     * @return Indicator of success.
+     */
+    public boolean exportToXml(OutputStream outputStream){
+        boolean ret = false;
+        try{
+            JAXBContext jaxbContext = JAXBContext.newInstance(Kliring.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.marshal(this, System.out);
+            ret = true;
+        } catch (Exception e){
+
+        }
+        return ret;
     }
 }

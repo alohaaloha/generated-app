@@ -153,6 +153,11 @@ public class RTGS implements Serializable {
             '}';
     }
 
+    /**
+     * Exports bean to xml.
+     * @param outputStream Defined output stream.
+     * @return Indicator of success.
+     */
     public boolean exportToXml(OutputStream outputStream){
         boolean ret = false;
         try{

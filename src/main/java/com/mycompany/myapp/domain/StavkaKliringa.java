@@ -4,12 +4,18 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A StavkaKliringa.
  */
+@XmlRootElement(name="StavkaKliringa")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "stavka_kliringa")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -25,6 +31,7 @@ public class StavkaKliringa implements Serializable {
     private Kliring kliring;
 
     @ManyToOne
+    @XmlElement
     private AnalitikaIzvoda analitikaIzvoda;
 
     public Long getId() {

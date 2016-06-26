@@ -3,6 +3,7 @@ package com.mycompany.myapp.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.w3c.dom.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -219,15 +220,36 @@ public class Kliring implements Serializable {
     public boolean exportToXml(OutputStream outputStream){
         boolean ret = false;
         try{
-            JAXBContext jaxbContext = JAXBContext.newInstance(Kliring.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(RTGS.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            jaxbMarshaller.marshal(this, System.out);
+            jaxbMarshaller.marshal(this, outputStream);
             ret = true;
         } catch (Exception e){
 
         }
         return ret;
     }
-}
+
+    /**
+     * Exports bean to xml.
+     * @param document Defined document to store marshalled bean.
+     * @return Indicator of success.
+     */
+    public boolean exportToXml(Document document){
+        boolean ret = false;
+        try{
+            JAXBContext jaxbContext = JAXBContext.newInstance(RTGS.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.marshal(this, document);
+            ret = true;
+        } catch (Exception e){
+
+        }
+        return ret;
+    }
+
+    }

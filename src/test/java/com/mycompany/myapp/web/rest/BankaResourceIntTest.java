@@ -45,6 +45,10 @@ public class BankaResourceIntTest {
     private static final String UPDATED_SIFRA_BANKE = "BBB";
     private static final String DEFAULT_PIB = "AAAAAAAAAA";
     private static final String UPDATED_PIB = "BBBBBBBBBB";
+    private static final String DEFAULT_SWIFT_KOD = "AAAAAAAA";
+    private static final String UPDATED_SWIFT_KOD = "BBBBBBBB";
+    private static final String DEFAULT_OBRACUNSKI_RACUN = "AAAAAAAAAAAAAAAAAA";
+    private static final String UPDATED_OBRACUNSKI_RACUN = "BBBBBBBBBBBBBBBBBB";
     private static final String DEFAULT_NAZIV = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     private static final String UPDATED_NAZIV = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
     private static final String DEFAULT_ADRESA = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
@@ -89,6 +93,8 @@ public class BankaResourceIntTest {
         banka = new Banka();
         banka.setSifraBanke(DEFAULT_SIFRA_BANKE);
         banka.setPib(DEFAULT_PIB);
+        banka.setSwiftKod(DEFAULT_SWIFT_KOD);
+        banka.setObracunskiRacun(DEFAULT_OBRACUNSKI_RACUN);
         banka.setNaziv(DEFAULT_NAZIV);
         banka.setAdresa(DEFAULT_ADRESA);
         banka.setEmail(DEFAULT_EMAIL);
@@ -116,6 +122,8 @@ public class BankaResourceIntTest {
         Banka testBanka = bankas.get(bankas.size() - 1);
         assertThat(testBanka.getSifraBanke()).isEqualTo(DEFAULT_SIFRA_BANKE);
         assertThat(testBanka.getPib()).isEqualTo(DEFAULT_PIB);
+        assertThat(testBanka.getSwiftKod()).isEqualTo(DEFAULT_SWIFT_KOD);
+        assertThat(testBanka.getObracunskiRacun()).isEqualTo(DEFAULT_OBRACUNSKI_RACUN);
         assertThat(testBanka.getNaziv()).isEqualTo(DEFAULT_NAZIV);
         assertThat(testBanka.getAdresa()).isEqualTo(DEFAULT_ADRESA);
         assertThat(testBanka.getEmail()).isEqualTo(DEFAULT_EMAIL);
@@ -149,6 +157,42 @@ public class BankaResourceIntTest {
         int databaseSizeBeforeTest = bankaRepository.findAll().size();
         // set the field null
         banka.setPib(null);
+
+        // Create the Banka, which fails.
+
+        restBankaMockMvc.perform(post("/api/bankas")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(banka)))
+                .andExpect(status().isBadRequest());
+
+        List<Banka> bankas = bankaRepository.findAll();
+        assertThat(bankas).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkSwiftKodIsRequired() throws Exception {
+        int databaseSizeBeforeTest = bankaRepository.findAll().size();
+        // set the field null
+        banka.setSwiftKod(null);
+
+        // Create the Banka, which fails.
+
+        restBankaMockMvc.perform(post("/api/bankas")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(banka)))
+                .andExpect(status().isBadRequest());
+
+        List<Banka> bankas = bankaRepository.findAll();
+        assertThat(bankas).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkObracunskiRacunIsRequired() throws Exception {
+        int databaseSizeBeforeTest = bankaRepository.findAll().size();
+        // set the field null
+        banka.setObracunskiRacun(null);
 
         // Create the Banka, which fails.
 
@@ -228,6 +272,8 @@ public class BankaResourceIntTest {
                 .andExpect(jsonPath("$.[*].id").value(hasItem(banka.getId().intValue())))
                 .andExpect(jsonPath("$.[*].sifraBanke").value(hasItem(DEFAULT_SIFRA_BANKE.toString())))
                 .andExpect(jsonPath("$.[*].pib").value(hasItem(DEFAULT_PIB.toString())))
+                .andExpect(jsonPath("$.[*].swiftKod").value(hasItem(DEFAULT_SWIFT_KOD.toString())))
+                .andExpect(jsonPath("$.[*].obracunskiRacun").value(hasItem(DEFAULT_OBRACUNSKI_RACUN.toString())))
                 .andExpect(jsonPath("$.[*].naziv").value(hasItem(DEFAULT_NAZIV.toString())))
                 .andExpect(jsonPath("$.[*].adresa").value(hasItem(DEFAULT_ADRESA.toString())))
                 .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
@@ -250,6 +296,8 @@ public class BankaResourceIntTest {
             .andExpect(jsonPath("$.id").value(banka.getId().intValue()))
             .andExpect(jsonPath("$.sifraBanke").value(DEFAULT_SIFRA_BANKE.toString()))
             .andExpect(jsonPath("$.pib").value(DEFAULT_PIB.toString()))
+            .andExpect(jsonPath("$.swiftKod").value(DEFAULT_SWIFT_KOD.toString()))
+            .andExpect(jsonPath("$.obracunskiRacun").value(DEFAULT_OBRACUNSKI_RACUN.toString()))
             .andExpect(jsonPath("$.naziv").value(DEFAULT_NAZIV.toString()))
             .andExpect(jsonPath("$.adresa").value(DEFAULT_ADRESA.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
@@ -279,6 +327,8 @@ public class BankaResourceIntTest {
         updatedBanka.setId(banka.getId());
         updatedBanka.setSifraBanke(UPDATED_SIFRA_BANKE);
         updatedBanka.setPib(UPDATED_PIB);
+        updatedBanka.setSwiftKod(UPDATED_SWIFT_KOD);
+        updatedBanka.setObracunskiRacun(UPDATED_OBRACUNSKI_RACUN);
         updatedBanka.setNaziv(UPDATED_NAZIV);
         updatedBanka.setAdresa(UPDATED_ADRESA);
         updatedBanka.setEmail(UPDATED_EMAIL);
@@ -298,6 +348,8 @@ public class BankaResourceIntTest {
         Banka testBanka = bankas.get(bankas.size() - 1);
         assertThat(testBanka.getSifraBanke()).isEqualTo(UPDATED_SIFRA_BANKE);
         assertThat(testBanka.getPib()).isEqualTo(UPDATED_PIB);
+        assertThat(testBanka.getSwiftKod()).isEqualTo(UPDATED_SWIFT_KOD);
+        assertThat(testBanka.getObracunskiRacun()).isEqualTo(UPDATED_OBRACUNSKI_RACUN);
         assertThat(testBanka.getNaziv()).isEqualTo(UPDATED_NAZIV);
         assertThat(testBanka.getAdresa()).isEqualTo(UPDATED_ADRESA);
         assertThat(testBanka.getEmail()).isEqualTo(UPDATED_EMAIL);

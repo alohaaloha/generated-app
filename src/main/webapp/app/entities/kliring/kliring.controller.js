@@ -9,14 +9,15 @@
 
     function KliringController ($scope, $state, Kliring) {
         var vm = this;
+        
         vm.klirings = [];
-        vm.loadAll = function() {
+
+        loadAll();
+
+        function loadAll() {
             Kliring.query(function(result) {
                 vm.klirings = result;
             });
-        };
-
-        vm.loadAll();
-        
+        }
     }
 })();

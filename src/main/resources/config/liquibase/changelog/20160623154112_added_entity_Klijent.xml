@@ -24,47 +24,50 @@
             <column name="naziv_pravnog_lica" type="varchar(120)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="ime" type="varchar(30)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="prezime" type="varchar(30)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="jmbg" type="varchar(13)">
                 <constraints nullable="false" />
             </column>
-            
-            <column name="adresa" type="varchar(30)">
+
+            <column name="adresa" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="telefon" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="fax" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="email" type="varchar(20)">
+
+            <column name="email" type="varchar(50)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="pib" type="varchar(9)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="sifra_delatnosti" type="integer">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="pravno_lice_id" type="bigint"/>
             <column name="naseljeno_mesto_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/klijents.csv"
+                  separator=";"
+                  tableName="klijent"/>
     </changeSet>
 </databaseChangeLog>

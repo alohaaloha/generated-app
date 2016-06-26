@@ -24,41 +24,52 @@
             <column name="sifra_banke" type="varchar(3)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="pib" type="varchar(10)">
                 <constraints nullable="false" />
             </column>
-            
+
+            <column name="swift_kod" type="varchar(8)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="obracunski_racun" type="varchar(18)">
+                <constraints nullable="false" />
+            </column>
+
             <column name="naziv" type="varchar(120)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="adresa" type="varchar(120)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="email" type="varchar(128)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="web" type="varchar(128)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="telefon" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="fax" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="banka_int" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/bankas.csv"
+                  separator=";"
+                  tableName="banka"/>
     </changeSet>
 </databaseChangeLog>

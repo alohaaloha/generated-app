@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Kliring entity.
  */
+@SuppressWarnings("unused")
 public interface KliringRepository extends JpaRepository<Kliring,Long> {
 
 }

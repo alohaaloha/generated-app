@@ -24,9 +24,14 @@
             <column name="dr_naziv" type="varchar(40)">
                 <constraints nullable="false" />
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/drzavas.csv"
+                  separator=";"
+                  tableName="drzava"/>
+
     </changeSet>
 </databaseChangeLog>

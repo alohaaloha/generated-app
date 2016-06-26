@@ -24,18 +24,21 @@
             <column name="zvanicna_sifra" type="varchar(3)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="naziv_valute" type="varchar(30)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="domicilna" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="drzava_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/valutas.csv"
+                  separator=";"
+                  tableName="valuta"/>
     </changeSet>
 </databaseChangeLog>

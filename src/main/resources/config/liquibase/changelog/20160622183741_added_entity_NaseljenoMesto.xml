@@ -24,14 +24,17 @@
             <column name="nm_naziv" type="varchar(60)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="nm_pttoznaka" type="varchar(12)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="drzava_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/naseljeno_mestos.csv"
+                  separator=";"
+                  tableName="naseljeno_mesto"/>
     </changeSet>
 </databaseChangeLog>

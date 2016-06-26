@@ -24,24 +24,28 @@
             <column name="redni_broj" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="kurs_kupovni" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="kurs_srednji" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="kurs_prodajni" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="osnovna_valuta_id" type="bigint"/>
             <column name="prema_valuti_id" type="bigint"/>
             <column name="kursna_lista_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/kurs_u_valutis.csv"
+                  separator=";"
+                  tableName="kurs_u_valuti"/>
+
     </changeSet>
 </databaseChangeLog>

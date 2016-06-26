@@ -46,6 +46,38 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label" for="field_swiftKod">Swift Kod</label>
+            <input type="text" class="form-control" name="swiftKod" id="field_swiftKod"
+                    ng-model="vm.banka.swiftKod"
+                    required ng-maxlength="8" />
+            <div ng-show="editForm.swiftKod.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.swiftKod.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.swiftKod.$error.maxlength">
+                    This field cannot be longer than 8 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_obracunskiRacun">Obracunski Racun</label>
+            <input type="text" class="form-control" name="obracunskiRacun" id="field_obracunskiRacun"
+                    ng-model="vm.banka.obracunskiRacun"
+                    required ng-maxlength="18" />
+            <div ng-show="editForm.obracunskiRacun.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacun.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.obracunskiRacun.$error.maxlength">
+                    This field cannot be longer than 18 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label" for="field_naziv">Naziv</label>
             <input type="text" class="form-control" name="naziv" id="field_naziv"
                     ng-model="vm.banka.naziv"
@@ -147,7 +179,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>

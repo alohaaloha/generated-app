@@ -9,14 +9,15 @@
 
     function BankaController ($scope, $state, Banka) {
         var vm = this;
+        
         vm.bankas = [];
-        vm.loadAll = function() {
+
+        loadAll();
+
+        function loadAll() {
             Banka.query(function(result) {
                 vm.bankas = result;
             });
-        };
-
-        vm.loadAll();
-        
+        }
     }
 })();

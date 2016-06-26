@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Banka entity.
  */
+@SuppressWarnings("unused")
 public interface BankaRepository extends JpaRepository<Banka,Long> {
 
 }

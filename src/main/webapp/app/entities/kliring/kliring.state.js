@@ -42,7 +42,7 @@
             },
             resolve: {
                 entity: ['$stateParams', 'Kliring', function($stateParams, Kliring) {
-                    return Kliring.get({id : $stateParams.id});
+                    return Kliring.get({id : $stateParams.id}).$promise;
                 }]
             }
         })
@@ -70,6 +70,7 @@
                                 ukupanIznos: null,
                                 datumValute: null,
                                 datum: null,
+                                poslat: false,
                                 id: null
                             };
                         }
@@ -96,7 +97,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Kliring', function(Kliring) {
-                            return Kliring.get({id : $stateParams.id});
+                            return Kliring.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -120,7 +121,7 @@
                     size: 'md',
                     resolve: {
                         entity: ['Kliring', function(Kliring) {
-                            return Kliring.get({id : $stateParams.id});
+                            return Kliring.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {

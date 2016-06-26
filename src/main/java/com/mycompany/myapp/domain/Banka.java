@@ -36,6 +36,16 @@ public class Banka implements Serializable {
     private String pib;
 
     @NotNull
+    @Size(max = 8)
+    @Column(name = "swift_kod", length = 8, nullable = false)
+    private String swiftKod;
+
+    @NotNull
+    @Size(max = 18)
+    @Column(name = "obracunski_racun", length = 18, nullable = false)
+    private String obracunskiRacun;
+
+    @NotNull
     @Size(max = 120)
     @Column(name = "naziv", length = 120, nullable = false)
     private String naziv;
@@ -97,6 +107,22 @@ public class Banka implements Serializable {
 
     public void setPib(String pib) {
         this.pib = pib;
+    }
+
+    public String getSwiftKod() {
+        return swiftKod;
+    }
+
+    public void setSwiftKod(String swiftKod) {
+        this.swiftKod = swiftKod;
+    }
+
+    public String getObracunskiRacun() {
+        return obracunskiRacun;
+    }
+
+    public void setObracunskiRacun(String obracunskiRacun) {
+        this.obracunskiRacun = obracunskiRacun;
     }
 
     public String getNaziv() {
@@ -197,6 +223,8 @@ public class Banka implements Serializable {
             "id=" + id +
             ", sifraBanke='" + sifraBanke + "'" +
             ", pib='" + pib + "'" +
+            ", swiftKod='" + swiftKod + "'" +
+            ", obracunskiRacun='" + obracunskiRacun + "'" +
             ", naziv='" + naziv + "'" +
             ", adresa='" + adresa + "'" +
             ", email='" + email + "'" +

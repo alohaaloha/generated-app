@@ -24,21 +24,24 @@
             <column name="broj_racuna" type="varchar(18)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="datum_otvaranja" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="vazenje" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="banka_id" type="bigint"/>
             <column name="vlasnik_id" type="bigint"/>
             <column name="valuta_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="racun_pravnog_lica" columnName="datum_otvaranja" columnDataType="datetime"/>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/racun_pravnog_licas.csv"
+                  separator=";"
+                  tableName="racun_pravnog_lica"/>
     </changeSet>
 </databaseChangeLog>

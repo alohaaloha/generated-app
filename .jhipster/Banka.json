@@ -33,6 +33,24 @@
             "fieldValidateRulesMaxlength": "10"
         },
         {
+            "fieldName": "swiftKod",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "8"
+        },
+        {
+            "fieldName": "obracunskiRacun",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "18"
+        },
+        {
             "fieldName": "naziv",
             "fieldType": "String",
             "fieldValidateRules": [

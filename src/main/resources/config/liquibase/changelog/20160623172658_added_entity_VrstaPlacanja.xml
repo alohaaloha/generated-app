@@ -24,13 +24,16 @@
             <column name="oznaka_vrste_placanja" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="naziv_vrste_placanja" type="varchar(120)">
                 <constraints nullable="false" />
             </column>
-            
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
-        
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/vrsta_placanjas.csv"
+                  separator=";"
+                  tableName="vrsta_placanja"/>
     </changeSet>
 </databaseChangeLog>

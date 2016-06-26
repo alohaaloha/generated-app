@@ -53,7 +53,14 @@
                 <constraints nullable="false" />
             </column>
             
-            <column name="valuta_id" type="bigint"/>
+            <column name="poslat" type="bit">
+                <constraints nullable="false" />
+            </column>
+            
+            <column name="valuta_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="kliring" columnName="datum" columnDataType="datetime"/>

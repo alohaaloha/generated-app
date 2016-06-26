@@ -67,7 +67,7 @@ class KliringGatlingTest extends Simulation {
             .exec(http("Create new kliring")
             .post("/api/klirings")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "idPoruke":"SAMPLE_TEXT", "swwift_duznika":"SAMPLE_TEXT", "obracunskiRacunDuznika":"SAMPLE_TEXT", "swift_poverioca":"SAMPLE_TEXT", "obracunskiRacunPoverioca":"SAMPLE_TEXT", "ukupanIznos":null, "datumValute":"2020-01-01T00:00:00.000Z", "datum":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "idPoruke":"SAMPLE_TEXT", "swwift_duznika":"SAMPLE_TEXT", "obracunskiRacunDuznika":"SAMPLE_TEXT", "swift_poverioca":"SAMPLE_TEXT", "obracunskiRacunPoverioca":"SAMPLE_TEXT", "ukupanIznos":null, "datumValute":"2020-01-01T00:00:00.000Z", "datum":"2020-01-01T00:00:00.000Z", "poslat":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_kliring_url"))).exitHereIfFailed
             .pause(10)

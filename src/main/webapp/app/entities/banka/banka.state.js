@@ -42,7 +42,7 @@
             },
             resolve: {
                 entity: ['$stateParams', 'Banka', function($stateParams, Banka) {
-                    return Banka.get({id : $stateParams.id});
+                    return Banka.get({id : $stateParams.id}).$promise;
                 }]
             }
         })
@@ -64,6 +64,8 @@
                             return {
                                 sifraBanke: null,
                                 pib: null,
+                                swiftKod: null,
+                                obracunskiRacun: null,
                                 naziv: null,
                                 adresa: null,
                                 email: null,
@@ -97,7 +99,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Banka', function(Banka) {
-                            return Banka.get({id : $stateParams.id});
+                            return Banka.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -121,7 +123,7 @@
                     size: 'md',
                     resolve: {
                         entity: ['Banka', function(Banka) {
-                            return Banka.get({id : $stateParams.id});
+                            return Banka.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {

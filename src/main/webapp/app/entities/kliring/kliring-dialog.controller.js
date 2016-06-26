@@ -9,7 +9,12 @@
 
     function KliringDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Kliring, StavkaKliringa, Valuta) {
         var vm = this;
+
         vm.kliring = entity;
+        vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+        vm.save = save;
         vm.stavkakliringas = StavkaKliringa.query();
         vm.valutas = Valuta.query();
 
@@ -17,35 +22,34 @@
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        var onSaveSuccess = function (result) {
-            $scope.$emit('pinfProApp:kliringUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
-        };
+        function clear () {
+            $uibModalInstance.dismiss('cancel');
+        }
 
-        var onSaveError = function () {
-            vm.isSaving = false;
-        };
-
-        vm.save = function () {
+        function save () {
             vm.isSaving = true;
             if (vm.kliring.id !== null) {
                 Kliring.update(vm.kliring, onSaveSuccess, onSaveError);
             } else {
                 Kliring.save(vm.kliring, onSaveSuccess, onSaveError);
             }
-        };
+        }
 
-        vm.clear = function() {
-            $uibModalInstance.dismiss('cancel');
-        };
+        function onSaveSuccess (result) {
+            $scope.$emit('pinfProApp:kliringUpdate', result);
+            $uibModalInstance.close(result);
+            vm.isSaving = false;
+        }
 
-        vm.datePickerOpenStatus = {};
+        function onSaveError () {
+            vm.isSaving = false;
+        }
+
         vm.datePickerOpenStatus.datumValute = false;
         vm.datePickerOpenStatus.datum = false;
 
-        vm.openCalendar = function(date) {
+        function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
-        };
+        }
     }
 })();

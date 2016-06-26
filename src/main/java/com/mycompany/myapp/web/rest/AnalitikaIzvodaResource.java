@@ -25,6 +25,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,8 +50,11 @@ public class AnalitikaIzvodaResource {
     @RequestMapping(value = "/upload")
     public void upload2(@RequestParam("file") MultipartFile file) throws IOException {
 
+
+
         System.out.println("UPLOAD USAO");
         byte[] bytes;
+        Document docThatIsSent = null;
 
         if (!file.isEmpty()) {
             bytes = file.getBytes();
@@ -61,8 +68,6 @@ public class AnalitikaIzvodaResource {
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
             }
-            /*THIS IS DOCUMENT THAT IS SENT*/
-            Document docThatIsSent = null;
             try {
                  docThatIsSent = builder.parse(new ByteArrayInputStream(bytes));
             } catch (SAXException e) {
@@ -73,19 +78,46 @@ public class AnalitikaIzvodaResource {
             System.out.println("toString():"+xml);
             //--------------------
         }
+        String kobaja = "jcbc:jtds:sqlserver//localhost:3306/pinf_pro";
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(kobaja, "root", "basepass");
+            CallableStatement callStatement = connection.prepareCall("{call placanje()}");
+            callStatement.registerOutParameter("rtgs_id", Types.BIGINT);
+            callStatement.setString("duznik", docThatIsSent.getElementsByTagName("duznik").item(0).getNodeValue());
+            callStatement.setString("svrha", docThatIsSent.getElementsByTagName("svrha-placanja").item(0).getNodeValue());
+            callStatement.setString("poverilac", docThatIsSent.getElementsByTagName("poverilac").item(0).getNodeValue());
+            ZonedDateTime datumPrijema = ZonedDateTime.parse(docThatIsSent.getElementsByTagName("datum-prijema").item(0).getNodeValue());
+            callStatement.setTimestamp("datum_prijema", new Timestamp(datumPrijema.toEpochSecond()*1000));
+            ZonedDateTime datumValute = ZonedDateTime.parse(docThatIsSent.getElementsByTagName("datum-valute").item(0).getNodeValue());
+            callStatement.setTimestamp("datum_valute", new Timestamp(datumValute.toEpochSecond()*1000));
+            callStatement.setString("racun_duznika", docThatIsSent.getElementsByTagName("racun-duznika").item(0).getNodeValue());
+            callStatement.setInt("model_zaduzenja", Integer.parseInt(docThatIsSent.getElementsByTagName("model-zaduzenja").item(0).getNodeValue()));
+            callStatement.setString("poziv_na_broj_zaduzenja", docThatIsSent.getElementsByTagName("poziv-na-broj-zaduzenja").item(0).getNodeValue());
+            callStatement.setString("racun_poverioca", docThatIsSent.getElementsByTagName("racun-poverioca").item(0).getNodeValue());
+            callStatement.setInt("model_odobrenja", Integer.parseInt(docThatIsSent.getElementsByTagName("model-odobrenja").item(0).getNodeValue()));
+            callStatement.setString("poziv_na_broj_odobrenja", docThatIsSent.getElementsByTagName("poziv-na-broj-odobrenja").item(0).getNodeValue());
+            callStatement.setBoolean("is_hitno", Boolean.parseBoolean(docThatIsSent.getElementsByTagName("hitno").item(0).getNodeValue()));
+            callStatement.setDouble("iznos", Double.parseDouble(docThatIsSent.getElementsByTagName("iznos").item(0).getNodeValue()));
+            callStatement.setInt("tip_greske", Integer.parseInt(docThatIsSent.getElementsByTagName("tip-greske").item(0).getNodeValue()));
+            callStatement.setString("status_naloga", docThatIsSent.getElementsByTagName("status").item(0).getNodeValue());
+            callStatement.setString("naziv_mesta", docThatIsSent.getElementsByTagName("mesto-prijema").item(0).getNodeValue());
+            callStatement.setInt("oznaka_vrste_placanja", Integer.parseInt(docThatIsSent.getElementsByTagName("vrsta-placanja").item(0).getNodeValue()));
+            callStatement.setString("oznaka_valute_placanja", docThatIsSent.getElementsByTagName("valuta-placanja").item(0).getNodeValue());
 
-        System.out.println("KRAJ UPLOAD");
+            boolean imaRezultata = callStatement.execute();
+            int outputValue = callStatement.getInt("inOutParam");
+
+            log.info("Got RTGS set with an ID: " + outputValue);
+
+        } catch (SQLException e) {
+            log.error("Not able to connect to the database pinf_pro. Check if database service is running and URL and credentials are valid");
+            e.printStackTrace();
+        }
+
+
+        log.info("Ended import of AnalitikaIzvoda from XML file");
     }
-
-
-
-
-
-
-
-
-
-
 
     /**
      * POST  /analitika-izvodas : Create a new analitikaIzvoda.

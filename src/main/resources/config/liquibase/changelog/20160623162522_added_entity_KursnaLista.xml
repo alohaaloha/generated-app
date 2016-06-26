@@ -24,20 +24,24 @@
             <column name="datum" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="broj_kursne_liste" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="datum_primene" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="banka_id" type="bigint"/>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="kursna_lista" columnName="datum" columnDataType="datetime"/>
         <dropDefaultValue tableName="kursna_lista" columnName="datum_primene" columnDataType="datetime"/>
-        
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/kursna_listas.csv"
+                  separator=";"
+                  tableName="kursna_lista"/>
     </changeSet>
 </databaseChangeLog>

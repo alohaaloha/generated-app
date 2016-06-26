@@ -27,6 +27,7 @@
                     <th><span>Ukupan Iznos</span></th>
                     <th><span>Datum Valute</span></th>
                     <th><span>Datum</span></th>
+                    <th><span>Poslat</span></th>
                     <th><span>Valuta</span></th>
                     <th></th>
                 </tr>
@@ -42,6 +43,7 @@
                     <td>{{kliring.ukupanIznos}}</td>
                         <td>{{kliring.datumValute | date:'mediumDate'}}</td>
                     <td>{{kliring.datum | date:'medium'}}</td>
+                    <td>{{kliring.poslat}}</td>
                     <td>
                         <a ui-sref="valuta-detail({id:kliring.valuta.id})">{{kliring.valuta.id}}</a>
                     </td>

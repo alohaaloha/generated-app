@@ -69,6 +69,9 @@ public class KliringResourceIntTest {
     private static final ZonedDateTime UPDATED_DATUM = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_DATUM_STR = dateTimeFormatter.format(DEFAULT_DATUM);
 
+    private static final Boolean DEFAULT_POSLAT = false;
+    private static final Boolean UPDATED_POSLAT = true;
+
     @Inject
     private KliringRepository kliringRepository;
 
@@ -103,6 +106,7 @@ public class KliringResourceIntTest {
         kliring.setUkupanIznos(DEFAULT_UKUPAN_IZNOS);
         kliring.setDatumValute(DEFAULT_DATUM_VALUTE);
         kliring.setDatum(DEFAULT_DATUM);
+        kliring.setPoslat(DEFAULT_POSLAT);
     }
 
     @Test
@@ -129,6 +133,7 @@ public class KliringResourceIntTest {
         assertThat(testKliring.getUkupanIznos()).isEqualTo(DEFAULT_UKUPAN_IZNOS);
         assertThat(testKliring.getDatumValute()).isEqualTo(DEFAULT_DATUM_VALUTE);
         assertThat(testKliring.getDatum()).isEqualTo(DEFAULT_DATUM);
+        assertThat(testKliring.isPoslat()).isEqualTo(DEFAULT_POSLAT);
     }
 
     @Test
@@ -277,6 +282,24 @@ public class KliringResourceIntTest {
 
     @Test
     @Transactional
+    public void checkPoslatIsRequired() throws Exception {
+        int databaseSizeBeforeTest = kliringRepository.findAll().size();
+        // set the field null
+        kliring.setPoslat(null);
+
+        // Create the Kliring, which fails.
+
+        restKliringMockMvc.perform(post("/api/klirings")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(kliring)))
+                .andExpect(status().isBadRequest());
+
+        List<Kliring> klirings = kliringRepository.findAll();
+        assertThat(klirings).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllKlirings() throws Exception {
         // Initialize the database
         kliringRepository.saveAndFlush(kliring);
@@ -293,7 +316,8 @@ public class KliringResourceIntTest {
                 .andExpect(jsonPath("$.[*].obracunskiRacunPoverioca").value(hasItem(DEFAULT_OBRACUNSKI_RACUN_POVERIOCA.toString())))
                 .andExpect(jsonPath("$.[*].ukupanIznos").value(hasItem(DEFAULT_UKUPAN_IZNOS.doubleValue())))
                 .andExpect(jsonPath("$.[*].datumValute").value(hasItem(DEFAULT_DATUM_VALUTE.toString())))
-                .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM_STR)));
+                .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM_STR)))
+                .andExpect(jsonPath("$.[*].poslat").value(hasItem(DEFAULT_POSLAT.booleanValue())));
     }
 
     @Test
@@ -314,7 +338,8 @@ public class KliringResourceIntTest {
             .andExpect(jsonPath("$.obracunskiRacunPoverioca").value(DEFAULT_OBRACUNSKI_RACUN_POVERIOCA.toString()))
             .andExpect(jsonPath("$.ukupanIznos").value(DEFAULT_UKUPAN_IZNOS.doubleValue()))
             .andExpect(jsonPath("$.datumValute").value(DEFAULT_DATUM_VALUTE.toString()))
-            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM_STR));
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM_STR))
+            .andExpect(jsonPath("$.poslat").value(DEFAULT_POSLAT.booleanValue()));
     }
 
     @Test
@@ -343,6 +368,7 @@ public class KliringResourceIntTest {
         updatedKliring.setUkupanIznos(UPDATED_UKUPAN_IZNOS);
         updatedKliring.setDatumValute(UPDATED_DATUM_VALUTE);
         updatedKliring.setDatum(UPDATED_DATUM);
+        updatedKliring.setPoslat(UPDATED_POSLAT);
 
         restKliringMockMvc.perform(put("/api/klirings")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -361,6 +387,7 @@ public class KliringResourceIntTest {
         assertThat(testKliring.getUkupanIznos()).isEqualTo(UPDATED_UKUPAN_IZNOS);
         assertThat(testKliring.getDatumValute()).isEqualTo(UPDATED_DATUM_VALUTE);
         assertThat(testKliring.getDatum()).isEqualTo(UPDATED_DATUM);
+        assertThat(testKliring.isPoslat()).isEqualTo(UPDATED_POSLAT);
     }
 
     @Test

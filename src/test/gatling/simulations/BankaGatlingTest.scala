@@ -67,7 +67,7 @@ class BankaGatlingTest extends Simulation {
             .exec(http("Create new banka")
             .post("/api/bankas")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "sifraBanke":"SAMPLE_TEXT", "pib":"SAMPLE_TEXT", "naziv":"SAMPLE_TEXT", "adresa":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "web":"SAMPLE_TEXT", "telefon":"SAMPLE_TEXT", "fax":"SAMPLE_TEXT", "bankaInt":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "sifraBanke":"SAMPLE_TEXT", "pib":"SAMPLE_TEXT", "swiftKod":"SAMPLE_TEXT", "obracunskiRacun":"SAMPLE_TEXT", "naziv":"SAMPLE_TEXT", "adresa":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "web":"SAMPLE_TEXT", "telefon":"SAMPLE_TEXT", "fax":"SAMPLE_TEXT", "bankaInt":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_banka_url"))).exitHereIfFailed
             .pause(10)

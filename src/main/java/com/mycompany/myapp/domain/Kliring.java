@@ -81,6 +81,10 @@ public class Kliring implements Serializable {
     @Column(name = "datum", nullable = false)
     private ZonedDateTime datum;
 
+    @NotNull
+    @Column(name = "poslat", nullable = false)
+    private Boolean poslat;
+
     @XmlElement
     @OneToMany(mappedBy = "kliring")
     @JsonIgnore

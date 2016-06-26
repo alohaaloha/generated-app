@@ -3,8 +3,10 @@ package com.mycompany.myapp.test;
 import com.mycompany.myapp.domain.AnalitikaIzvoda;
 import com.mycompany.myapp.domain.RTGS;
 import com.mycompany.myapp.domain.Valuta;
+import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
 import java.net.UnknownHostException;
 
 /**
@@ -12,7 +14,7 @@ import java.net.UnknownHostException;
  */
 public class TestMain {
 
-    public static void main(String[] args) throws UnknownHostException, JAXBException {
+    public static void main(String[] args) throws UnknownHostException, JAXBException, ParserConfigurationException {
 
         RTGS rtgs = new RTGS();
         rtgs.setIdPoruke("NEKI ID");
@@ -32,6 +34,7 @@ public class TestMain {
         v.setZvanicnaSifra("Sifra valute");
         analitikaIzvoda.setValutaPlacanja(v);
         rtgs.setBrojStavke(analitikaIzvoda);
-        rtgs.exportToXml(System.out);
+        Document doc = rtgs.exportToXml();
+        System.out.println(doc);
     }
 }

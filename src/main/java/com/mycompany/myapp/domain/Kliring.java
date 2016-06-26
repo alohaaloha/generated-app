@@ -10,6 +10,8 @@ import javax.validation.constraints.*;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -234,22 +236,23 @@ public class Kliring implements Serializable {
 
     /**
      * Exports bean to xml.
-     * @param document Defined document to store marshalled bean.
-     * @return Indicator of success.
+     * @return Document representation of converted bean. <code>NULL</code> if not successful.
      */
-    public boolean exportToXml(Document document){
-        boolean ret = false;
+    public Document exportToXml(){
+        Document document;
         try{
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            document = db.newDocument();
             JAXBContext jaxbContext = JAXBContext.newInstance(RTGS.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(this, document);
-            ret = true;
         } catch (Exception e){
-
+            document = null;
         }
-        return ret;
+        return document;
     }
 
     }

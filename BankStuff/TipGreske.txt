@@ -1,0 +1,5 @@
+1 - Izvršen nalog
+2 - Neizvršen nalog zbog nelikvidnosti podračuna korisnika
+3 - Neizvršen nalog zbog nelikvidnosti računa nosioca u NBJ
+8 - Pogrešan nalog (npr. ne postoji navedeni racun...)
+9 - Nalog stopiran za izvršenje

@@ -3,10 +3,12 @@ package com.mycompany.myapp.test;
 import com.mycompany.myapp.domain.AnalitikaIzvoda;
 import com.mycompany.myapp.domain.RTGS;
 import com.mycompany.myapp.domain.Valuta;
-import org.w3c.dom.Document;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.UnknownHostException;
 
 /**
@@ -16,6 +18,15 @@ public class TestMain {
 
     public static void main(String[] args) throws UnknownHostException, JAXBException, ParserConfigurationException {
 
+        try{
+            testImportFromXml();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void testRtgsToXml(){
         RTGS rtgs = new RTGS();
         rtgs.setIdPoruke("NEKI ID");
         rtgs.setSwiftKodBankeDuznika("SWIFT KOD BANKE DUZNIKA");
@@ -34,7 +45,14 @@ public class TestMain {
         v.setZvanicnaSifra("Sifra valute");
         analitikaIzvoda.setValutaPlacanja(v);
         rtgs.setBrojStavke(analitikaIzvoda);
-        Document doc = rtgs.exportToXml();
-        System.out.println(doc);
+        rtgs.exportToXml(System.out);
+
+    }
+
+    public static void testImportFromXml() throws FileNotFoundException {
+        File file = new File("XMLDocuments/XMLNaloziZaPrenos/nalog_1.xml");
+        FileInputStream fileInputStream  = new FileInputStream(file);
+        AnalitikaIzvoda analitikaIzvoda = new AnalitikaIzvoda();
+        analitikaIzvoda = analitikaIzvoda.importFromXml(fileInputStream);
     }
 }

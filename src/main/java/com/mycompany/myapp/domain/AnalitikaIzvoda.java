@@ -8,17 +8,20 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@XmlRootElement(name="Analitika izvoda")
+@XmlRootElement(name="NalogZaPlacanje")
 @XmlAccessorType(XmlAccessType.FIELD)
 /**
  * A AnalitikaIzvoda.
@@ -348,5 +351,24 @@ public class AnalitikaIzvoda implements Serializable {
             ", tipGreske='" + tipGreske + "'" +
             ", status='" + status + "'" +
             '}';
+    }
+
+    /**
+     * Converts input xml to bean.
+     * @param inputstream Stream from whom the xml should be read.
+     * @return Read bean. <code>NULL</code> if not successful.
+     */
+    public AnalitikaIzvoda importFromXml(InputStream inputstream){
+        AnalitikaIzvoda ret  = null;
+        try{
+            JAXBContext jaxbContext = JAXBContext.newInstance(AnalitikaIzvoda.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            ret = (AnalitikaIzvoda) jaxbUnmarshaller.unmarshal(inputstream);
+            System.out.println(ret);
+        } catch (Exception e){
+            ret = null;
+        }
+        return ret;
     }
 }

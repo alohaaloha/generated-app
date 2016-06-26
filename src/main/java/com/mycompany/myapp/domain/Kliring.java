@@ -222,7 +222,7 @@ public class Kliring implements Serializable {
     public boolean exportToXml(OutputStream outputStream){
         boolean ret = false;
         try{
-            JAXBContext jaxbContext = JAXBContext.newInstance(RTGS.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Kliring.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -244,7 +244,7 @@ public class Kliring implements Serializable {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             document = db.newDocument();
-            JAXBContext jaxbContext = JAXBContext.newInstance(RTGS.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Kliring.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             // output pretty printed
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

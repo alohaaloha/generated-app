@@ -45,7 +45,7 @@ public class Klijent implements Serializable {
     private String jmbg;
 
     @NotNull
-    @Size(max = 30)
+    @Size(max = 50)
     @Column(name = "adresa", length = 30, nullable = false)
     private String adresa;
 
@@ -57,11 +57,10 @@ public class Klijent implements Serializable {
     @Column(name = "fax", length = 20)
     private String fax;
 
-    @Size(max = 20)
+    @Size(max = 50)
     @Column(name = "email", length = 20)
     private String email;
 
-    @NotNull
     @Size(max = 9)
     @Column(name = "pib", length = 9, nullable = false)
     private String pib;

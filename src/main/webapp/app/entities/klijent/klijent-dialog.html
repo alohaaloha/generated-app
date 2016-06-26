@@ -81,7 +81,7 @@
             <label class="control-label" for="field_adresa">Adresa</label>
             <input type="text" class="form-control" name="adresa" id="field_adresa"
                     ng-model="vm.klijent.adresa"
-                    required ng-maxlength="30" />
+                    required ng-maxlength="50" />
             <div ng-show="editForm.adresa.$invalid">
                 <p class="help-block"
                     ng-show="editForm.adresa.$error.required">
@@ -121,7 +121,7 @@
             <label class="control-label" for="field_email">Email</label>
             <input type="text" class="form-control" name="email" id="field_email"
                     ng-model="vm.klijent.email"
-                    ng-maxlength="20" />
+                    ng-maxlength="50" />
             <div ng-show="editForm.email.$invalid">
                 <p class="help-block"
                     ng-show="editForm.email.$error.maxlength">
@@ -133,12 +133,8 @@
             <label class="control-label" for="field_pib">Pib</label>
             <input type="text" class="form-control" name="pib" id="field_pib"
                     ng-model="vm.klijent.pib"
-                    required ng-maxlength="9" />
+                    ng-maxlength="9" />
             <div ng-show="editForm.pib.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.pib.$error.required">
-                    This field is required.
-                </p>
                 <p class="help-block"
                     ng-show="editForm.pib.$error.maxlength">
                     This field cannot be longer than 9 characters.

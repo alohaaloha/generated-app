@@ -64,7 +64,7 @@
                 "required",
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": "30"
+            "fieldValidateRulesMaxlength": "50"
         },
         {
             "fieldName": "telefon",
@@ -88,13 +88,12 @@
             "fieldValidateRules": [
                 "maxlength"
             ],
-            "fieldValidateRulesMaxlength": 20
+            "fieldValidateRulesMaxlength": 50
         },
         {
             "fieldName": "pib",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "9"

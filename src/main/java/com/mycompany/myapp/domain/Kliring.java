@@ -167,6 +167,14 @@ public class Kliring implements Serializable {
         this.datum = datum;
     }
 
+    public Boolean isPoslat() {
+        return poslat;
+    }
+
+    public void setPoslat(Boolean poslat) {
+        this.poslat = poslat;
+    }
+
     public Set<StavkaKliringa> getStavkaKliringas() {
         return stavkaKliringas;
     }
@@ -215,6 +223,7 @@ public class Kliring implements Serializable {
             ", ukupanIznos='" + ukupanIznos + "'" +
             ", datumValute='" + datumValute + "'" +
             ", datum='" + datum + "'" +
+            ", poslat='" + poslat + "'" +
             '}';
     }
 

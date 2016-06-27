@@ -22,7 +22,8 @@ CREATE PROCEDURE `placanje` (	IN duznik VARCHAR(256),
                                 IN naziv_mesta VARCHAR(60),
                                 IN oznaka_vrste_placanja INT(11),
                                 IN oznaka_valute_placanja VARCHAR(3),
-                                OUT rtgs_id BIGINT(20))
+                                OUT rtgs_id BIGINT(20),
+                                OUT debug VARCHAR(50))
 BEGIN
 	DECLARE racunDuznikaId BIGINT(20) DEFAULT -1;
 	DECLARE racunPoveriocaId BIGINT(20) DEFAULT -1;
@@ -43,6 +44,7 @@ BEGIN
 	FROM `racun_pravnog_lica` AS rpl
 	WHERE rpl.broj_racuna = racun_poverioca;
 
+	SET rtgs_id = racunPoveriocaId;
 	# Nadjemo ID od naseljeno mesta
 	SELECT `id`
 	INTO naseljenoMestoId
@@ -62,7 +64,7 @@ BEGIN
 	WHERE val.`zvanicna_sifra` = oznaka_valute_placanja;
 
     # Ukoliko račun dužnika postoji ažuriramo njegovo dnevno stanje računa ako postoji
-    IF racunDuznikaId != -1 THEN
+    IF (racunDuznikaId != -1 AND racun_duznika IS NOT NULL) THEN
 		BEGIN
 			# Gledamo da li za dužnika postoji uopšte dnevno stanje računa
 			SELECT `id`
@@ -82,6 +84,10 @@ BEGIN
 					WHERE dsr.`dnevni_izvod_banke_id` = racunDuznikaId
 					ORDER BY dsr.datum DESC
 					LIMIT 1; # TREBALO BI DA VRACA SAMO JEDAN RED (SORITIRALI SMO PO DATUMU - OPADAJUCI REDOSLED, ZNACI PRVI JE NAJNOVIJI)
+
+                    IF novoPrethodnoStanje IS NULL
+                    THEN SET novoPrethodnoStanje = 0;
+                    END IF;
 
 					INSERT INTO `dnevno_stanje_racuna` (`broj_izvoda`,
 						`datum`,
@@ -122,13 +128,17 @@ BEGIN
 				FROM `dnevno_stanje_racuna` as dsr
 				WHERE dsr.`datum` = datum_prijema AND dsr.`dnevni_izvod_banke_id` = racunDuznikaId;
 
+                IF prometNaTeret IS NULL
+                THEN SET prometNaTeret = 0, novoStanje = 0;
+                END IF;
+
                 UPDATE `dnevno_stanje_racuna` as dsr
                 SET dsr.`promet_na_teret` = prometNaTeret + iznos,
 					dsr.`novo_stanje` = novoStanje - iznos
 				WHERE dsr.`id` = dsrId;
             END;
 		END;
-	ELSEIF is_hitno = 1 THEN
+	ELSEIF (is_hitno = 1 AND racun_duznika IS NOT NULL) THEN
 		BEGIN
 			DECLARE analitikaId BIGINT(20) DEFAULT -1;
 			DECLARE swiftKodDuznika VARCHAR(8);
@@ -177,7 +187,7 @@ BEGIN
 
 			SET rtgs_id = LAST_INSERT_ID();		# Šaljemo na out parametar ID novo unetog RTGS-a radi instant exporta u .xml datoteku
 		END;
-	ELSE
+	ELSEIF  (racun_duznika IS NOT NULL) THEN
 		BEGIN
 			# Ako nije hitno i dužnik nije iz naše banke pravimo novu stavku kliringa
 			DECLARE analitikaId BIGINT(20) DEFAULT -1;
@@ -221,7 +231,7 @@ BEGIN
             WHERE klr.`obracunski_racun_duznika` = obracunskiRacunDuznika
 				AND klr.`obracunski_racun_poverioca` = obracunskiRacunPoverioca
                 AND klr.`datum` = DATE(datum_prijema)
-                AND klr.`is_poslat` = 0;
+                AND klr.`poslat` = 0;
 
             IF kliringId != -1
             THEN	# Ako kliring postoji već u bazi dodajemo samo analitiku u stavke kliringa
@@ -258,10 +268,12 @@ BEGIN
     END IF;
 
     SET dsrId = -1;
-
+    SET rtgs_id = racunPoveriocaId;
+    SET debug = ((racunPoveriocaId != -1) && (racun_poverioca IS NOT NULL));
     # Ukoliko račun poverioca postoji ažuriramo njegovo dnevno stanje računa ako postoji
-    IF racunPoveriocaId != -1 THEN
+    IF ((racunPoveriocaId != -1) && (racun_poverioca IS NOT NULL)) THEN
 		BEGIN
+			SET rtgs_id = 21;
 			# Gledamo da li za poverioca postoji uopšte dnevno stanje računa
 			SELECT `id`
 			INTO dsrId
@@ -280,6 +292,10 @@ BEGIN
 					WHERE dsr.`id` = racunPoveriocaId
 					ORDER BY dsr.datum DESC
 					LIMIT 1; # TREBALO BI DA VRACA SAMO JEDAN RED (SORITIRALI SMO PO DATUMU - OPADAJUCI REDOSLED, ZNACI PRVI JE NAJNOVIJI)
+
+                    IF novoPrethodnoStanje IS NULL
+                    THEN SET novoPrethodnoStanje = 0;
+                    END IF;
 
 					INSERT INTO `dnevno_stanje_racuna` (`broj_izvoda`,
 						`datum`,
@@ -320,6 +336,10 @@ BEGIN
 				FROM `dnevno_stanje_racuna` as dsr
 				WHERE dsr.`datum` = datum_prijema AND dsr.`dnevni_izvod_banke_id` = racunPoveriocaId;
 
+                IF prometUKorist IS NULL
+                THEN SET prometUKorist = 0, novoStanje = 0;
+                END IF;
+
                 UPDATE `dnevno_stanje_racuna` as dsr
                 SET dsr.`promet_u_korist` = prometUKorist + iznos,
 					dsr.`novo_stanje` = novoStanje + iznos
@@ -327,13 +347,14 @@ BEGIN
             END;
 		END;
 	# Ako je hitno i poverilac nije iz naše banke šaljemo RTGS nalog centralnoj banci
-	ELSEIF is_hitno = 1 THEN
+	ELSEIF (is_hitno = 1 AND racun_poverioca IS NOT NULL) THEN
 		BEGIN
 			DECLARE analitikaId BIGINT(20) DEFAULT -1;
 			DECLARE swiftKodDuznika VARCHAR(8);
 			DECLARE obracunskiRacunDuznika VARCHAR(18);
 			DECLARE swiftKodPoverioca VARCHAR(8);
 			DECLARE obracunskiRacunPoverioca VARCHAR(18);
+			SET rtgs_id = 22;
 
             INSERT INTO `analitika_izvoda`
 				( `duznik`, `svrha`, `poverilac`,
@@ -376,7 +397,7 @@ BEGIN
 			SET rtgs_id = LAST_INSERT_ID();		# Šaljemo na out parametar ID novo unetog RTGS-a radi instant exporta u .xml datoteku
 		END;
 	# Ako nije hitno i poverilac nije iz naše banke pravimo novu stavku kliringa
-	ELSE
+	ELSEIF (racun_poverioca IS NOT NULL) THEN
 		BEGIN
 			DECLARE analitikaId BIGINT(20) DEFAULT -1;
 			DECLARE swiftKodDuznika VARCHAR(8);
@@ -384,6 +405,7 @@ BEGIN
 			DECLARE swiftKodPoverioca VARCHAR(8);
 			DECLARE obracunskiRacunPoverioca VARCHAR(18);
 			DECLARE kliringId BIGINT(18) DEFAULT -1;
+			SET rtgs_id = 23;
 
 			INSERT INTO `analitika_izvoda`
 				( `duznik`, `svrha`, `poverilac`,
@@ -419,7 +441,7 @@ BEGIN
             WHERE klr.`obracunski_racun_duznika` = obracunskiRacunDuznika
 				AND klr.`obracunski_racun_poverioca` = obracunskiRacunPoverioca
                 AND klr.`datum` = DATE(datum_prijema)
-                AND klr.`is_poslat` = 0;
+                AND klr.`poslat` = 0;
 
             IF kliringId != -1
             THEN	# Ako kliring postoji već u bazi dodajemo samo analitiku u stavke kliringa

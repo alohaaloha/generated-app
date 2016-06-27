@@ -66,7 +66,6 @@ public class AnalitikaIzvoda implements Serializable {
     private ZonedDateTime datumValute;
 
     @XmlElement
-    @NotNull
     @Size(max = 18)
     @Column(name = "racun_duznika", length = 18, nullable = false)
     private String racunDuznika;

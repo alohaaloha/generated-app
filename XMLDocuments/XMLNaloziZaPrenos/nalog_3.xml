@@ -20,7 +20,7 @@
     <vrsta-placanja>289</vrsta-placanja>
     <valuta-placanja>RSD</valuta-placanja>
     <iznos>2000.00</iznos>
-    <hitno>nije</hitno>
+    <hitno>0</hitno>
     <tip-greske>0</tip-greske>
     <status></status>
 </nalog-za-prenos>

@@ -83,7 +83,6 @@
             "fieldName": "racunDuznika",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "18"

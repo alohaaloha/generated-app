@@ -105,12 +105,8 @@
             <label class="control-label" for="field_racunDuznika">Racun Duznika</label>
             <input type="text" class="form-control" name="racunDuznika" id="field_racunDuznika"
                     ng-model="vm.analitikaIzvoda.racunDuznika"
-                    required ng-maxlength="18" />
+                    ng-maxlength="18" />
             <div ng-show="editForm.racunDuznika.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.racunDuznika.$error.required">
-                    This field is required.
-                </p>
                 <p class="help-block"
                     ng-show="editForm.racunDuznika.$error.maxlength">
                     This field cannot be longer than 18 characters.

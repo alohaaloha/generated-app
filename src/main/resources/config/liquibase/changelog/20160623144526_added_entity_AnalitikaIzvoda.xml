@@ -24,63 +24,63 @@
             <column name="duznik" type="varchar(256)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="svrha" type="varchar(256)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="poverilac" type="varchar(256)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="datum_prijema" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="datum_valute" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="racun_duznika" type="varchar(18)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
-            
+
             <column name="model_zaduzenja" type="integer">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="poziv_na_broj_zaduzenja" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="racun_poverioca" type="varchar(18)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="model_odobrenja" type="integer">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="poziv_na_broj_odobrenja" type="varchar(20)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="is_hitno" type="bit">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="iznos" type="double">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="tip_greske" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="status" type="varchar(1)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="dnevno_stanje_racuna_id" type="bigint"/>
             <column name="naseljeno_mesto_id" type="bigint"/>
             <column name="vrsta_placanja_id" type="bigint"/>
@@ -89,6 +89,6 @@
         </createTable>
         <dropDefaultValue tableName="analitika_izvoda" columnName="datum_prijema" columnDataType="datetime"/>
         <dropDefaultValue tableName="analitika_izvoda" columnName="datum_valute" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>

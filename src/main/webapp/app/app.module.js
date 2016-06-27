@@ -34,8 +34,9 @@
 
 
         $rootScope.klijent=null;
+        $rootScope.valuta = null;
         $rootScope.klijentZOOM=false;
-
+        $rootScope.valutaZOOM = false;
 
 
     }

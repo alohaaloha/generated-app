@@ -72,7 +72,7 @@
                 }).result.then(function() {
                     $state.go('valuta', null, { reload: true });
                 }, function() {
-                    $state.go('valuta');
+                    //$state.go('valuta');
                 });
             }]
         })

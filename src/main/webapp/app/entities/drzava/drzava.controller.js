@@ -12,16 +12,27 @@
 
         //ZOOM STUFF start-------------------------//
         /*0*/
+        if($rootScope.drzavaZOOM)
         $scope.isZoom=$rootScope.drzavaZOOM;
+
+
 
         $scope.pick=function(drzava){
             console.log(drzava);
             /*1*/
-            $rootScope.naseljenoMesto.drzava=drzava; //ladno mu treba ceo obj a ne samo id
+            if($rootScope.naseljenoMesto!==null){
+                $rootScope.naseljenoMesto.drzava=drzava; //ladno mu treba ceo obj a ne samo id
+                $rootScope.drzavaZOOM=false;
+                $state.go("naseljeno-mesto");
+            }
+            if($rootScope.valuta!==null){
+                $rootScope.valuta.drzava=drzava; //ladno mu treba ceo obj a ne samo id
+                $rootScope.drzavaZOOM=false;
+                $state.go("valuta.new");
+            }
             /*2*/
-            $state.drzavaZOOM=false;
+
             /*3*/
-            $state.go("naseljeno-mesto.new");
         }
         //ZOOM STUFF end---------------------------//
 

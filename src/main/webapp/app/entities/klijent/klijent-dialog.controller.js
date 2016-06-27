@@ -10,6 +10,10 @@
     function KlijentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Klijent, RacunPravnogLica, PravnoLice, NaseljenoMesto, $rootScope, $state) {
         var vm = this;
 
+         $timeout(function (){
+                    angular.element('.form-group:eq(1)>input').focus();
+         });
+
         $scope.izbor = function(){
              $uibModalInstance.dismiss('cancel');
              $rootScope.naseljenoMestoZOOM=true;
@@ -17,8 +21,8 @@
         }
 
         if($rootScope.klijent){
-        /*VRACAM SE NA OVO STANJE - ZOOM MEHANIZAM*/
-        //ucitas ono sto je sacuvano kad si otisao i popuni polja kako si ostavio
+        /*Uslov prolazi samo u slucaju da postoji nesto sto je setovano na narednoj formi koristeci ZOOM mehanizam*/
+        //ukoliko postoje parametri koji su setovani u okviru ZOOM mehanizma na narednoj formi, preuzmi ih
             vm.klijent = $rootScope.klijent;
         }else{
         /*AKO DOLAZIS OVDE SA NEW ILI EDIT */
@@ -30,9 +34,7 @@
                 vm.naseljenomestos = NaseljenoMesto.query();
         }
 
-        $timeout(function (){
-            angular.element('.form-group:eq(1)>input').focus();
-        });
+
 
         var onSaveSuccess = function (result) {
             $scope.$emit('pinfProApp:klijentUpdate', result);

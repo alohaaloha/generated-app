@@ -1,5 +1,5 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<form name="editForm" role="form" novalidate  show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -62,18 +62,29 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="field_drzava">Drzava</label>
-            <select class="form-control" id="field_drzava" name="drzava" ng-model="vm.valuta.drzava" ng-options="drzava as drzava.id for drzava in vm.drzavas track by drzava.id">
-                <option value=""></option>
-            </select>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="field_drzava">Drzava</label>-->
+            <!--<select class="form-control" id="field_drzava" name="drzava" ng-model="vm.valuta.drzava" ng-options="drzava as drzava.id for drzava in vm.drzavas track by drzava.id">-->
+                <!--<option value=""></option>-->
+            <!--</select>-->
+        <!--</div>-->
+
+        <b>Drzava</b>
+        <input type="text" class="form-control"
+               ng-model="vm.valuta.drzava.dr_naziv"
+               required ng-maxlength="20" disabled />
+        <button ng-click="izbor()"
+                class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="hidden-xs hidden-sm"> Izbor... </span>
+        </button>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+        <button type="submit" ng-click="vm.save()" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>

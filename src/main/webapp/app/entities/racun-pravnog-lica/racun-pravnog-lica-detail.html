@@ -20,17 +20,17 @@
         <hr>
         <dt><span>Banka</span></dt>
         <dd>
-            <a ui-sref="banka-detail({id:vm.racunPravnogLica.banka.id})">{{vm.racunPravnogLica.banka.id}}</a>
+            <a ui-sref="banka-detail({id:vm.racunPravnogLica.banka.id})">{{vm.racunPravnogLica.banka.naziv}}</a>
         </dd>
         <hr>
         <dt><span>Vlasnik</span></dt>
         <dd>
-            <a ui-sref="klijent-detail({id:vm.racunPravnogLica.vlasnik.id})">{{vm.racunPravnogLica.vlasnik.id}}</a>
+            <a ui-sref="klijent-detail({id:vm.racunPravnogLica.vlasnik.id})"><span ng-hide="{vm.racunPravnogLica.vlasnik.pib}==null">{{vm.racunPravnogLica.vlasnik.nazivPravnogLica}} (</span>{{vm.racunPravnogLica.vlasnik.ime}} {{vm.racunPravnogLica.vlasnik.prezime}}<span ng-hide="{vm.racunPravnogLica.vlasnik.pib}==null">)</span></a>
         </dd>
         <hr>
         <dt><span>Valuta</span></dt>
         <dd>
-            <a ui-sref="valuta-detail({id:vm.racunPravnogLica.valuta.id})">{{vm.racunPravnogLica.valuta.id}}</a>
+            <a ui-sref="valuta-detail({id:vm.racunPravnogLica.valuta.id})">{{vm.racunPravnogLica.valuta.zvanicnaSifra}}</a>
         </dd>
         <hr>
     </dl>

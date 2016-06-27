@@ -54,7 +54,7 @@
             </column>
 
             <column name="pib" type="varchar(9)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="sifra_delatnosti" type="integer">

@@ -25,7 +25,7 @@
                     <th><span>Promet U Korist</span></th>
                     <th><span>Promet Na Teret</span></th>
                     <th><span>Novo Stanje</span></th>
-                    <th><span>Dnevni Izvod Banke</span></th>
+                    <th><span>Broj računa</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -39,7 +39,7 @@
                     <td>{{dnevnoStanjeRacuna.prometNaTeret}}</td>
                     <td>{{dnevnoStanjeRacuna.novoStanje}}</td>
                     <td>
-                        <a ui-sref="racun-pravnog-lica-detail({id:dnevnoStanjeRacuna.dnevniIzvodBanke.id})">{{dnevnoStanjeRacuna.dnevniIzvodBanke.id}}</a>
+                        <a ui-sref="racun-pravnog-lica-detail({id:dnevnoStanjeRacuna.dnevniIzvodBanke.id})">{{dnevnoStanjeRacuna.dnevniIzvodBanke.brojRacuna}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

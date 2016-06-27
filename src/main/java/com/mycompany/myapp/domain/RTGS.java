@@ -64,7 +64,7 @@ public class RTGS implements Serializable {
     private String obracunskiRacunBankePoverioca;
 
     @XmlElement
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private AnalitikaIzvoda brojStavke;
 
 

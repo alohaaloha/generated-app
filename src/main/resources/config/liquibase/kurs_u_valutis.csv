@@ -1,3 +1,4 @@
 id;redni_broj;kurs_kupovni;kurs_srednji;kurs_prodajni;osnovna_valuta_id;prema_valuti_id;kursna_lista_id
 1;1;119;120;121;1;2;1
 2;2;114;115;116;1;2;2
+3;3;116;117;118;1;2;3

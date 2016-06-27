@@ -121,7 +121,7 @@ public class AnalitikaIzvoda implements Serializable {
     private VrstaPlacanja vrstaPlacanja;
 
     @XmlElement
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Valuta valutaPlacanja;
 
     @OneToMany(mappedBy = "brojStavke")

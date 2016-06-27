@@ -1,3 +1,4 @@
 id;sifra_banke;pib;swift_kod;obracunski_racun;naziv;adresa;email;web;telefon;fax;banka_int
 1;001;10000001;AAAAAAAA;001000000000000101;Prva banka;Trg Žrtava Projekta 6;prvabanka@banka.com;banka.com;021100100;null;1
 2;002;10000002;BBBBBBBB;002000000000000202;Druga banka;Bulevar Kralja Mitrića 10;drugabanka@drugabanka.com;drugabanka.com;011100100;null;1
+3;003;10000003;CCCCCCCC;003000000000000303;Treca banka;Dzimejla Velicanstvenog 8080;trecabanka@trecabanka.com;trecabanka.com;021300300;null;1

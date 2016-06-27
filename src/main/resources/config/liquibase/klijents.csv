@@ -1,5 +1,7 @@
 id;naziv_pravnog_lica;ime;prezime;jmbg;adresa;telefon;fax;email;pib;sifra_delatnosti;pravno_lice_id;naseljeno_mesto_id
-1;null;Djoka;Djokic;0101983000001;Djokina adresa;0216213451;null;djoka@gmail.com;90000001;null;null;1
-2;null;Jevrosim;FTN;0202965000001;Jevrosimova adresa;0216333222;null;jevrosim@uns.ac.rs;90000002;null;null;1
-3;null;Milenko;Milenković;0303974000001;Milenkova adresa;011430983;null;milenko@beogradjani.com;90000003;null;null;2
-4;null;Lanmi;Trićmi;2110993000001;Trićmijeva adresa podno Janja;null;null;lanmi@sipovonocu.com;90000004;null;null;4
+1;null;Djoka;Djokic;0101983000001;Djokina adresa;0216213451;null;djoka@gmail.com;null;null;null;1
+2;null;Jevrosim;FTN;0202965000001;Jevrosimova adresa;0216333222;null;jevrosim@uns.ac.rs;null;null;null;1
+3;null;Milenko;Milenković;0303974000001;Milenkova adresa;011430983;null;milenko@beogradjani.com;null;null;null;2
+4;null;Lanmi;Trićmi;2110993000001;Trićmijeva adresa podno Janja;null;null;lanmi@sipovonocu.com;null;null;null;4
+5;Perov Bend;Pero;Deformero;0404956000001;Pero Deformerova adresa;011755455;null;pero@beogradjani.com;90000001;100;null;2
+6;Delta No Tax Paying;Miroslav;Mišković;0507945000001;Delta Headquarters Belgrade;011111111;null;delta@notax.com;90000002;200;null;2

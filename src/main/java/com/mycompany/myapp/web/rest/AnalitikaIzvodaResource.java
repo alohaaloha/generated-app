@@ -3,7 +3,9 @@ package com.mycompany.myapp.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.jcabi.xml.XMLDocument;
 import com.mycompany.myapp.domain.AnalitikaIzvoda;
+import com.mycompany.myapp.domain.RTGS;
 import com.mycompany.myapp.repository.AnalitikaIzvodaRepository;
+import com.mycompany.myapp.repository.RTGSRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +47,9 @@ public class AnalitikaIzvodaResource {
 
     @Inject
     private AnalitikaIzvodaRepository analitikaIzvodaRepository;
+
+    @Inject
+    private RTGSRepository rtgsRepository;
 
 
      /* ANALITIKA IZVODA UPLOAD */
@@ -162,6 +167,11 @@ public class AnalitikaIzvodaResource {
             boolean imaRezultata = callStatement.execute();
             int rtgsId = callStatement.getInt(19);
             String debug = callStatement.getString(20);
+
+            if (rtgsId != -1) {
+                RTGS noviRTGSNalog = rtgsRepository.findOne(new Long(rtgsId));
+                noviRTGSNalog.exportToXml(System.out);
+            }
 
             log.info("Got RTGS set with an ID: " + rtgsId);
             log.info("Procedure debug value: " + debug);

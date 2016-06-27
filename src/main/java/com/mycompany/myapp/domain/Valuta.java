@@ -28,12 +28,13 @@ public class Valuta implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @XmlAttribute
+    @XmlElement
     @NotNull
     @Size(max = 3)
     @Column(name = "zvanicna_sifra", length = 3, nullable = false)
     private String zvanicnaSifra;
 
+    @XmlElement
     @NotNull
     @Size(max = 30)
     @Column(name = "naziv_valute", length = 30, nullable = false)

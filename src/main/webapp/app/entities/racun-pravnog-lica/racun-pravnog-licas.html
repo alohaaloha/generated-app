@@ -35,13 +35,13 @@
                     <td>{{racunPravnogLica.datumOtvaranja | date:'medium'}}</td>
                     <td>{{racunPravnogLica.vazenje}}</td>
                     <td>
-                        <a ui-sref="banka-detail({id:racunPravnogLica.banka.id})">{{racunPravnogLica.banka.id}}</a>
+                        <a ui-sref="banka-detail({id:racunPravnogLica.banka.id})">{{racunPravnogLica.banka.naziv}}</a>
                     </td>
                     <td>
-                        <a ui-sref="klijent-detail({id:racunPravnogLica.vlasnik.id})">{{racunPravnogLica.vlasnik.id}}</a>
+                        <a ui-sref="klijent-detail({id:racunPravnogLica.vlasnik.id})"><span ng-hide="{racunPravnogLica.vlasnik.pib}==null">{{racunPravnogLica.vlasnik.nazivPravnogLica}} (</span>{{racunPravnogLica.vlasnik.ime}} {{racunPravnogLica.vlasnik.prezime}}<span ng-hide="{racunPravnogLica.vlasnik.pib}==null">)</span></a>
                     </td>
                     <td>
-                        <a ui-sref="valuta-detail({id:racunPravnogLica.valuta.id})">{{racunPravnogLica.valuta.id}}</a>
+                        <a ui-sref="valuta-detail({id:racunPravnogLica.valuta.id})">{{racunPravnogLica.valuta.zvanicnaSifra}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

@@ -10,14 +10,19 @@
     function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, naseljenoMestoService, $rootScope) {
         var vm = this;
 
+
         //ZOOM STUFF start-------------------------//
-        $scope.isZoom = $stateParams.isZoom;
+        //$scope.isZoom = $stateParams.isZoom;
+        $scope.isZoom=$rootScope.naseljenoMestoZOOM;
         $scope.pick = function(naseljenoMesto){
             console.log(naseljenoMesto);
             $rootScope.klijent.naseljenoMesto = naseljenoMesto; //ladno mu treba ceo obj a ne samo id
+            $rootScope.naseljenoMestoZOOM=false;
             $state.go("klijent.new");
         }
         //ZOOM STUFF end---------------------------//
+
+
 
         /*NASELJENA MESTA ZA POSLATI ID*/
         if($stateParams.drzava){
@@ -43,7 +48,7 @@
 
         }else{
 
-         /*AKO SI DOSAO DA VIDIS STA NASALJENA MESTA*/
+         /*AKO SI DOSAO DA VIDIS SVA NASALJENA MESTA*/
          console.log("TRAZIM SVA NAS.MESTA ");
           vm.naseljenoMestos = [];
                     vm.loadAll = function() {

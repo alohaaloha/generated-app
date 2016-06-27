@@ -16,7 +16,6 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'NaseljenoMestos'
             },
-            params: {'drzava':null, 'isZoom':false},
             views: {
                 'content@': {
                     templateUrl: 'app/entities/naseljeno-mesto/naseljeno-mestos.html',

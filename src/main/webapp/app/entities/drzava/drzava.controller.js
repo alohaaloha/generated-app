@@ -5,19 +5,23 @@
         .module('pinfProApp')
         .controller('DrzavaController', DrzavaController);
 
-    DrzavaController.$inject = ['$scope', '$state', 'Drzava', '$stateParams', '$rootScope'];
+    DrzavaController.$inject = ['$scope', '$state', 'Drzava', '$stateParams', '$rootScope', '$window'];
 
-    function DrzavaController ($scope, $state, Drzava, $stateParams, $rootScope) {
+    function DrzavaController ($scope, $state, Drzava, $stateParams, $rootScope, $window) {
 
 
         //ZOOM STUFF start-------------------------//
-        $scope.isZoom=$stateParams.isZoom;
+        /*0*/
+        $scope.isZoom=$rootScope.drzavaZOOM;
 
         $scope.pick=function(drzava){
             console.log(drzava);
+            /*1*/
             $rootScope.naseljenoMesto.drzava=drzava; //ladno mu treba ceo obj a ne samo id
+            /*2*/
+            $state.drzavaZOOM=false;
+            /*3*/
             $state.go("naseljeno-mesto.new");
-
         }
         //ZOOM STUFF end---------------------------//
 

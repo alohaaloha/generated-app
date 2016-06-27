@@ -10,12 +10,16 @@
     function NaseljenoMestoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, NaseljenoMesto, Drzava, AnalitikaIzvoda, $rootScope, $state) {
         var vm = this;
 
-        $scope.test=function(){
-                //alert("aaaaaaaaaaa");
+        /*ZOOM*/
+        $scope.izbor=function(){
+                 /*1*/
                  $uibModalInstance.dismiss('cancel');
-                 $state.go("drzava",{"isZoom":true});
-
+                 /*2*/
+                 $rootScope.drzavaZOOM=true; //ovo koristimo
+                 /*3*/
+                 $state.go("drzava");
         }
+
 
         if($rootScope.naseljenoMesto){
         /*VRACAM SE NA OVO STANJE - ZOOM MEHANIZAM*/
@@ -29,6 +33,7 @@
                vm.drzavas = Drzava.query();
                vm.analitikaizvodas = AnalitikaIzvoda.query();
         }
+
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -45,8 +50,10 @@
         };
 
         vm.save = function () {
-            if(vm.naseljenoMesto.drzava){ //drzava ne sme null
-               $rootScope.naseljenoMesto=null; //pobrise se sa root
+            /*drzava ne sme null*/
+            if(vm.naseljenoMesto.drzava){
+               /*pobrise se rootscope za nm*/
+               $rootScope.naseljenoMesto=null;
                vm.isSaving = true;
                if (vm.naseljenoMesto.id !== null) {
                    NaseljenoMesto.update(vm.naseljenoMesto, onSaveSuccess, onSaveError);
@@ -56,11 +63,18 @@
             }else{
                 //TODO - show alertify error here
             }
+
+            /*moram ga bacim na state, saban*/
+            //$state.go("naseljeno-mesto");
+            $window.history.back();
         };
 
         vm.clear = function() {
             $rootScope.naseljenoMesto=null; //pobrise se sa root
             $uibModalInstance.dismiss('cancel');
+            /*moram ga bacim na state, saban*/
+            //$state.go("naseljeno-mesto");
+            $window.history.back();
         };
 
 

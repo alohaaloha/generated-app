@@ -27,7 +27,14 @@
          /* ZOOM */
         /*ALL ALL ENTITIES HERE AND SET IT TO NULL*/
         $rootScope.naseljenoMesto=null;
+        $rootScope.naseljenoMestoZOOM=false;
+
+        $rootScope.drzava=null;
+        $rootScope.drzavaZOOM=false;
+
+
         $rootScope.klijent=null;
+        $rootScope.klijentZOOM=false;
 
 
 

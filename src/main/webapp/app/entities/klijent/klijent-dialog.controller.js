@@ -11,8 +11,9 @@
         var vm = this;
 
         $scope.izbor = function(){
-            $uibModalInstance.dismiss('cancel');
-            $state.go("naseljeno-mesto",{"drzava":null, "isZoom":true});
+             $uibModalInstance.dismiss('cancel');
+             $rootScope.naseljenoMestoZOOM=true;
+             $state.go("naseljeno-mesto");
         }
 
         if($rootScope.klijent){
@@ -55,11 +56,16 @@
             }else{
                 //TODO - show alertify error here
             }
+
+            $window.history.back();
+
         };
 
         vm.clear = function() {
             $rootScope.klijent=null; //pobrise se sa root
             $uibModalInstance.dismiss('cancel');
+
+            $window.history.back();
         };
     }
 })();

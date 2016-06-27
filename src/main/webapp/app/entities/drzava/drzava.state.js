@@ -16,7 +16,6 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'Drzavas'
             },
-            params: {'isZoom':false},
             views: {
                 'content@': {
                     templateUrl: 'app/entities/drzava/drzavas.html',

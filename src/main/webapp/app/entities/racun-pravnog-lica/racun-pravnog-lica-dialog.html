@@ -1,5 +1,6 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<!--<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>-->
+<form name="editForm" role="form" novalidate  show-validation>
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -66,30 +67,71 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="field_banka">Banka</label>
-            <select class="form-control" id="field_banka" name="banka" ng-model="vm.racunPravnogLica.banka" ng-options="banka as banka.id for banka in vm.bankas track by banka.id">
-                <option value=""></option>
-            </select>
+        <!--<div class="form-group">-->
+            <!--<label for="field_banka">Banka</label>-->
+            <!--<select class="form-control" id="field_banka" name="banka" ng-model="vm.racunPravnogLica.banka" ng-options="banka as banka.id for banka in vm.bankas track by banka.id">-->
+                <!--<option value=""></option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <div class = "form-group">
+        <b>Banka</b>
+        <input type="text" class="form-control"
+               ng-model="vm.racunPravnogLica.banka.naziv"
+               required ng-maxlength="20" disabled />
+        <button ng-click="izborBanke()"
+                class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="hidden-xs hidden-sm"> Izbor... </span>
+        </button>
         </div>
-        <div class="form-group">
-            <label for="field_vlasnik">Vlasnik</label>
-            <select class="form-control" id="field_vlasnik" name="vlasnik" ng-model="vm.racunPravnogLica.vlasnik" ng-options="klijent as klijent.id for klijent in vm.klijents track by klijent.id">
-                <option value=""></option>
-            </select>
+
+        <!--<div class="form-group">-->
+            <!--<label for="field_vlasnik">Vlasnik</label>-->
+            <!--<select class="form-control" id="field_vlasnik" name="vlasnik" ng-model="vm.racunPravnogLica.vlasnik" ng-options="klijent as klijent.id for klijent in vm.klijents track by klijent.id">-->
+                <!--<option value=""></option>-->
+            <!--</select>-->
+        <!--</div>-->
+
+        <div class = "form-group">
+            <b>Vlasnik</b>
+            <input type="text" class="form-control"
+                   ng-model="vm.racunPravnogLica.vlasnik.ime"
+                   required ng-maxlength="20" disabled />
+            <button ng-click="izborVlasnika()"
+                    class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-th-list"></span>
+                <span class="hidden-xs hidden-sm"> Izbor... </span>
+            </button>
         </div>
-        <div class="form-group">
-            <label for="field_valuta">Valuta</label>
-            <select class="form-control" id="field_valuta" name="valuta" ng-model="vm.racunPravnogLica.valuta" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">
-                <option value=""></option>
-            </select>
+
+
+        <!--<div class="form-group">-->
+            <!--<label for="field_valuta">Valuta</label>-->
+            <!--<select class="form-control" id="field_valuta" name="valuta" ng-model="vm.racunPravnogLica.valuta" ng-options="valuta as valuta.id for valuta in vm.valutas track by valuta.id">-->
+                <!--<option value=""></option>-->
+            <!--</select>-->
+        <!--</div>-->
+
+        <div class = "form-group">
+            <b>Valuta</b>
+            <input type="text" class="form-control"
+                   ng-model="vm.racunPravnogLica.valuta.zvanicnaSifra"
+                   required ng-maxlength="20" disabled />
+            <button ng-click="izborValute()"
+                    class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-th-list"></span>
+                <span class="hidden-xs hidden-sm"> Izbor... </span>
+            </button>
         </div>
+
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+        <!--<button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">-->
+        <button type="submit" ng-click="vm.save()" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>

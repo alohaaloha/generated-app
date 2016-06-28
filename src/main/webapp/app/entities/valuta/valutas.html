@@ -35,7 +35,17 @@
                     <td>
                         <a ui-sref="drzava-detail({id:valuta.drzava.id})">{{valuta.drzava.dr_naziv}}</a>
                     </td>
-                    <td class="text-right">
+
+                    <td>
+                        <button type="submit"
+                                ng-click="pick(valuta)"
+                                class="btn btn-success btn-sm" ng-show="isZoom">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm"> Izaberi </span>
+                        </button>
+                    </td>
+
+                    <td class="text-right" ng-hide="isZoom">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="valuta-detail({id:valuta.id})"

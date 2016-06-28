@@ -34,10 +34,13 @@
 
 
         $rootScope.klijent=null;
-        $rootScope.valuta = null;
         $rootScope.klijentZOOM=false;
+
+        $rootScope.valuta = null;
         $rootScope.valutaZOOM = false;
 
 
+        $rootScope.bankaZOOM = false;
+        $rootScope.racunPravnogLica = null;
     }
 })();

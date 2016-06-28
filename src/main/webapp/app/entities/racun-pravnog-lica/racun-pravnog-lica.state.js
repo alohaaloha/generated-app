@@ -72,7 +72,7 @@
                 }).result.then(function() {
                     $state.go('racun-pravnog-lica', null, { reload: true });
                 }, function() {
-                    $state.go('racun-pravnog-lica');
+//                    $state.go('racun-pravnog-lica');
                 });
             }]
         })

@@ -47,7 +47,17 @@
                     <td>{{banka.telefon}}</td>
                     <td>{{banka.fax}}</td>
                     <td>{{banka.bankaInt}}</td>
-                    <td class="text-right">
+
+                    <td>
+                        <button type="submit"
+                                ng-click="pick(banka)"
+                                class="btn btn-success btn-sm" ng-show="isZoom">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm"> Izaberi </span>
+                        </button>
+                    </td>
+
+                    <td class="text-right" ng-hide="isZoom">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="banka-detail({id:banka.id})"

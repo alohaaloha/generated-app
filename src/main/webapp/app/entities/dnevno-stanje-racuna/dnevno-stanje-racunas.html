@@ -1,7 +1,7 @@
 <div>
-    <h2>Dnevno Stanje Racunas</h2>
+    <h2>Dnevna stanja računa</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
+    <!--<div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="dnevno-stanje-racuna.new" >
@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <br/>
+    <br/>-->
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
@@ -52,12 +52,12 @@
                             <button type="submit"
                                     ui-sref="dnevno-stanje-racuna.edit({id:dnevnoStanjeRacuna.id})"
                                     class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-pencil" has-authority="ROLE_ADMIN"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="dnevno-stanje-racuna.delete({id:dnevnoStanjeRacuna.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

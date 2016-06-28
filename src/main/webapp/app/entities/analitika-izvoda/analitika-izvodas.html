@@ -1,5 +1,5 @@
 <div>
-    <h2>Analitika Izvodas</h2>
+    <h2>Analitike izvoda</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -7,9 +7,24 @@
                 <button class="btn btn-primary" ui-sref="analitika-izvoda.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Analitika Izvoda
+                        Kreiraj novu analitiku izvoda
                     </span>
                 </button>
+
+
+                <!--FILE UPLOAD START ******************************************************************-->
+                <!--  https://github.com/danialfarid/ng-file-upload/wiki/spring-mvc-example -->
+                <!--  https://github.com/danialfarid/ng-file-upload  -->
+                <!--   -->
+                <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                        accept="*.xml" ngf-max-height="1000" ngf-max-size="1MB">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        XML Nalog
+                    </span>
+                </button>
+                <!--FILE UPLOAD END *****************************************************************-->
+
             </div>
         </div>
     </div>
@@ -81,13 +96,13 @@
                             </button>
                             <button type="submit"
                                     ui-sref="analitika-izvoda.edit({id:analitikaIzvoda.id})"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="analitika-izvoda.delete({id:analitikaIzvoda.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

@@ -1,5 +1,5 @@
 <div>
-    <h2>Drzavas</h2>
+    <h2>Države</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -79,14 +79,14 @@
 
                             <button type="submit"
                                     ui-sref="drzava.edit({id:drzava.id})"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
 
                             <button type="submit"
                                     ui-sref="drzava.delete({id:drzava.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

@@ -27,12 +27,9 @@
              data: { ukidanje: entitetUkidanje }
             }
             entitetUkidanje.datumUkidanja = new Date();
+            if((entitetUkidanje.prenosNaRacun == null) || (entitetUkidanje.prenosNaRacun == ""))
+                entitetUkidanje.prenosNaRacun = "0"     // ZBOG VALIDACIJE SPRINGOVE NA BACKENDU (NE PRIHVATA NULL)
             Ukidanje.save(entitetUkidanje, function(){$uibModalInstance.close(true);}, function(){$uibModalInstance.close(false);});
-            //$http(req).then(function(){$uibModalInstance.close(true);}, function(){$uibModalInstance.close(false);});
-            //RacunPravnogLica.delete({id: id},
-            //    function () {
-            //        $uibModalInstance.close(true);
-            //    });
         };
     }
 })();

@@ -5,3 +5,6 @@ id;naziv_pravnog_lica;ime;prezime;jmbg;adresa;telefon;fax;email;pib;sifra_delatn
 4;null;Lanmi;Trićmi;2110993000001;Trićmijeva adresa podno Janja;null;null;lanmi@sipovonocu.com;null;null;null;4
 5;Perov Bend;Pero;Deformero;0404956000001;Pero Deformerova adresa;011755455;null;pero@beogradjani.com;90000001;100;null;2
 6;Delta No Tax Paying;Miroslav;Mišković;0507945000001;Delta Headquarters Belgrade;011111111;null;delta@notax.com;90000002;200;null;2
+7;Prva Banka;Bozana;Markic;NIJEBITANJMBG;Sipovo-Futog;ne dam;ne dam;nedam@banka.com;10000001;80;null;1
+8;Druga Banka;Joca;Amsterdam;0505955000001;Aaaaamsteerdaaam;null;null;joca@drugabanka.com;10000002;80;null;2
+9;Treca Banka;Jezda;Dafina;0606944000001;Panamska ostrva;null;null;jezdaf@trecabanka.com;10000003;80;null;3

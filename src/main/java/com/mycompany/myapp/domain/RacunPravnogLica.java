@@ -45,7 +45,7 @@ public class RacunPravnogLica implements Serializable {
     @ManyToOne
     private Klijent vlasnik;
 
-    @OneToMany(mappedBy = "dnevniIzvodBanke")
+    @OneToMany(mappedBy = "dnevniIzvodBanke", fetch = FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<DnevnoStanjeRacuna> dnevnoStanjeRacunas = new HashSet<>();

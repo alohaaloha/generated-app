@@ -55,7 +55,7 @@ public class DnevnoStanjeRacuna implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private RacunPravnogLica dnevniIzvodBanke;
 
     public Long getId() {

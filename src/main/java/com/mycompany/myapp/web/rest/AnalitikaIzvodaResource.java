@@ -30,6 +30,8 @@ import java.net.URISyntaxException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,102 +84,56 @@ public class AnalitikaIzvodaResource {
             System.out.println("toString():"+xml);
             //--------------------
         }
-        String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=admin&useSSL=false";
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(kobaja);
-            DatabaseMetaData dbmd = connection.getMetaData();
-            if (dbmd.supportsNamedParameters() == true)
-            {
-                System.out.println("NAMED PARAMETERS FOR CALLABLE"
-                    + "STATEMENTS IS SUPPORTED");
-            }
-            else{
-                System.out.println("NAMED PARAMETERS FOR CALLABLE"
-                    + "STATEMENTS IS NOT SUPPORTED");
-            }
 
-            CallableStatement callStatement = connection.prepareCall("{call placanje(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            callStatement.registerOutParameter(19, Types.BIGINT);   //rtgs_id
-            callStatement.registerOutParameter(20, Types.VARCHAR);   //debug
-            String duznik = docThatIsSent.getElementsByTagName("duznik").item(0).getTextContent();
-            callStatement.setString(1, duznik);
-            String svrhaPlacanja = docThatIsSent.getElementsByTagName("svrha-placanja").item(0).getTextContent();
-            callStatement.setString(2, svrhaPlacanja);
-            String poverilac = docThatIsSent.getElementsByTagName("poverilac").item(0).getTextContent();
-            callStatement.setString(3, poverilac);
-            String datumPrijemaString = docThatIsSent.getElementsByTagName("datum-prijema").item(0).getTextContent();
-            LocalDateTime datumPrijema = LocalDateTime.parse(datumPrijemaString);
-            ZoneId zoneId = ZoneId.systemDefault();
-            callStatement.setTimestamp(4, new Timestamp(datumPrijema.atZone(zoneId).toEpochSecond()*1000));
-            String datumValuteString = docThatIsSent.getElementsByTagName("datum-valute").item(0).getTextContent();
-            LocalDateTime datumValute = LocalDateTime.parse(datumValuteString);
-            callStatement.setTimestamp(5, new Timestamp(datumValute.atZone(zoneId).toEpochSecond()*1000));
-            Node racunDuznikaNode = docThatIsSent.getElementsByTagName("racun-duznika").item(0);
-            if(racunDuznikaNode != null)
-                callStatement.setString(6, racunDuznikaNode.getTextContent());
-            else
-                callStatement.setNull(6, Types.VARCHAR);
-            Node modelZaduzenjaNode = docThatIsSent.getElementsByTagName("model-zaduzenja").item(0);
-            if(modelZaduzenjaNode != null)
-                callStatement.setInt(7, Integer.parseInt(modelZaduzenjaNode.getTextContent()));
-            else
-                callStatement.setNull(7, Types.INTEGER);
-            Node pozivNaBrojZaduzenjaNode = docThatIsSent.getElementsByTagName("poziv-na-broj-zaduzenja").item(0);
-            if(pozivNaBrojZaduzenjaNode != null)
-                callStatement.setString(8, pozivNaBrojZaduzenjaNode.getTextContent());
-            else
-                callStatement.setNull(8, Types.VARCHAR);
-            Node racunPoveriocaNode = docThatIsSent.getElementsByTagName("racun-poverioca").item(0);
-            if(racunPoveriocaNode != null)
-                callStatement.setString(9, racunPoveriocaNode.getTextContent());
-            else
-                callStatement.setNull(9, Types.VARCHAR);
-            Node modelOdobrenjaNode = docThatIsSent.getElementsByTagName("model-odobrenja").item(0);
-            if(modelOdobrenjaNode != null)
-                callStatement.setInt(10, Integer.parseInt(modelOdobrenjaNode.getTextContent()));
-            else
-                callStatement.setNull(10, Types.INTEGER);
-            Node pozivNaBrojOdobrenjaNode = docThatIsSent.getElementsByTagName("poziv-na-broj-odobrenja").item(0);
-            if(pozivNaBrojOdobrenjaNode != null)
-                callStatement.setString(11, pozivNaBrojOdobrenjaNode.getTextContent());
-            else
-                callStatement.setNull(11, Types.VARCHAR);
-            String isHitno = docThatIsSent.getElementsByTagName("hitno").item(0).getTextContent();
-            callStatement.setBoolean(12, Boolean.parseBoolean(isHitno));
-            String iznos = docThatIsSent.getElementsByTagName("iznos").item(0).getTextContent();
-            callStatement.setDouble(13, Double.parseDouble(iznos));
-            String tipGreske = docThatIsSent.getElementsByTagName("tip-greske").item(0).getTextContent();
-            callStatement.setInt(14, Integer.parseInt(tipGreske));
-            Node statusNode = docThatIsSent.getElementsByTagName("status").item(0);
-            if(statusNode != null)
-                callStatement.setString(15, statusNode.getTextContent());
-            else
-                callStatement.setNull(15, Types.VARCHAR);
-            String mestoPrijema = docThatIsSent.getElementsByTagName("mesto-prijema").item(0).getTextContent();
-            callStatement.setString(16, mestoPrijema);
-            String vrstaPlacanja = docThatIsSent.getElementsByTagName("vrsta-placanja").item(0).getTextContent();
-            callStatement.setInt(17, Integer.parseInt(vrstaPlacanja));
-            String valutaPlacanja = docThatIsSent.getElementsByTagName("valuta-placanja").item(0).getTextContent();
-            callStatement.setString(18, valutaPlacanja);
+        String duznik = docThatIsSent.getElementsByTagName("duznik").item(0).getTextContent();
+        String svrhaPlacanja = docThatIsSent.getElementsByTagName("svrha-placanja").item(0).getTextContent();
+        String poverilac = docThatIsSent.getElementsByTagName("poverilac").item(0).getTextContent();
+        String datumPrijemaString = docThatIsSent.getElementsByTagName("datum-prijema").item(0).getTextContent();
+        LocalDateTime datumPrijemaLDT = LocalDateTime.parse(datumPrijemaString);
+        ZoneId zoneId = ZoneId.systemDefault();
+        Timestamp datumPrijema = new Timestamp(datumPrijemaLDT.atZone(zoneId).toEpochSecond()*1000);
+        String datumValuteString = docThatIsSent.getElementsByTagName("datum-valute").item(0).getTextContent();
+        LocalDateTime datumValuteLDT = LocalDateTime.parse(datumValuteString);
+        Timestamp datumValute = new Timestamp(datumValuteLDT.atZone(zoneId).toEpochSecond()*1000);
+        Node racunDuznikaNode = docThatIsSent.getElementsByTagName("racun-duznika").item(0);
+        String racunDuznika = null;
+        if(racunDuznikaNode != null)
+            racunDuznika = racunDuznikaNode.getTextContent();
+        Node modelZaduzenjaNode = docThatIsSent.getElementsByTagName("model-zaduzenja").item(0);
+        Integer modelZaduzenja = null;
+        if(modelZaduzenjaNode != null)
+            modelZaduzenja = Integer.parseInt(modelZaduzenjaNode.getTextContent());
+        Node pozivNaBrojZaduzenjaNode = docThatIsSent.getElementsByTagName("poziv-na-broj-zaduzenja").item(0);
+        String pozivNaBrojZaduzenja = null;
+        if(pozivNaBrojZaduzenjaNode != null)
+            pozivNaBrojZaduzenja = pozivNaBrojZaduzenjaNode.getTextContent();
+        Node racunPoveriocaNode = docThatIsSent.getElementsByTagName("racun-poverioca").item(0);
+        String racunPoverioca = null;
+        if(racunPoveriocaNode != null)
+            racunPoverioca = racunPoveriocaNode.getTextContent();
+        Node modelOdobrenjaNode = docThatIsSent.getElementsByTagName("model-odobrenja").item(0);
+        Integer modelOdobrenja = null;
+        if(modelOdobrenjaNode != null)
+            modelOdobrenja = Integer.parseInt(modelOdobrenjaNode.getTextContent());
+        Node pozivNaBrojOdobrenjaNode = docThatIsSent.getElementsByTagName("poziv-na-broj-odobrenja").item(0);
+        String pozivNaBrojOdobrenja = null;
+        if(pozivNaBrojOdobrenja != null)
+            pozivNaBrojOdobrenja = pozivNaBrojOdobrenjaNode.getTextContent();
+        String isHitnoString = docThatIsSent.getElementsByTagName("hitno").item(0).getTextContent();
+        Boolean isHitno = Boolean.parseBoolean(isHitnoString);
+        String iznosString = docThatIsSent.getElementsByTagName("iznos").item(0).getTextContent();
+        Double iznos = Double.parseDouble(iznosString);
+        String tipGreskeString = docThatIsSent.getElementsByTagName("tip-greske").item(0).getTextContent();
+        Integer tipGreske = Integer.parseInt(tipGreskeString);
+        Node statusNode = docThatIsSent.getElementsByTagName("status").item(0);
+        String status = statusNode.getTextContent();
+        String mestoPrijema = docThatIsSent.getElementsByTagName("mesto-prijema").item(0).getTextContent();
+        String vrstaPlacanjaString = docThatIsSent.getElementsByTagName("vrsta-placanja").item(0).getTextContent();
+        Integer vrstaPlacanja = Integer.parseInt(vrstaPlacanjaString);
+        String valutaPlacanja = docThatIsSent.getElementsByTagName("valuta-placanja").item(0).getTextContent();
 
-            boolean imaRezultata = callStatement.execute();
-            int rtgsId = callStatement.getInt(19);
-            String debug = callStatement.getString(20);
-
-            if (rtgsId != -1) {
-                RTGS noviRTGSNalog = rtgsRepository.findOne(new Long(rtgsId));
-                noviRTGSNalog.exportToXml(System.out);
-            }
-
-            log.info("Got RTGS set with an ID: " + rtgsId);
-            log.info("Procedure debug value: " + debug);
-
-        } catch (SQLException e) {
-            log.error("Not able to connect to the database pinf_pro. Check if database service is running and URL and credentials are valid");
-            e.printStackTrace();
-        }
-
+        callingProceduraPlacanja(duznik, svrhaPlacanja, poverilac, datumPrijema, datumValute, racunDuznika, modelZaduzenja, pozivNaBrojZaduzenja,
+            racunPoverioca, modelOdobrenja, pozivNaBrojOdobrenja, isHitno, iznos, tipGreske, status, mestoPrijema, vrstaPlacanja, valutaPlacanja);
 
         log.info("Ended import of AnalitikaIzvoda from XML file");
     }
@@ -279,4 +235,73 @@ public class AnalitikaIzvodaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("analitikaIzvoda", id.toString())).build();
     }
 
+    public void callingProceduraPlacanja(String duznik, String svrhaPlacanja, String poverilac, Timestamp datumPrijema, Timestamp datumValute,
+                                         String racunDuznika, Integer modelZaduzenja, String pozivNaBrojZaduzenja, String racunPoverioca,
+                                         Integer modelOdobrenja, String pozivNaBrojOdobrenja, Boolean isHitno, Double iznos,
+                                         Integer tipGreske, String status, String mestoPrijema, Integer vrstaPlacanja, String valutaPlacanja){
+        String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=basepass&useSSL=false";
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection(kobaja);
+
+            CallableStatement callStatement = connection.prepareCall("{call placanje(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callStatement.registerOutParameter(19, Types.BIGINT);   //rtgs_id
+            callStatement.registerOutParameter(20, Types.VARCHAR);   //debug
+            callStatement.setString(1, duznik);
+            callStatement.setString(2, svrhaPlacanja);
+            callStatement.setString(3, poverilac);
+            callStatement.setTimestamp(4, datumPrijema);
+            callStatement.setTimestamp(5, datumValute);
+            if(racunDuznika != null)
+                callStatement.setString(6, racunDuznika);
+            else
+                callStatement.setNull(6, Types.VARCHAR);
+            if(modelZaduzenja != null)
+                callStatement.setInt(7, modelZaduzenja);
+            else
+                callStatement.setNull(7, Types.INTEGER);
+            if(pozivNaBrojZaduzenja != null)
+                callStatement.setString(8, pozivNaBrojZaduzenja);
+            else
+                callStatement.setNull(8, Types.VARCHAR);
+            if(racunPoverioca != null)
+                callStatement.setString(9, racunPoverioca);
+            else
+                callStatement.setNull(9, Types.VARCHAR);
+            if(modelOdobrenja != null)
+                callStatement.setInt(10, modelOdobrenja);
+            else
+                callStatement.setNull(10, Types.INTEGER);
+            if(pozivNaBrojOdobrenja != null)
+                callStatement.setString(11, pozivNaBrojOdobrenja);
+            else
+                callStatement.setNull(11, Types.VARCHAR);
+            callStatement.setBoolean(12, isHitno);
+            callStatement.setDouble(13, iznos);
+            callStatement.setInt(14, tipGreske);
+            if(status != null)
+                callStatement.setString(15, status);
+            else
+                callStatement.setNull(15, Types.VARCHAR);
+            callStatement.setString(16, mestoPrijema);
+            callStatement.setInt(17, vrstaPlacanja);
+            callStatement.setString(18, valutaPlacanja);
+
+            boolean imaRezultata = callStatement.execute();
+            int rtgsId = callStatement.getInt(19);
+            String debug = callStatement.getString(20);
+
+            if (rtgsId != -1) {
+                RTGS noviRTGSNalog = rtgsRepository.findOne(new Long(rtgsId));
+                noviRTGSNalog.exportToXml(System.out);
+            }
+
+            log.info("Got RTGS set with an ID: " + rtgsId);
+            log.info("Procedure debug value: " + debug);
+
+        } catch (SQLException e) {
+            log.error("Not able to connect to the database pinf_pro. Check if database service is running and URL and credentials are valid");
+            e.printStackTrace();
+        }
+    }
 }

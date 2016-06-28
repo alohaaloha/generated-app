@@ -169,6 +169,8 @@ BEGIN
 
 					# UKOLIKO JE NAVEDEN POVERIOC
                     IF(idBankePoverioca != -1) THEN
+						SET dsrId = -1;
+                        
 						# Gledamo da li za poverioca postoji uopšte dnevno stanje računa
 						SELECT `id`
 						INTO dsrId

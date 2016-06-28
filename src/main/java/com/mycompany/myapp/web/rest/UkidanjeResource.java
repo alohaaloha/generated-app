@@ -1,7 +1,12 @@
 package com.mycompany.myapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mycompany.myapp.domain.AnalitikaIzvoda;
+import com.mycompany.myapp.domain.DnevnoStanjeRacuna;
+import com.mycompany.myapp.domain.RacunPravnogLica;
 import com.mycompany.myapp.domain.Ukidanje;
+import com.mycompany.myapp.repository.DnevnoStanjeRacunaRepository;
+import com.mycompany.myapp.repository.RacunPravnogLicaRepository;
 import com.mycompany.myapp.repository.UkidanjeRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
@@ -16,6 +21,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +33,16 @@ import java.util.Optional;
 public class UkidanjeResource {
 
     private final Logger log = LoggerFactory.getLogger(UkidanjeResource.class);
-        
+
     @Inject
     private UkidanjeRepository ukidanjeRepository;
-    
+    @Inject
+    private RacunPravnogLicaRepository racunPravnogLicaRepository;
+    @Inject
+    private DnevnoStanjeRacunaRepository dnevnoStanjeRacunaRepository;
+    @Inject
+    private AnalitikaIzvodaResource analitikaIzvodaResource;
+
     /**
      * POST  /ukidanjes : Create a new ukidanje.
      *
@@ -48,6 +60,37 @@ public class UkidanjeResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ukidanje", "idexists", "A new ukidanje cannot already have an ID")).body(null);
         }
         Ukidanje result = ukidanjeRepository.save(ukidanje);
+        RacunPravnogLica ukinutRacun = result.getRacunPravnogLica();
+        RacunPravnogLica prenosStanja = null;
+        for(RacunPravnogLica prenosniRacun : racunPravnogLicaRepository.findAll()){
+            if(prenosniRacun.getBrojRacuna().equals(ukidanje.getPrenosNaRacun())) {
+                prenosStanja = prenosniRacun;
+                break;
+            }
+        }
+        ukinutRacun.setVazenje(0);
+        racunPravnogLicaRepository.save(ukinutRacun);
+        String duznik = "";
+        if(ukinutRacun.getVlasnik().getNazivPravnogLica() != null)
+            duznik = duznik + ukinutRacun.getVlasnik().getNazivPravnogLica() + "( ";
+        duznik = duznik + ukinutRacun.getVlasnik().getIme() + " " + ukinutRacun.getVlasnik().getPrezime();
+        if(ukinutRacun.getVlasnik().getNazivPravnogLica() != null)
+            duznik = duznik + " )";
+        ukinutRacun = racunPravnogLicaRepository.findOne(ukinutRacun.getId());
+        Long id = -1L;
+        for(DnevnoStanjeRacuna dnevnoStanjeRacuna : ukinutRacun.getDnevnoStanjeRacunas()){
+            if(dnevnoStanjeRacuna.getId() > id)
+                id = dnevnoStanjeRacuna.getId();
+        }
+        Double iznos = 0D;
+        if( id != -1L)
+            iznos = dnevnoStanjeRacunaRepository.findOne(id).getNovoStanje();
+        analitikaIzvodaResource.callingProceduraPlacanja(duznik, "Ukidanje računa i prenos sredstava", "Racun broj: " + ukidanje.getPrenosNaRacun(),
+            new Timestamp(ukidanje.getDatumUkidanja().toEpochSecond()*1000), new Timestamp(ukidanje.getDatumUkidanja().toEpochSecond()*1000), ukinutRacun.getBrojRacuna(),
+            97, "55555555", prenosStanja.getBrojRacuna(), 97, "5555555", false, iznos, 0, "", ukinutRacun.getVlasnik().getNaseljenoMesto().getNm_naziv(), 287, "RSD");
+        log.debug("Racun od pravnog lica (" + ukinutRacun.getVlasnik().getNazivPravnogLica() + "), fizickog lica ("+ ukinutRacun.getVlasnik().getIme() +
+            ukinutRacun.getVlasnik().getPrezime()+") je ukinut.");
+
         return ResponseEntity.created(new URI("/api/ukidanjes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ukidanje", result.getId().toString()))
             .body(result);

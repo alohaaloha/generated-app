@@ -3,6 +3,7 @@ package com.mycompany.myapp.test;
 import com.mycompany.myapp.domain.AnalitikaIzvoda;
 import com.mycompany.myapp.domain.RTGS;
 import com.mycompany.myapp.domain.Valuta;
+import com.mycompany.myapp.report.Report;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,7 +20,7 @@ public class TestMain {
     public static void main(String[] args) throws UnknownHostException, JAXBException, ParserConfigurationException {
 
         try{
-            testImportFromXml();
+            testReports();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -54,5 +55,11 @@ public class TestMain {
         FileInputStream fileInputStream  = new FileInputStream(file);
         AnalitikaIzvoda analitikaIzvoda = new AnalitikaIzvoda();
         analitikaIzvoda = analitikaIzvoda.importFromXml(fileInputStream);
+    }
+
+
+    public  static void testReports(){
+        Report report = new Report();
+        report.generateFirstReport();
     }
 }

@@ -9,7 +9,6 @@ import com.mycompany.myapp.repository.RTGSRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +30,6 @@ import java.net.URISyntaxException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,7 +82,7 @@ public class AnalitikaIzvodaResource {
             System.out.println("toString():"+xml);
             //--------------------
         }
-        String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=basepass";
+        String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=admin&useSSL=false";
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(kobaja);

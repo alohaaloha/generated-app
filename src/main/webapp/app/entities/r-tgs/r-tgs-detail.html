@@ -1,6 +1,17 @@
-
+<!--MA COGARA BRATE DA NAPRAVIM TO GENERICKI-->
 <div>
-    <h2><span>Rtgs</span> {{vm.rTGS.id}}</h2>
+    <h2><span>Rtgs</span> {{vm.rTGS.id}}
+        <a ng-click="generateXml(vm.rTGS.id)" class="btn btn-primary btn-small">
+            <span class="glyphicon glyphicon-plus"></span>
+        <span >
+            Generiši izveštaj banke
+        </span>
+        </a>
+        <!--JOJ COGARA :D-->
+    </h2>
+
+
+
     <hr>
     <dl class="dl-horizontal">
         <dt><span>Id Poruke</span></dt>

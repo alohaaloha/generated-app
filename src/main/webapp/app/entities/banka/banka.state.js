@@ -136,13 +136,16 @@
         .state('banka-izvod', {
             parent: 'entity',
             url: '/banka/{sifraBanke}/izvod/',
+            cache: false,
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'Izvestaj banke'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/banka/JasperReport2.html',
+                    templateUrl: 'app/entities/banka/banka-izvestaj.html',
+                    controller: 'BankaDetailController',
+                    controllerAs: 'vm'
                 }
             },
             resolve: {

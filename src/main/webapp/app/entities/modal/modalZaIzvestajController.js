@@ -22,6 +22,7 @@
         $scope.zemozemo=function(){
             console.log($scope.dataForIzvestaj);
             var resourceUrl = 'api/generisiizvestaj';
+            var newWindow = $window.open('app/entities/modal/Loading.html');
             $http({
                 method: 'GET',
                 params: { racun : $scope.dataForIzvestaj.racun,
@@ -31,7 +32,8 @@
             }).then(function successCallback(response) {
                 //alert("Uspresno generisan HTML izvoda.");
                 $scope.zatvori();
-                $state.go('racun-izvod', {brojRacuna : $scope.dataForIzvestaj.racun });
+                //$state.go('racun-izvod', {brojRacuna : $scope.dataForIzvestaj.racun });
+                newWindow.location = 'app/entities/banka/JasperReport1.html';
             }, function errorCallback(response) {
                 alert("Doslo je do greske. Izvod nije generisan.");
             });

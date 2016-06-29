@@ -19,9 +19,9 @@
         ])
         .run(run);
 
-    run.$inject = ['stateHandler', '$rootScope'];
+    run.$inject = ['stateHandler', '$rootScope', '$templateCache'];
 
-    function run(stateHandler, $rootScope) {
+    function run(stateHandler, $rootScope, $templateCache) {
         stateHandler.initialize();
 
          /* ZOOM */

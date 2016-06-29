@@ -1,5 +1,5 @@
 <div>
-    <h2>Bankas</h2>
+    <h2>Banke</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -67,13 +67,13 @@
                             </button>
                             <button type="submit"
                                     ui-sref="banka.edit({id:banka.id})"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="banka.delete({id:banka.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

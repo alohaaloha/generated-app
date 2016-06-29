@@ -1,3 +1,7 @@
+DELIMITER $$
+
+USE pinf_pro$$
+
 ALTER TABLE `dnevno_stanje_racuna`
 CHANGE COLUMN `datum` `datum` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP$$
 

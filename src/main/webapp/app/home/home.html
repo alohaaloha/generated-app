@@ -10,11 +10,6 @@
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
                     Prijavljeni ste na sistem kao <b>{{vm.account.firstName}} {{vm.account.lastName}}</b>.
-                    <button ng-click="test()"
-                            class="btn btn-info btn-sm">
-                        <span class="glyphicon glyphicon-th-list"></span>
-                        <span class="hidden-xs hidden-sm"> Izbor... </span>
-                    </button>
                 </div>
 
                 <div class="alert alert-danger" ng-switch-when="false">
@@ -27,6 +22,16 @@
 
                 </div>
 
+                <div class="alert alert-info" ng-switch-when="true">
+                    <button class="btn btn-primary" type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+                            accept="*.xml" ngf-max-height="1000" ngf-max-size="1MB">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span >
+                            Dodaj nalog za placanje
+                        </span>
+                    </button>
+                </div>
+
                 <!--<div class="alert alert-warning" ng-switch-when="false">
                     If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
                 </div>-->
@@ -34,6 +39,7 @@
                 <!--<div class="alert alert-warning" ng-switch-when="false">
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>-->
+
             </div>
 
 
@@ -43,7 +49,7 @@
             <!--FILE UPLOAD START ******************************************************************-->
             <!--  https://github.com/danialfarid/ng-file-upload/wiki/spring-mvc-example -->
             <!--  https://github.com/danialfarid/ng-file-upload  -->
-            <!--   -->
+            <!--
             <div >
             <h4>Izaberite XML dokument</h4>
             <button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
@@ -58,7 +64,7 @@
               </span>
             </div>
             {{errorMsg}}
-            </div>
+            </div>-->
             <!--FILE UPLOAD END *****************************************************************-->
 
 

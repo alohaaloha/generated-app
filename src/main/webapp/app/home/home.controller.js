@@ -46,6 +46,7 @@
                     file.upload.then(function (response) {
                         $timeout(function () {
                             file.result = response.data;
+                            $state.go("analitika-izvoda");
                         });
                     }, function (response) {
                         if (response.status > 0)

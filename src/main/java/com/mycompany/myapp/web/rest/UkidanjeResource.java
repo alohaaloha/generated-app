@@ -61,10 +61,12 @@ public class UkidanjeResource {
         }
         Ukidanje result = ukidanjeRepository.save(ukidanje);
         RacunPravnogLica ukinutRacun = result.getRacunPravnogLica();
-        RacunPravnogLica prenosStanja = null;
+
+        // DEFAULTNI RACUN ZA PRENOS NEKORISCENIH SREDDSTAVA
+        String prenosniBrojRacuna = ukinutRacun.getBrojRacuna().substring(0,3) + "9999999999999" + ukinutRacun.getBrojRacuna().substring(1,3);
         for(RacunPravnogLica prenosniRacun : racunPravnogLicaRepository.findAll()){
             if(prenosniRacun.getBrojRacuna().equals(ukidanje.getPrenosNaRacun())) {
-                prenosStanja = prenosniRacun;
+                prenosniBrojRacuna = prenosniRacun.getBrojRacuna();
                 break;
             }
         }
@@ -87,7 +89,7 @@ public class UkidanjeResource {
             iznos = dnevnoStanjeRacunaRepository.findOne(id).getNovoStanje();
         analitikaIzvodaResource.callingProceduraPlacanja(duznik, "Ukidanje računa i prenos sredstava", "Racun broj: " + ukidanje.getPrenosNaRacun(),
             new Timestamp(ukidanje.getDatumUkidanja().toEpochSecond()*1000), new Timestamp(ukidanje.getDatumUkidanja().toEpochSecond()*1000), ukinutRacun.getBrojRacuna(),
-            97, "55555555", prenosStanja.getBrojRacuna(), 97, "5555555", false, iznos, 0, "", ukinutRacun.getVlasnik().getNaseljenoMesto().getNm_naziv(), 287, "RSD");
+            97, "55555555", prenosniBrojRacuna, 97, "5555555", false, iznos, 0, "", ukinutRacun.getVlasnik().getNaseljenoMesto().getNm_naziv(), 287, "RSD");
         log.debug("Racun od pravnog lica (" + ukinutRacun.getVlasnik().getNazivPravnogLica() + "), fizickog lica ("+ ukinutRacun.getVlasnik().getIme() +
             ukinutRacun.getVlasnik().getPrezime()+") je ukinut.");
 

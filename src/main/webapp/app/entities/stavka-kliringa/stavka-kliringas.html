@@ -1,7 +1,7 @@
 <div>
-    <h2>Stavka Kliringas</h2>
+    <h2>Stavke kliringa</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
+    <!--<div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="stavka-kliringa.new" >
@@ -12,7 +12,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div>-->
     <br/>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
@@ -43,13 +43,13 @@
                             </button>
                             <button type="submit"
                                     ui-sref="stavka-kliringa.edit({id:stavkaKliringa.id})"
-                                    class="btn btn-primary btn-sm">
+                                    class="btn btn-primary btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
                                     ui-sref="stavka-kliringa.delete({id:stavkaKliringa.id})"
-                                    class="btn btn-danger btn-sm">
+                                    class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

@@ -1,16 +1,14 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DnevnoStanjeRacuna.
@@ -49,7 +47,7 @@ public class DnevnoStanjeRacuna implements Serializable {
     @Column(name = "novo_stanje", nullable = false)
     private Double novoStanje;
 
-    @OneToMany(mappedBy = "dnevnoStanjeRacuna")
+    @OneToMany(mappedBy = "dnevnoStanjeRacuna",fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 

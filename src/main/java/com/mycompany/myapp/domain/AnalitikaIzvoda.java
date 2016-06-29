@@ -1,8 +1,6 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -114,15 +112,15 @@ public class AnalitikaIzvoda implements Serializable {
     private String status;
 
     @XmlTransient
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private DnevnoStanjeRacuna dnevnoStanjeRacuna;
 
     @XmlTransient
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private NaseljenoMesto naseljenoMesto;
 
     @XmlTransient
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private VrstaPlacanja vrstaPlacanja;
 
     @XmlElement

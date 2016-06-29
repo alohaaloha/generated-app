@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NalogZaPlacanje>
+    <duznik>Djoka Djokić</duznik>
+    <svrha>Probno placanje 2</svrha>
+    <poverilac>Anonimus Anonimus</poverilac>
+    <datumPrijema/>
+    <datumValute/>
+    <racunDuznika>001900000000000101</racunDuznika>
+    <modelZaduzenja>97</modelZaduzenja>
+    <pozivNaBrojZaduzenja>2223333</pozivNaBrojZaduzenja>
+    <isHitno>false</isHitno>
+    <iznos>3.0</iznos>
+    <valutaPlacanja zvanicnaSifra="RSD">
+        <id>1</id>
+        <nazivValute>Dinar</nazivValute>
+        <domicilna>1</domicilna>
+    </valutaPlacanja>
+</NalogZaPlacanje>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NalogZaPlacanje>
+    <duznik>Djoka Djokić</duznik>
+    <svrha>Probno placanje 2</svrha>
+    <poverilac>Jevrosim FTN</poverilac>
+    <datumPrijema/>
+    <datumValute/>
+    <racunDuznika>001900000000000101</racunDuznika>
+    <modelZaduzenja>97</modelZaduzenja>
+    <pozivNaBrojZaduzenja>3334444</pozivNaBrojZaduzenja>
+    <racunPoverioca>001900000000000201</racunPoverioca>
+    <modelOdobrenja>97</modelOdobrenja>
+    <isHitno>false</isHitno>
+    <iznos>1.0</iznos>
+    <valutaPlacanja zvanicnaSifra="RSD">
+        <id>1</id>
+        <nazivValute>Dinar</nazivValute>
+        <domicilna>1</domicilna>
+    </valutaPlacanja>
+</NalogZaPlacanje>

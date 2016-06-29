@@ -13,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -30,6 +33,32 @@ public class KliringResource {
 
     @Inject
     private KliringRepository kliringRepository;
+
+
+
+    @RequestMapping(value = "/clearingxml/{id}",method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @Timed
+    public void returnClearingXml(HttpServletRequest request,
+                                  HttpServletResponse response, @PathVariable String id) {
+        Kliring kliring = kliringRepository.findOne(Long.parseLong(id));
+        try {
+            kliring.exportToXml(new FileOutputStream(new File("tmp.xml"))); // ovde export finish
+        } catch (FileNotFoundException e) {
+            log.info("RTGS Resource EXEPTION WITH CONVERTING TO XML");
+        }
+        response.setContentType("applicaton/octet-stream");
+        response.setHeader("Content-Disposition","attachment; filename=someFileName.xml");
+        try (InputStream is = new FileInputStream(new File("tmp.xml"))) {
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * POST  /klirings : Create a new kliring.

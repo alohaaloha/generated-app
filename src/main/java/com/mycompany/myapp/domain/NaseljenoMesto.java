@@ -40,7 +40,6 @@ public class NaseljenoMesto implements Serializable {
 
     @OneToMany(mappedBy = "naseljenoMesto")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
     public Long getId() {

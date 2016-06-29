@@ -27,7 +27,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "analitika_izvoda")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class AnalitikaIzvoda implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -131,15 +130,13 @@ public class AnalitikaIzvoda implements Serializable {
     private Valuta valutaPlacanja;
 
     @XmlTransient
-    @OneToMany(mappedBy = "brojStavke")
+    @OneToMany(mappedBy = "brojStavke", fetch = FetchType.EAGER)
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RTGS> porukaMT103S = new HashSet<>();
 
     @XmlTransient
     @OneToMany(mappedBy = "analitikaIzvoda")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<StavkaKliringa> porukaMT102S = new HashSet<>();
 
     public Long getId() {

@@ -13,7 +13,6 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "kurs_u_valuti")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class KursUValuti implements Serializable {
 
     private static final long serialVersionUID = 1L;

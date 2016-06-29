@@ -27,7 +27,6 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "kliring")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Kliring implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -88,9 +87,8 @@ public class Kliring implements Serializable {
     private Boolean poslat;
 
     @XmlElement
-    @OneToMany(mappedBy = "kliring")
+    @OneToMany(mappedBy = "kliring", fetch = FetchType.EAGER)
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<StavkaKliringa> stavkaKliringas = new HashSet<>();
 
     @XmlElement
@@ -244,7 +242,7 @@ public class Kliring implements Serializable {
             jaxbMarshaller.marshal(this, outputStream);
             ret = true;
         } catch (Exception e){
-
+            e.printStackTrace();
         }
         return ret;
     }

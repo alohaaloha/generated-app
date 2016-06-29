@@ -1,8 +1,11 @@
-DELETE FROM `pinf_pro`.`kliring`
-WHERE `kliring`.id > -1;
+DELETE FROM `pinf_pro`.`ukidanje`
+WHERE `ukidanje`.id > -1;
 
 DELETE FROM `pinf_pro`.`stavka_kliringa`
 WHERE `stavka_kliringa`.id > -1;
+
+DELETE FROM `pinf_pro`.`kliring`
+WHERE `kliring`.id > -1;
 
 DELETE FROM `pinf_pro`.`rtgs`
 WHERE `rtgs`.id > -1;

@@ -27,10 +27,10 @@ import java.util.Optional;
 public class KliringResource {
 
     private final Logger log = LoggerFactory.getLogger(KliringResource.class);
-        
+
     @Inject
     private KliringRepository kliringRepository;
-    
+
     /**
      * POST  /klirings : Create a new kliring.
      *
@@ -128,4 +128,28 @@ public class KliringResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("kliring", id.toString())).build();
     }
 
+    /**
+     * EXECUTES one unsent Kliring period
+     *
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @RequestMapping(value = "/klirings/izvrsi",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Kliring> executeKliring() {
+        log.debug("REST request to execute Kliring");
+        List<Kliring> klirings = kliringRepository.findAll();
+        Kliring kliringToExecute = null;
+        for(Kliring kliring : klirings){
+            if(!kliring.isPoslat()) {
+                kliringToExecute = kliring;
+                break;
+            }
+        }
+        kliringToExecute.setPoslat(true);
+        kliringToExecute.exportToXml(System.out);
+        kliringRepository.save(kliringToExecute);
+        return klirings;
+    }
 }

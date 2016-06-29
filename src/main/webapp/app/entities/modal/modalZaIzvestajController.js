@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('ModalZaIzvestajController', ModalZaIzvestajController);
 
-    ModalZaIzvestajController.$inject = ['$scope', '$state', 'RacunPravnogLica','$rootScope', '$window', '$uibModalInstance', 'param'];
+    ModalZaIzvestajController.$inject = ['$scope', '$state', 'RacunPravnogLica','$rootScope', '$window', '$uibModalInstance', 'param', '$http'];
 
-    function ModalZaIzvestajController ($scope, $state, RacunPravnogLica,$rootScope,$window, $uibModalInstance, param) {
+    function ModalZaIzvestajController ($scope, $state, RacunPravnogLica,$rootScope,$window, $uibModalInstance, param, $http) {
         var vm = this;
 
         $scope.dataForIzvestaj={};
@@ -19,11 +19,23 @@
             $uibModalInstance.dismiss('cancel');
         }
 
-         $scope.zemozemo=function(){
+        $scope.zemozemo=function(){
             console.log($scope.dataForIzvestaj);
-            //TODO - call rest and send it '$scope.dataForIzvestaj' object
-
-         }
+            var resourceUrl = 'api/generisiizvestaj';
+            $http({
+                method: 'GET',
+                params: { racun : $scope.dataForIzvestaj.racun,
+                            datum1: $scope.dataForIzvestaj.datum1,
+                            datum2: $scope.dataForIzvestaj.datum2},
+                url: resourceUrl
+            }).then(function successCallback(response) {
+                //alert("Uspresno generisan HTML izvoda.");
+                $scope.zatvori();
+                $state.go('racun-izvod', {brojRacuna : $scope.dataForIzvestaj.racun });
+            }, function errorCallback(response) {
+                alert("Doslo je do greske. Izvod nije generisan.");
+            });
+        }
 
 
         $scope.datePickerOpenStatus = {};

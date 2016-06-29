@@ -23,7 +23,6 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "rtgs")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class RTGS implements Serializable {
 
     private static final long serialVersionUID = 1L;

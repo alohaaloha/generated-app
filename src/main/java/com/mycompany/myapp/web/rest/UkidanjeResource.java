@@ -91,7 +91,7 @@ public class UkidanjeResource {
             new Timestamp(ukidanje.getDatumUkidanja().toEpochSecond()*1000), new Timestamp(ukidanje.getDatumUkidanja().toEpochSecond()*1000), ukinutRacun.getBrojRacuna(),
             97, "55555555", prenosniBrojRacuna, 97, "5555555", false, iznos, 0, "", ukinutRacun.getVlasnik().getNaseljenoMesto().getNm_naziv(), 287, "RSD");
         log.debug("Racun od pravnog lica (" + ukinutRacun.getVlasnik().getNazivPravnogLica() + "), fizickog lica ("+ ukinutRacun.getVlasnik().getIme() +
-            ukinutRacun.getVlasnik().getPrezime()+") je ukinut.");
+            " " + ukinutRacun.getVlasnik().getPrezime()+") je ukinut.");
 
         return ResponseEntity.created(new URI("/api/ukidanjes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("ukidanje", result.getId().toString()))

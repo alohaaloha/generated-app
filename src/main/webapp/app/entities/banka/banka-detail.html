@@ -1,6 +1,12 @@
-
 <div>
-    <h2><span>Banka</span> {{vm.banka.id}}</h2>
+    <h2><span>Banka</span> {{vm.banka.id}}
+    <button class="btn btn-primary btn-small" ng-click="generisiIzvodBanke(vm.banka.sifraBanke)" >
+        <span class="glyphicon glyphicon-plus"></span>
+        <span >
+            Generiši izveštaj banke
+        </span>
+    </button>
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">

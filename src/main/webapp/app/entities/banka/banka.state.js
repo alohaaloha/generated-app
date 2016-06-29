@@ -132,6 +132,21 @@
                     $state.go('^');
                 });
             }]
+        })
+        .state('banka-izvod', {
+            parent: 'entity',
+            url: '/banka/{sifraBanke}/izvod/',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'Izvestaj banke'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/banka/JasperReport2.html',
+                }
+            },
+            resolve: {
+            }
         });
     }
 

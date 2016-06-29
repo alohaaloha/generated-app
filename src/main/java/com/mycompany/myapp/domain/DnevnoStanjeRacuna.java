@@ -17,7 +17,6 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "dnevno_stanje_racuna")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class DnevnoStanjeRacuna implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +51,6 @@ public class DnevnoStanjeRacuna implements Serializable {
 
     @OneToMany(mappedBy = "dnevnoStanjeRacuna")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)

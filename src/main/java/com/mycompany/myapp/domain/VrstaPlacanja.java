@@ -16,7 +16,6 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "vrsta_placanja")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class VrstaPlacanja implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,7 +35,6 @@ public class VrstaPlacanja implements Serializable {
 
     @OneToMany(mappedBy = "vrstaPlacanja")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
     public Long getId() {

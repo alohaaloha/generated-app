@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'Upload', '$timeout'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'Upload', '$timeout', '$http'];
 
-    function HomeController ($scope, Principal, LoginService, $state,  Upload, $timeout) {
+    function HomeController ($scope, Principal, LoginService, $state,  Upload, $timeout, $http) {
         var vm = this;
         vm.account = null;
         vm.isAuthenticated = null;
@@ -29,7 +29,17 @@
             $state.go('register');
         }
 
-
+        $scope.obaviKliring = function(){
+            var resourceUrl = 'api/klirings/izvrsi';
+            $http({
+                method: 'GET',
+                url: resourceUrl
+            }).then(function successCallback(response) {
+                alert("Kliring uspesno obavljen.");
+            }, function errorCallback(response) {
+                alert("Doslo je do greske. Kliring nije izvrsen.");
+            });
+        }
 
 
         /* file upload - sve samo radi, da nema angulara riko bi*/

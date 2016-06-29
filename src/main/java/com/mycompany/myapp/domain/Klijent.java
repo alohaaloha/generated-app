@@ -16,7 +16,6 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "klijent")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Klijent implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -70,7 +69,6 @@ public class Klijent implements Serializable {
 
     @OneToMany(mappedBy = "vlasnik")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RacunPravnogLica> racunis = new HashSet<>();
 
     @ManyToOne

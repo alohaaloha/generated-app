@@ -124,6 +124,21 @@
                     $state.go('^');
                 });
             }]
+        })
+        .state('racun-izvod', {
+            parent: 'entity',
+            url: '/racun-pravnog-lica/{brojRacuna}/izvod/',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'Izvestaj racuna'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/banka/JasperReport1.html',
+                }
+            },
+            resolve: {
+            }
         });
     }
 

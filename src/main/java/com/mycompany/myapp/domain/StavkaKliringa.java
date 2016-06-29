@@ -15,7 +15,6 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "stavka_kliringa")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class StavkaKliringa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,10 +25,10 @@ public class StavkaKliringa implements Serializable {
     private Long id;
 
     @XmlTransient
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Kliring kliring;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @XmlElement
     private AnalitikaIzvoda analitikaIzvoda;
 

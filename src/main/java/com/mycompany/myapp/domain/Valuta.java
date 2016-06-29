@@ -19,7 +19,6 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name = "valuta")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Valuta implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,31 +50,26 @@ public class Valuta implements Serializable {
     @XmlTransient
     @OneToMany(mappedBy = "valuta")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Kliring> klirings = new HashSet<>();
 
     @XmlTransient
     @OneToMany(mappedBy = "osnovnaValuta")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<KursUValuti> osnovnaValutas = new HashSet<>();
 
     @XmlTransient
     @OneToMany(mappedBy = "premaValuti")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<KursUValuti> premaValutis = new HashSet<>();
 
     @XmlTransient
     @OneToMany(mappedBy = "valuta")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RacunPravnogLica> racunPravnogLicas = new HashSet<>();
 
     @XmlTransient
     @OneToMany(mappedBy = "valutaPlacanja")
     @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AnalitikaIzvoda> analitikaIzvodas = new HashSet<>();
 
     public Long getId() {

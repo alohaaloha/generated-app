@@ -3,13 +3,17 @@ package com.mycompany.myapp.report;
 import com.mycompany.myapp.domain.AnalitikaIzvoda;
 import com.mycompany.myapp.repository.AnalitikaIzvodaRepository;
 import net.sf.jasperreports.engine.*;
+import org.springframework.context.annotation.Bean;
 
 import javax.inject.Inject;
+import javax.persistence.Entity;
+import javax.sql.DataSource;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,10 +24,47 @@ import java.util.Map;
  */
 public class Report {
 
-    @Inject
-    private AnalitikaIzvodaRepository analitikaIzvodaRepository;
+    Date datum1 = null;
+    Date datum2 = null;
+    String racun = null;
 
-    public  void generateFirstReport(String racun, Date pocetak, Date kraj){
+    @Inject
+    private DataSource dataSource;
+
+    public Report(){}
+
+    public Report(String racun, Date datum1, Date datum2) {
+        this.datum1 = datum1;
+        this.datum2 = datum2;
+        this.racun = racun;
+    }
+
+
+    public Date getDatum1() {
+        return datum1;
+    }
+
+    public void setDatum1(Date datum1) {
+        this.datum1 = datum1;
+    }
+
+    public Date getDatum2() {
+        return datum2;
+    }
+
+    public void setDatum2(Date datum2) {
+        this.datum2 = datum2;
+    }
+
+    public String getRacun() {
+        return racun;
+    }
+
+    public void setRacun(String racun) {
+        this.racun = racun;
+    }
+
+    public void generateFirstReport(String racun, Date pocetak, Date kraj){
         JasperPrint jp = null;
         try {
             Map params = new HashMap(1);
@@ -42,7 +83,8 @@ public class Report {
             jp = JasperFillManager.fillReport(jasperReport
                 ,
                 params, connection);
-            JasperExportManager.exportReportToHtmlFile(jp,"JasperReport1.html");
+            //JasperExportManager.exportReportToHtmlFile(jp,"JasperReport1.html");
+            JasperExportManager.exportReportToHtmlFile(jp,"src/main/webapp/app/entities/banka/JasperReport1.html");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -55,14 +97,16 @@ public class Report {
             params.put("sifraBanke",sifraBanke);
 
 
-            String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=admin&useSSL=false";
+            String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=basepass&useSSL=false";
             Connection connection = null;
+            //connection = dataSource.getConnection();
             JasperReport jasperReport = JasperCompileManager.compileReport("./jasper/racuniBanke.jrxml");
             connection = DriverManager.getConnection(kobaja);
             jp = JasperFillManager.fillReport(jasperReport
                 ,
                 params, connection);
-            JasperExportManager.exportReportToHtmlFile(jp,"JasperReport2.html");
+            //JasperExportManager.exportReportToHtmlFile(jp,"JasperReport2.html");
+            JasperExportManager.exportReportToHtmlFile(jp,"src/main/webapp/app/entities/banka/JasperReport2.html");
         } catch (Exception ex){
             ex.printStackTrace();
         }

@@ -1,7 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.mycompany.myapp.domain.Kliring;
 import com.mycompany.myapp.domain.RTGS;
+import com.mycompany.myapp.repository.KliringRepository;
 import com.mycompany.myapp.repository.RTGSRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.bouncycastle.ocsp.Req;
@@ -37,6 +39,8 @@ public class RTGSResource {
 
 
 
+
+
     @RequestMapping(value = "/generatexml/{id}",method = RequestMethod.GET,
                  produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     @Timed
@@ -44,14 +48,14 @@ public class RTGSResource {
                                     HttpServletResponse response, @PathVariable String id) {
         RTGS rtgs = rTGSRepository.findOne(Long.parseLong(id));
         try {
-            rtgs.exportToXml(new FileOutputStream(new File("tmp.xml"))); // ovde export finish
+            rtgs.exportToXml(new FileOutputStream(new File("tmp.xml")));
         } catch (FileNotFoundException e) {
             log.info("RTGS Resource EXEPTION WITH CONVERTING TO XML");
         }
-        response.setContentType("applicaton/octet-stream"); //AJD PROBACEMO SA OVIM SAD IZ POSTMENTA MOZE???
+        response.setContentType("applicaton/octet-stream");
         response.setHeader("Content-Disposition","attachment; filename=someFileName.xml");
         try (InputStream is = new FileInputStream(new File("tmp.xml"))) {
-            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream()); /// KOJI MI JE TO ENTITET I KOJI JE NJEGOV ID????
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
 
         } catch (FileNotFoundException e) {

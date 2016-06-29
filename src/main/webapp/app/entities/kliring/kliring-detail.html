@@ -1,6 +1,14 @@
 
 <div>
     <h2><span>Kliring</span> {{vm.kliring.id}}</h2>
+
+    <a ng-click="generateXml(vm.kliring.id)" class="btn btn-primary btn-small">
+        <span class="glyphicon glyphicon-plus"></span>
+        <span >
+            Generiši izveštaj kliringa
+        </span>
+    </a>
+
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">

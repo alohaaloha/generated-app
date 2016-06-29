@@ -16,6 +16,7 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'Ukidanjes'
             },
+            params: { 'racunPravnogLica' : null},
             views: {
                 'content@': {
                     templateUrl: 'app/entities/ukidanje/ukidanjes.html',

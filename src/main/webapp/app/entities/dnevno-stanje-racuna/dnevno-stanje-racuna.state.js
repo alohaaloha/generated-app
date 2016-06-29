@@ -16,6 +16,7 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'DnevnoStanjeRacunas'
             },
+            params: {'racunPravnogLica' : null},
             views: {
                 'content@': {
                     templateUrl: 'app/entities/dnevno-stanje-racuna/dnevno-stanje-racunas.html',

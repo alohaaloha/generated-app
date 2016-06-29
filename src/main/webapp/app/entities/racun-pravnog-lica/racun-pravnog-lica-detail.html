@@ -25,12 +25,22 @@
         <hr>
         <dt><span>Vlasnik</span></dt>
         <dd>
-            <a ui-sref="klijent-detail({id:vm.racunPravnogLica.vlasnik.id})"><span ng-hide="{vm.racunPravnogLica.vlasnik.pib}==null">{{vm.racunPravnogLica.vlasnik.nazivPravnogLica}} (</span>{{vm.racunPravnogLica.vlasnik.ime}} {{vm.racunPravnogLica.vlasnik.prezime}}<span ng-hide="{vm.racunPravnogLica.vlasnik.pib}==null">)</span></a>
+            <a ui-sref="klijent-detail({id:vm.racunPravnogLica.vlasnik.id})"><span ng-hide="vm.racunPravnogLica.vlasnik.pib==null">{{vm.racunPravnogLica.vlasnik.nazivPravnogLica}} (</span>{{vm.racunPravnogLica.vlasnik.ime}} {{vm.racunPravnogLica.vlasnik.prezime}}<span ng-hide="vm.racunPravnogLica.vlasnik.pib==null">)</span></a>
         </dd>
         <hr>
         <dt><span>Valuta</span></dt>
         <dd>
             <a ui-sref="valuta-detail({id:vm.racunPravnogLica.valuta.id})">{{vm.racunPravnogLica.valuta.zvanicnaSifra}}</a>
+        </dd>
+        <hr>
+        <dt><span>Dnevna stanja računa</span></dt>
+        <dd>
+            <a ui-sref="dnevno-stanje-racuna({racunPravnogLica:vm.racunPravnogLica})">Pregledaj dnevna stanja za ovaj račun</a>
+        </dd>
+        <hr>
+        <dt><span>Ukidanja računa</span></dt>
+        <dd>
+            <a ui-sref="ukidanje({racunPravnogLica:vm.racunPravnogLica})">Pregledaj ukidanja ovog računa</a>
         </dd>
         <hr>
     </dl>

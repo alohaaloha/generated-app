@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.domain.RacunPravnogLica;
 import com.mycompany.myapp.repository.RacunPravnogLicaRepository;
+import com.mycompany.myapp.web.rest.dto.RacunPravnogLicaDTO;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +29,10 @@ import java.util.Optional;
 public class RacunPravnogLicaResource {
 
     private final Logger log = LoggerFactory.getLogger(RacunPravnogLicaResource.class);
-        
+
     @Inject
     private RacunPravnogLicaRepository racunPravnogLicaRepository;
-    
+
     /**
      * POST  /racun-pravnog-licas : Create a new racunPravnogLica.
      *
@@ -86,10 +88,14 @@ public class RacunPravnogLicaResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<RacunPravnogLica> getAllRacunPravnogLicas() {
+    public List<RacunPravnogLicaDTO> getAllRacunPravnogLicas() {
         log.debug("REST request to get all RacunPravnogLicas");
         List<RacunPravnogLica> racunPravnogLicas = racunPravnogLicaRepository.findAll();
-        return racunPravnogLicas;
+        List<RacunPravnogLicaDTO> racunPravnogLicaDTOs = new ArrayList<>();
+        for(RacunPravnogLica racunPravnogLica : racunPravnogLicas){
+            racunPravnogLicaDTOs.add(new RacunPravnogLicaDTO(racunPravnogLica));
+        }
+        return racunPravnogLicaDTOs;
     }
 
     /**
@@ -102,10 +108,11 @@ public class RacunPravnogLicaResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<RacunPravnogLica> getRacunPravnogLica(@PathVariable Long id) {
+    public ResponseEntity<RacunPravnogLicaDTO> getRacunPravnogLica(@PathVariable Long id) {
         log.debug("REST request to get RacunPravnogLica : {}", id);
         RacunPravnogLica racunPravnogLica = racunPravnogLicaRepository.findOne(id);
-        return Optional.ofNullable(racunPravnogLica)
+        RacunPravnogLicaDTO racunPravnogLicaDTO = new RacunPravnogLicaDTO(racunPravnogLica);
+        return Optional.ofNullable(racunPravnogLicaDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))

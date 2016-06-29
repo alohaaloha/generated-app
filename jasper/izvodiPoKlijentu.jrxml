@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="izvodiPoKlijentu" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34e257c4-0b9e-4ee0-8e16-aaa24f402a70">
 	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -257,31 +257,83 @@
 			</staticText>
 		</band>
 	</pageHeader>
-	<detail>
-		<band height="274" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="13" width="45" height="20" uuid="a92b4ae2-3b10-4fe7-9d7f-c72ee71e6fee"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Period:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="45" y="13" width="100" height="20" uuid="2bb7e7f8-4d59-4196-a3e8-2ccf25c5f608"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{pocetak}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="208" y="13" width="100" height="20" uuid="b927c13c-679a-455f-ae6e-fe52699dfcf4"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{kraj}]]></textFieldExpression>
-			</textField>
+	<summary>
+		<band height="245">
 			<componentElement>
-				<reportElement key="table 4" style="table 4" x="0" y="47" width="555" height="50" uuid="f598a9af-6061-4d84-8c88-4391c2e668eb"/>
+				<reportElement key="table 5" style="table 5" x="124" y="111" width="277" height="50" uuid="14ea4651-767c-424f-9573-28b6729ccf17"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="stanje" uuid="d4883c56-ce4c-42de-8006-cbce3845e01e">
+						<datasetParameter name="racun">
+							<datasetParameterExpression><![CDATA[$P{racun}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pocetak">
+							<datasetParameterExpression><![CDATA[$P{pocetak}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="kraj">
+							<datasetParameterExpression><![CDATA[$P{kraj}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="b25339ec-71b8-498a-ac7a-0a068e2edd3e">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="6b21a006-98ca-45ee-b8ca-9df42fa405a8"/>
+								<text><![CDATA[Pocetno stanje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="4997a914-2bb1-4cc7-916c-33548362dd35"/>
+								<textFieldExpression><![CDATA[$F{pocetnoStanje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0ef5b0a1-7331-42f5-9854-23f5cffb6f64">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0a40aed3-fff9-430e-a453-c8e4cfcd9b4e"/>
+								<text><![CDATA[Krajnje stanje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="6cc46f88-4a22-478e-917d-7422c338669d"/>
+								<textFieldExpression><![CDATA[$F{krajnjeStanje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f2816ada-de3a-4b50-9328-156b599a1405">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3f742bad-9703-464a-a7ab-53e3e38d61fd"/>
+								<text><![CDATA[Ukupno zaduzenje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="4b4dd0cf-c2d7-4606-9cec-1dd9246688af"/>
+								<textFieldExpression><![CDATA[$F{ukupnoZaduzenje} != null ? $F{ukupnoZaduzenje} : " "]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="92ad0d32-ef26-4951-be7e-73f1cdf638cf">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b4a5e28d-3834-4693-9845-4d1451f6fa0c"/>
+								<text><![CDATA[Ukupno odobrenje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2ee29893-b221-447d-9f4c-51740684647f"/>
+								<textFieldExpression><![CDATA[$F{ukupnoOdobrenje} != null ? $F{ukupnoOdobrenje} : " "]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 4" style="table 4" x="0" y="49" width="555" height="50" uuid="f598a9af-6061-4d84-8c88-4391c2e668eb"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="klijent" uuid="41817707-db75-40cd-88ad-f3e695177a1c">
 						<datasetParameter name="racun">
@@ -396,80 +448,7 @@
 				</jr:table>
 			</componentElement>
 			<componentElement>
-				<reportElement key="table 5" style="table 5" x="118" y="131" width="277" height="50" uuid="14ea4651-767c-424f-9573-28b6729ccf17"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="stanje" uuid="f60a2973-0dee-41f4-badd-0e31da35b1bb">
-						<datasetParameter name="racun">
-							<datasetParameterExpression><![CDATA[$P{racun}]]></datasetParameterExpression>
-						</datasetParameter>
-						<datasetParameter name="pocetak">
-							<datasetParameterExpression><![CDATA[$P{pocetak}]]></datasetParameterExpression>
-						</datasetParameter>
-						<datasetParameter name="kraj">
-							<datasetParameterExpression><![CDATA[$P{kraj}]]></datasetParameterExpression>
-						</datasetParameter>
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="90" uuid="b25339ec-71b8-498a-ac7a-0a068e2edd3e">
-						<jr:columnHeader style="table 5_CH" height="30">
-							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="6b21a006-98ca-45ee-b8ca-9df42fa405a8"/>
-								<text><![CDATA[Pocetno stanje]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="4997a914-2bb1-4cc7-916c-33548362dd35"/>
-								<textFieldExpression><![CDATA[$F{pocetnoStanje}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="0ef5b0a1-7331-42f5-9854-23f5cffb6f64">
-						<jr:columnHeader style="table 5_CH" height="30">
-							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="0a40aed3-fff9-430e-a453-c8e4cfcd9b4e"/>
-								<text><![CDATA[Krajnje stanje]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="6cc46f88-4a22-478e-917d-7422c338669d"/>
-								<textFieldExpression><![CDATA[$F{krajnjeStanje}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="f2816ada-de3a-4b50-9328-156b599a1405">
-						<jr:columnHeader style="table 5_CH" height="30">
-							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="3f742bad-9703-464a-a7ab-53e3e38d61fd"/>
-								<text><![CDATA[Ukupno zaduzenje]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="4b4dd0cf-c2d7-4606-9cec-1dd9246688af"/>
-								<textFieldExpression><![CDATA[$F{ukupnoZaduzenje}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="92ad0d32-ef26-4951-be7e-73f1cdf638cf">
-						<jr:columnHeader style="table 5_CH" height="30">
-							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="b4a5e28d-3834-4693-9845-4d1451f6fa0c"/>
-								<text><![CDATA[Ukupno odobrenje]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table 5_TD" height="20">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="2ee29893-b221-447d-9f4c-51740684647f"/>
-								<textFieldExpression><![CDATA[$F{ukupnoOdobrenje}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-			<componentElement>
-				<reportElement key="table 6" style="table 6" x="118" y="194" width="277" height="80" uuid="8b11006e-8e3e-4008-9768-2057bc64c2da"/>
+				<reportElement key="table 6" style="table 6" x="124" y="178" width="277" height="36" uuid="8b11006e-8e3e-4008-9768-2057bc64c2da"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="izvodi" uuid="92ac1161-648b-4ed1-a31f-330ba7eb19cb">
 						<datasetParameter name="racun">
@@ -545,6 +524,27 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="20" uuid="a92b4ae2-3b10-4fe7-9d7f-c72ee71e6fee"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Period:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="0" width="100" height="20" uuid="2bb7e7f8-4d59-4196-a3e8-2ccf25c5f608"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pocetak}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="0" width="100" height="20" uuid="b927c13c-679a-455f-ae6e-fe52699dfcf4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kraj}]]></textFieldExpression>
+			</textField>
 		</band>
-	</detail>
+	</summary>
 </jasperReport>

@@ -61,17 +61,26 @@ BEGIN
     LIMIT 1;
     
 
-    SELECT SUM(a.iznos) INTO ukupnoZaduzenje FROM pinf_pro.analitika_izvoda a
+	CREATE TEMPORARY TABLE IF NOT EXISTS UkupnaDugovanja AS
+	SELECT distinct a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
     INNER JOIN Klijent k
-	ON k.broj_racuna = a.racun_duznika;
+	ON k.broj_racuna = a.racun_duznika
+    WHERE DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ;
     
-    
-    SELECT SUM(a.iznos) INTO ukupnoOdobrenje FROM pinf_pro.analitika_izvoda a
+    CREATE TEMPORARY TABLE IF NOT EXISTS UkupnaOdobrenja AS
+    SELECT distinct a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
     INNER JOIN Klijent k
-	ON k.broj_racuna = a.racun_poverioca;
+	ON k.broj_racuna = a.racun_poverioca
+    WHERE DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ;
     
+    SELECT SUM(a.iznos) INTO ukupnoZaduzenje FROM UkupnaDugovanja a;
+    
+    
+    
+    SELECT SUM(a.iznos) INTO ukupnoOdobrenje FROM UkupnaOdobrenja a;
+   
 	SELECT pocetnoStanje,krajnjeStanje,ukupnoZaduzenje, ukupnoOdobrenje;
     
     
-	DROP TEMPORARY TABLE IF EXISTS Duznici, Poverioci,Klijent;
+	DROP TEMPORARY TABLE IF EXISTS Duznici, Poverioci,Klijent,UkupnaDugovanja,UkupnaOdobrenja;
 END

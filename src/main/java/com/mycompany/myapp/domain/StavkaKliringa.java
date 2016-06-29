@@ -4,10 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -23,10 +20,12 @@ public class StavkaKliringa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @XmlTransient
     @ManyToOne
     private Kliring kliring;
 

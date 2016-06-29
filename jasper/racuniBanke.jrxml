@@ -220,13 +220,13 @@ WHERE sifra_banke = $P{sifraBanke}]]>
 						</datasetParameter>
 					</datasetRun>
 					<jr:column width="90" uuid="a5387b6c-1d42-416b-a7fa-a2a3d98522fd">
-						<jr:columnHeader style="table 3_CH" height="30">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="0ff23563-29c4-4d26-bcf9-08e670a5f025"/>
 								<text><![CDATA[Ime 	]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="f696c2af-3519-4321-9fc8-c8c0c4d08119"/>
 								<textFieldExpression><![CDATA[$F{ime}]]></textFieldExpression>
@@ -234,41 +234,41 @@ WHERE sifra_banke = $P{sifraBanke}]]>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="9f27fcc8-c2ff-475f-89d9-063162f2c581">
-						<jr:columnHeader style="table 3_CH" height="30">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="c3ac9ee8-a8e7-4958-a473-d156e5c4f6b0"/>
 								<text><![CDATA[Prezime]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="2ca72e55-8e9a-4389-93f1-3562fc712063"/>
 								<textFieldExpression><![CDATA[$F{prezime}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="1936e679-9b97-40f3-b0ce-4abe54fc24a9">
-						<jr:columnHeader style="table 3_CH" height="30">
+					<jr:column width="119" uuid="1936e679-9b97-40f3-b0ce-4abe54fc24a9">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="ed23df32-154d-446f-8d49-1ea0110d68e8"/>
 								<text><![CDATA[Broj racuna]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="d1ad40fd-6021-4e63-8d80-a5722eacbda9"/>
+								<reportElement x="0" y="0" width="119" height="20" uuid="d1ad40fd-6021-4e63-8d80-a5722eacbda9"/>
 								<textFieldExpression><![CDATA[$F{broj_racuna}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="90" uuid="56088928-c02c-4f24-900b-9abd0b63cf47">
-						<jr:columnHeader style="table 3_CH" height="30">
+						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="a00c426b-b054-41f2-9887-a8eb0f6f44eb"/>
 								<text><![CDATA[Stanje]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="20">
+						<jr:detailCell style="table 3_TD" height="20" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="20" uuid="12285a85-c8c6-469c-a8cb-a0efaa07598a"/>
 								<textFieldExpression><![CDATA[$F{novo_stanje}]]></textFieldExpression>

@@ -1,8 +1,6 @@
 package com.mycompany.myapp.test;
 
-import com.mycompany.myapp.domain.AnalitikaIzvoda;
-import com.mycompany.myapp.domain.RTGS;
-import com.mycompany.myapp.domain.Valuta;
+import com.mycompany.myapp.domain.*;
 import com.mycompany.myapp.report.Report;
 
 import javax.xml.bind.JAXBException;
@@ -20,7 +18,7 @@ public class TestMain {
     public static void main(String[] args) throws UnknownHostException, JAXBException, ParserConfigurationException {
 
         try{
-            testReports();
+            testKliringToXml();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -44,9 +42,40 @@ public class TestMain {
         analitikaIzvoda.setPozivNaBrojZaduzenja("Poziv na broj zaduzenja");
         Valuta v = new Valuta();
         v.setZvanicnaSifra("Sifra valute");
+        v.setNazivValute("DINAR REPUBLIKE SRBIJE");
         analitikaIzvoda.setValutaPlacanja(v);
         rtgs.setBrojStavke(analitikaIzvoda);
         rtgs.exportToXml(System.out);
+
+    }
+
+    public static void testKliringToXml(){
+        Kliring k = new Kliring();
+        k.setIdPoruke("id poruke");
+        k.setSwwift_duznika("SWIFT KOD  DUZNIKA");
+        k.setSwift_poverioca("SWIFT KOD POVERIOCA");
+        k.setObracunskiRacunDuznika("OBRACUNSKI RACUN DUZNIKA");
+        k.setObracunskiRacunPoverioca("OBRACUNSKI RACUN POVERIOCA");
+        k.setUkupanIznos(2000.0);
+        k.setPoslat(false);
+        Valuta v = new Valuta();
+        v.setZvanicnaSifra("Sifra valute");
+        v.setNazivValute("DINAR REPUBLIKE SRBIJE");
+        k.setValuta(v);
+
+
+        StavkaKliringa sk = new StavkaKliringa();
+        AnalitikaIzvoda analitikaIzvoda = new AnalitikaIzvoda();
+        analitikaIzvoda.setDuznik("Duznik");
+        analitikaIzvoda.setSvrha("Svrha placanja");
+        analitikaIzvoda.setPoverilac("Poverilac");
+        analitikaIzvoda.setRacunDuznika("Racun duznika");
+        analitikaIzvoda.setModelZaduzenja(2);
+        analitikaIzvoda.setPozivNaBrojZaduzenja("Poziv na broj zaduzenja");
+        sk.setAnalitikaIzvoda(analitikaIzvoda);
+
+        k.getStavkaKliringas().add(sk);
+        k.exportToXml(System.out);
 
     }
 
@@ -60,5 +89,7 @@ public class TestMain {
 
     public  static void testReports(){
         Report report = new Report();
+        String racun = "0029000000000001";
+        //report.generateFirstReportXml(racun,System.out);
     }
 }

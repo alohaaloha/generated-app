@@ -28,7 +28,7 @@ public class Valuta implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @XmlElement
+    @XmlAttribute
     @NotNull
     @Size(max = 3)
     @Column(name = "zvanicna_sifra", length = 3, nullable = false)
@@ -44,29 +44,35 @@ public class Valuta implements Serializable {
     @Column(name = "domicilna", nullable = false)
     private Integer domicilna;
 
+    @XmlTransient
     @ManyToOne
     private Drzava drzava;
 
+    @XmlTransient
     @OneToMany(mappedBy = "valuta")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Kliring> klirings = new HashSet<>();
 
+    @XmlTransient
     @OneToMany(mappedBy = "osnovnaValuta")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<KursUValuti> osnovnaValutas = new HashSet<>();
 
+    @XmlTransient
     @OneToMany(mappedBy = "premaValuti")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<KursUValuti> premaValutis = new HashSet<>();
 
+    @XmlTransient
     @OneToMany(mappedBy = "valuta")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RacunPravnogLica> racunPravnogLicas = new HashSet<>();
 
+    @XmlTransient
     @OneToMany(mappedBy = "valutaPlacanja")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)

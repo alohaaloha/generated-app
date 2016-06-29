@@ -29,6 +29,7 @@ public class RTGS implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
+    @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

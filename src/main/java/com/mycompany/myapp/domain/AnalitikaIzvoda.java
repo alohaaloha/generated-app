@@ -9,12 +9,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -33,6 +32,7 @@ public class AnalitikaIzvoda implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -93,6 +93,7 @@ public class AnalitikaIzvoda implements Serializable {
     @Column(name = "poziv_na_broj_odobrenja", length = 20)
     private String pozivNaBrojOdobrenja;
 
+    @XmlElement
     @NotNull
     @Column(name = "is_hitno", nullable = false)
     private Boolean isHitno;
@@ -102,21 +103,26 @@ public class AnalitikaIzvoda implements Serializable {
     @Column(name = "iznos", nullable = false)
     private Double iznos;
 
+    @XmlTransient
     @NotNull
     @Max(value = 9)
     @Column(name = "tip_greske", nullable = false)
     private Integer tipGreske;
 
+    @XmlTransient
     @Size(max = 1)
     @Column(name = "status", length = 1)
     private String status;
 
+    @XmlTransient
     @ManyToOne
     private DnevnoStanjeRacuna dnevnoStanjeRacuna;
 
+    @XmlTransient
     @ManyToOne
     private NaseljenoMesto naseljenoMesto;
 
+    @XmlTransient
     @ManyToOne
     private VrstaPlacanja vrstaPlacanja;
 
@@ -124,11 +130,13 @@ public class AnalitikaIzvoda implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Valuta valutaPlacanja;
 
+    @XmlTransient
     @OneToMany(mappedBy = "brojStavke")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RTGS> porukaMT103S = new HashSet<>();
 
+    @XmlTransient
     @OneToMany(mappedBy = "analitikaIzvoda")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -367,6 +375,27 @@ public class AnalitikaIzvoda implements Serializable {
             System.out.println(ret);
         } catch (Exception e){
             ret = null;
+        }
+        return ret;
+    }
+
+    /**
+     * Exports bean to xml.
+     * @param outputStream Defined output stream.
+     * @return Indicator of success.
+     */
+    public boolean exportToXml(OutputStream outputStream){
+        boolean ret = false;
+        try{
+            JAXBContext jaxbContext = JAXBContext.newInstance(AnalitikaIzvoda.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            // output pretty printed
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.marshal(this, outputStream);
+            ret = true;
+        } catch (Exception e){
+            e.printStackTrace();
+
         }
         return ret;
     }

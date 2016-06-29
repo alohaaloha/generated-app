@@ -43,14 +43,14 @@ BEGIN
     
     INSERT INTO Rezultat 
     (datum, svrha,duguje)
-    SELECT a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
+    SELECT distinct a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
     INNER JOIN Klijent k
 	ON k.broj_racuna = a.racun_duznika
     WHERE DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ;
     
     INSERT INTO Rezultat 
     (datum, svrha,potrazuje)
-    SELECT a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
+    SELECT distinct a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
     INNER JOIN Klijent k
 	ON k.broj_racuna = a.racun_poverioca
     WHERE DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ;

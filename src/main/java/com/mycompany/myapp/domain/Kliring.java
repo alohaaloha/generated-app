@@ -32,6 +32,7 @@ public class Kliring implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -81,6 +82,7 @@ public class Kliring implements Serializable {
     @Column(name = "datum", nullable = false)
     private ZonedDateTime datum;
 
+    @XmlElement
     @NotNull
     @Column(name = "poslat", nullable = false)
     private Boolean poslat;

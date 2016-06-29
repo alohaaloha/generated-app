@@ -135,4 +135,9 @@ public class RacunPravnogLicaResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("racunPravnogLica", id.toString())).build();
     }
 
+
+
+
+
+
 }

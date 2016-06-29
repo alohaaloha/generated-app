@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('RacunPravnogLicaController', RacunPravnogLicaController);
 
-    RacunPravnogLicaController.$inject = ['$scope', '$state', 'RacunPravnogLica','$rootScope', '$window', '$uibModal'];
+    RacunPravnogLicaController.$inject = ['$scope', '$state', 'RacunPravnogLica','$rootScope', '$window', '$uibModal', '$http'];
 
-    function RacunPravnogLicaController ($scope, $state, RacunPravnogLica,$rootScope,$window, $uibModal) {
+    function RacunPravnogLicaController ($scope, $state, RacunPravnogLica,$rootScope,$window, $uibModal, $http) {
         var vm = this;
 
         vm.racunPravnogLicas = [];
@@ -18,8 +18,6 @@
         };
 
         vm.loadAll();
-
-
 
 
         //MODAL
@@ -38,6 +36,20 @@
 
         }
 
+
+    $scope.izvestajMitric=function(brojRacuna){
+
+            var resourceUrl = 'api/generisiizvestajmitric/'+brojRacuna;
+            $http({
+                method: 'GET',
+                url: resourceUrl
+            }).then(function successCallback(response) {
+                alert("Sve kul, radi!");
+            }, function errorCallback(response) {
+                alert("Doslo je do greske. Izvod nije generisan.");
+            });
+
+    }
 
 
 

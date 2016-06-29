@@ -27,10 +27,10 @@ import java.util.Optional;
 public class KlijentResource {
 
     private final Logger log = LoggerFactory.getLogger(KlijentResource.class);
-        
+
     @Inject
     private KlijentRepository klijentRepository;
-    
+
     /**
      * POST  /klijents : Create a new klijent.
      *
@@ -127,5 +127,12 @@ public class KlijentResource {
         klijentRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("klijent", id.toString())).build();
     }
+
+
+
+
+
+
+
 
 }

@@ -113,17 +113,17 @@ public class Report {
     }
 
     public void generateFirstReportXml(String racun, OutputStream outputStream, ArrayList<AnalitikaIzvoda> analitike){
-        ArrayList<AnalitikaIzvoda> output = new ArrayList<>();
+//        ArrayList<AnalitikaIzvoda> output = new ArrayList<>();
 
-        for(AnalitikaIzvoda input : analitike){
+        /*for(AnalitikaIzvoda input : analitike){
             if ((input.getRacunDuznika() != null &&
                 input.getRacunDuznika().equals(racun))
                 || (input.getRacunPoverioca() != null && input.getRacunPoverioca().equals(racun)) ){
                 output.add(input);
             }
         }
-
-        for(AnalitikaIzvoda analitika: output){
+*/
+        for(AnalitikaIzvoda analitika: analitike){
             analitika.exportToXml(outputStream);
         }
     }

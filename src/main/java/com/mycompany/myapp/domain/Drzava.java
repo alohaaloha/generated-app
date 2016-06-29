@@ -31,7 +31,7 @@ public class Drzava implements Serializable {
     private String dr_naziv;
 
     @OneToMany(mappedBy = "drzava", fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonIgnore
     private Set<NaseljenoMesto> naseljenoMestos = new HashSet<>();
 
     @OneToMany(mappedBy = "drzava", fetch = FetchType.EAGER)

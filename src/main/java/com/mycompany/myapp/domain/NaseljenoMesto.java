@@ -36,7 +36,6 @@ public class NaseljenoMesto implements Serializable {
     private String nm_pttoznaka;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonBackReference
     private Drzava drzava;
 
     @OneToMany(mappedBy = "naseljenoMesto")

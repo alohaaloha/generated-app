@@ -22,7 +22,8 @@ BEGIN
 		on k.naseljeno_mesto_id = nm.id
 		INNER JOIN pinf_pro.drzava dr
 		ON nm.drzava_id = dr.id
-		WHERE a.racun_duznika = racun);
+		WHERE a.racun_duznika = racun
+        AND DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ);
         
 	CREATE TEMPORARY  TABLE IF NOT EXISTS Poverioci
 	AS  (
@@ -35,12 +36,13 @@ BEGIN
 		on k.naseljeno_mesto_id = nm.id
 		INNER JOIN pinf_pro.drzava dr
 		ON nm.drzava_id = dr.id
-		WHERE a.racun_poverioca = racun);
+		WHERE a.racun_poverioca = racun
+        AND DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ);
     
 	CREATE TEMPORARY TABLE IF NOT EXISTS Klijent AS SELECT * FROM Duznici UNION SELECT * FROM Poverioci;
         
 
-	SELECT novo_stanje into pocetnoStanje from pinf_pro.dnevno_stanje_racuna dsr
+	SELECT prethodno_stanje into pocetnoStanje from pinf_pro.dnevno_stanje_racuna dsr
     INNER JOIN pinf_pro.racun_pravnog_lica r
     ON dsr.dnevni_izvod_banke_id  = r.id
     INNER JOIN Klijent k

@@ -3,7 +3,7 @@ DELIMITER $$
 USE pinf_pro$$
 
 DROP PROCEDURE IF EXISTS `klijentInfo`$$
-CREATE PROCEDURE `klijentInfo` ( IN racun VARCHAR(30))
+CREATE PROCEDURE `klijentInfo` ( IN racun VARCHAR(30), IN pocetak DATE, IN kraj DATE)
 BEGIN
 
 	CREATE TEMPORARY  TABLE IF NOT EXISTS Duznici 
@@ -17,7 +17,8 @@ BEGIN
 		on k.naseljeno_mesto_id = nm.id
 		INNER JOIN pinf_pro.drzava dr
 		ON nm.drzava_id = dr.id
-		WHERE a.racun_duznika = racun);
+		WHERE a.racun_duznika = racun
+        AND DATE(a.datum_prijema) BETWEEN pocetak AND kraj);
         
 	CREATE TEMPORARY  TABLE IF NOT EXISTS Poverioci
 	AS  (
@@ -30,7 +31,8 @@ BEGIN
 		on k.naseljeno_mesto_id = nm.id
 		INNER JOIN pinf_pro.drzava dr
 		ON nm.drzava_id = dr.id
-		WHERE a.racun_poverioca = racun);
+		WHERE a.racun_poverioca = racun
+        AND DATE(a.datum_prijema) BETWEEN pocetak AND kraj);
     
 	CREATE TEMPORARY TABLE IF NOT EXISTS Klijent AS SELECT * FROM Duznici UNION SELECT * FROM Poverioci;
     

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="racuniBanke" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="805f382c-df02-40a6-b92e-d5e9acf204c2">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="racuni" uuid="6f78a4a6-76e5-411c-bde0-00714489ec20">
+		<parameter name="sifraBanke" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[call racuniBanka($P{sifraBanke})]]>
+		</queryString>
+		<field name="ime" class="java.lang.String"/>
+		<field name="prezime" class="java.lang.String"/>
+		<field name="broj_racuna" class="java.lang.String"/>
+		<field name="novo_stanje" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="sifraBanke" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT pib,naziv,adresa,telefon,email,web FROM pinf_pro.banka
+WHERE sifra_banke = $P{sifraBanke}]]>
+	</queryString>
+	<field name="pib" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="naziv" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adresa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefon" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="web" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="45" y="0" width="90" height="20" uuid="caebf2a9-23dc-46da-8f5c-f1d3ca93054c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="188" y="0" width="157" height="35" uuid="95c51567-4117-406d-bd21-103dbc880fe6"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Racuni u banci]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="433" y="0" width="46" height="20" uuid="28510a6e-b0e6-4623-a3e2-b4f42d3ca842"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Strana:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="479" y="0" width="76" height="20" uuid="2ba00de7-af06-415c-b0ad-adce95910b80"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="20" uuid="1a4391a7-d52b-42db-890d-71e2d32524e4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Datum:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="35" width="90" height="20" uuid="00dd3af0-4139-40bb-8596-063d9ebea118"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pib}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="35" width="45" height="20" uuid="0580d116-2c35-4c0e-bbe4-a551a3c60675"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[PIB]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="59" width="90" height="20" uuid="7ebecc0d-602a-4b39-8ca9-5d53db73df97"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{naziv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="59" width="100" height="20" uuid="603b580f-f3a7-486f-8a12-3470237c4e49"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="056085a2-e4e0-4e44-94d8-ff433c830ced"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="122" height="20" uuid="30a50791-c3f3-4e13-a7ec-c567cf0c6f23"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="082c50a3-c8d5-4560-a07b-dbc4dc060b98"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{web}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 3" style="table 3" x="85" y="25" width="360" height="50" uuid="97eb694c-d77b-4eab-be03-6b39a412100b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="racuni" uuid="986b4cde-8891-4601-b885-3ef92989cfbc">
+						<datasetParameter name="sifraBanke">
+							<datasetParameterExpression><![CDATA[$P{sifraBanke}]]></datasetParameterExpression>
+						</datasetParameter>
+					</datasetRun>
+					<jr:column width="90" uuid="a5387b6c-1d42-416b-a7fa-a2a3d98522fd">
+						<jr:columnHeader style="table 3_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0ff23563-29c4-4d26-bcf9-08e670a5f025"/>
+								<text><![CDATA[Ime 	]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f696c2af-3519-4321-9fc8-c8c0c4d08119"/>
+								<textFieldExpression><![CDATA[$F{ime}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="9f27fcc8-c2ff-475f-89d9-063162f2c581">
+						<jr:columnHeader style="table 3_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c3ac9ee8-a8e7-4958-a473-d156e5c4f6b0"/>
+								<text><![CDATA[Prezime]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2ca72e55-8e9a-4389-93f1-3562fc712063"/>
+								<textFieldExpression><![CDATA[$F{prezime}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1936e679-9b97-40f3-b0ce-4abe54fc24a9">
+						<jr:columnHeader style="table 3_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="ed23df32-154d-446f-8d49-1ea0110d68e8"/>
+								<text><![CDATA[Broj racuna]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="d1ad40fd-6021-4e63-8d80-a5722eacbda9"/>
+								<textFieldExpression><![CDATA[$F{broj_racuna}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="56088928-c02c-4f24-900b-9abd0b63cf47">
+						<jr:columnHeader style="table 3_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a00c426b-b054-41f2-9887-a8eb0f6f44eb"/>
+								<text><![CDATA[Stanje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 3_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="12285a85-c8c6-469c-a8cb-a0efaa07598a"/>
+								<textFieldExpression><![CDATA[$F{novo_stanje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

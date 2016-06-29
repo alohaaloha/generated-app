@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="izvodiPoKlijentu" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34e257c4-0b9e-4ee0-8e16-aaa24f402a70">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="izvodi" whenResourceMissingType="Error" uuid="cda9d4f6-e561-44b8-86e0-2e0aa7d07503">
+		<parameter name="racun" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="pocetak" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="kraj" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[call izvestajIzvoda($P{racun},$P{pocetak},$P{kraj})]]>
+		</queryString>
+		<field name="datum" class="java.sql.Date"/>
+		<field name="svrha" class="java.lang.String"/>
+		<field name="duguje" class="java.lang.Double"/>
+		<field name="potrazuje" class="java.lang.Double"/>
+	</subDataset>
+	<subDataset name="klijent" uuid="31a72d51-6ec4-4e95-9526-add24392082c">
+		<parameter name="racun" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="pocetak" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="kraj" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[call klijentInfo($P{racun},$P{pocetak},$P{kraj})]]>
+		</queryString>
+		<field name="ime" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="prezime" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="adresa" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="telefon" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="broj_racuna" class="java.lang.String"/>
+		<field name="nm_naziv" class="java.lang.String"/>
+		<field name="dr_naziv" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="stanje" uuid="7a9aa896-2e2c-4fa1-bfee-28c2c3646210">
+		<parameter name="pocetak" class="java.util.Date">
+			<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2008-01-01")]]></defaultValueExpression>
+		</parameter>
+		<parameter name="kraj" class="java.util.Date">
+			<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01")]]></defaultValueExpression>
+		</parameter>
+		<parameter name="racun" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[call sumarnoStanje($P{racun},$P{pocetak},$P{kraj})]]>
+		</queryString>
+		<field name="pocetnoStanje" class="java.lang.Double"/>
+		<field name="krajnjeStanje" class="java.lang.Double"/>
+		<field name="ukupnoZaduzenje" class="java.lang.Double"/>
+		<field name="ukupnoOdobrenje" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="pocetak" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kraj" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="racun" class="java.lang.String">
+		<defaultValueExpression><![CDATA["001900000000000101"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[call izvestajIzvoda($P{racun},$P{pocetak},$P{kraj})]]>
+	</queryString>
+	<field name="datum" class="java.sql.Date"/>
+	<field name="svrha" class="java.lang.String"/>
+	<field name="duguje" class="java.lang.Double"/>
+	<field name="potrazuje" class="java.lang.Double"/>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="208" y="0" width="157" height="35" uuid="944564f1-c35d-47a3-ac00-e1e9288b3e00"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Izvod klijenta]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="45" y="0" width="90" height="20" uuid="7e47d150-d76b-457f-9841-885e4135022c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="20" uuid="7dea9a6d-fd06-43b3-970a-d847e8ceafb2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Datum:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="479" y="0" width="76" height="20" uuid="e9eddad1-1804-40d7-ac66-f1f539b9a163"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="433" y="0" width="46" height="20" uuid="ade1738f-192f-4855-848e-4547f2e2d0b7"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Strana:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="274" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="13" width="45" height="20" uuid="a92b4ae2-3b10-4fe7-9d7f-c72ee71e6fee"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Period:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="13" width="100" height="20" uuid="2bb7e7f8-4d59-4196-a3e8-2ccf25c5f608"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pocetak}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="13" width="100" height="20" uuid="b927c13c-679a-455f-ae6e-fe52699dfcf4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kraj}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 4" style="table 4" x="0" y="47" width="555" height="50" uuid="f598a9af-6061-4d84-8c88-4391c2e668eb"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="klijent" uuid="41817707-db75-40cd-88ad-f3e695177a1c">
+						<datasetParameter name="racun">
+							<datasetParameterExpression><![CDATA[$P{racun}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pocetak">
+							<datasetParameterExpression><![CDATA[$P{pocetak}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="kraj">
+							<datasetParameterExpression><![CDATA[$P{kraj}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="a32eb555-45c6-48fd-8dad-256866cc0ec1">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="aaa58fc2-8129-4a6c-82f6-62bf36ee280d"/>
+								<text><![CDATA[Ime]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="0d3e9e7a-bbcc-4b9a-8b56-a9ddaae267b2"/>
+								<textFieldExpression><![CDATA[$F{ime}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5ce8f7bd-fe50-40b1-b22e-8cac64a54da5">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b87f7cbc-44f3-4029-92c7-e2f028441cc5"/>
+								<text><![CDATA[Prezime]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="7cc8030e-2124-4c70-8966-239cd277c692"/>
+								<textFieldExpression><![CDATA[$F{prezime}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5b8a3a4e-2ee7-45cb-ae4b-3972551e4831">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b148b488-14ee-415c-82c3-20c3ae8018be"/>
+								<text><![CDATA[Adresa]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="dd10c243-576c-485e-a66f-87c20b5e1500"/>
+								<textFieldExpression><![CDATA[$F{adresa}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5c3b6012-0be0-4b99-a982-0e8bf4cf0b69">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="bb41ca29-d073-4a12-9830-8ef4b01c2664"/>
+								<text><![CDATA[Telefon]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="0a0832b7-81d1-42bc-9a84-0cda137a05a7"/>
+								<textFieldExpression><![CDATA[$F{telefon}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0683350a-629b-402e-baae-e5c255d99282">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d385134f-bf21-4dd1-bd22-05274418b2df"/>
+								<text><![CDATA[Broj racuna]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f7845ec4-ad6e-4b8a-8f15-e2c982cb376d"/>
+								<textFieldExpression><![CDATA[$F{broj_racuna}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="37617144-2e98-4164-a541-862de77834b0">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="abcf734a-5927-48be-a5a1-1391bf4844b1"/>
+								<text><![CDATA[Grad]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="716bc430-e14b-40d8-aead-89b6a5894083"/>
+								<textFieldExpression><![CDATA[$F{nm_naziv}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="26b561fd-1565-4e07-a03e-ee89689a04de">
+						<jr:columnHeader style="table 4_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="9f77f16c-28e9-4bcd-b4e7-d4e2f0db40fe"/>
+								<text><![CDATA[Drzava]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 4_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="5d247164-0d91-435d-976b-13b53c2861a0"/>
+								<textFieldExpression><![CDATA[$F{dr_naziv}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 5" style="table 5" x="118" y="131" width="277" height="50" uuid="14ea4651-767c-424f-9573-28b6729ccf17"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="stanje" uuid="f60a2973-0dee-41f4-badd-0e31da35b1bb">
+						<datasetParameter name="racun">
+							<datasetParameterExpression><![CDATA[$P{racun}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pocetak">
+							<datasetParameterExpression><![CDATA[$P{pocetak}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="kraj">
+							<datasetParameterExpression><![CDATA[$P{kraj}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="b25339ec-71b8-498a-ac7a-0a068e2edd3e">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="6b21a006-98ca-45ee-b8ca-9df42fa405a8"/>
+								<text><![CDATA[Pocetno stanje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="4997a914-2bb1-4cc7-916c-33548362dd35"/>
+								<textFieldExpression><![CDATA[$F{pocetnoStanje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0ef5b0a1-7331-42f5-9854-23f5cffb6f64">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0a40aed3-fff9-430e-a453-c8e4cfcd9b4e"/>
+								<text><![CDATA[Krajnje stanje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="6cc46f88-4a22-478e-917d-7422c338669d"/>
+								<textFieldExpression><![CDATA[$F{krajnjeStanje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f2816ada-de3a-4b50-9328-156b599a1405">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3f742bad-9703-464a-a7ab-53e3e38d61fd"/>
+								<text><![CDATA[Ukupno zaduzenje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="4b4dd0cf-c2d7-4606-9cec-1dd9246688af"/>
+								<textFieldExpression><![CDATA[$F{ukupnoZaduzenje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="92ad0d32-ef26-4951-be7e-73f1cdf638cf">
+						<jr:columnHeader style="table 5_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b4a5e28d-3834-4693-9845-4d1451f6fa0c"/>
+								<text><![CDATA[Ukupno odobrenje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 5_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2ee29893-b221-447d-9f4c-51740684647f"/>
+								<textFieldExpression><![CDATA[$F{ukupnoOdobrenje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 6" style="table 6" x="118" y="194" width="277" height="80" uuid="8b11006e-8e3e-4008-9768-2057bc64c2da"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="izvodi" uuid="92ac1161-648b-4ed1-a31f-330ba7eb19cb">
+						<datasetParameter name="racun">
+							<datasetParameterExpression><![CDATA[$P{racun}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pocetak">
+							<datasetParameterExpression><![CDATA[$P{pocetak}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="kraj">
+							<datasetParameterExpression><![CDATA[$P{kraj}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="9d7ccd06-8cd9-46ed-a6b2-4065091ee670">
+						<jr:tableHeader style="table 6_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="a9c60806-88ac-48ab-a752-ffa93c738dff"/>
+								<text><![CDATA[Datum]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 6_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="60389676-fc34-4cce-bd22-80f73cff781f"/>
+								<textFieldExpression><![CDATA[$F{datum}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e35dd3ba-cc42-4912-af68-adcbe15f058a">
+						<jr:tableHeader style="table 6_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="838df1d8-1f61-4d7f-bc38-29f5eeba0278"/>
+								<text><![CDATA[Svrha]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 6_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2256b8c2-1167-4f70-ba77-6a198bf59518"/>
+								<textFieldExpression><![CDATA[$F{svrha}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5cf88f5d-ab09-4cc8-9499-403692a728b6">
+						<jr:tableHeader style="table 6_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d2a52b7a-233b-42b9-b625-7ba74f350638"/>
+								<text><![CDATA[Duguje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 6_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2db02e10-b6b0-4dd3-828d-a842d1008b5c"/>
+								<textFieldExpression><![CDATA[($F{duguje} != null ? $F{duguje}: " ")]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="fb494a36-cbad-462c-b409-f532c96deede">
+						<jr:tableHeader style="table 6_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table 6_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="51c150cc-0738-46d7-878c-d3e523993fb0"/>
+								<text><![CDATA[Potrazuje]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 6_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="31ea894d-db55-4d13-a8f2-35c72e08ce18"/>
+								<textFieldExpression><![CDATA[($F{potrazuje} != null ? $F{potrazuje}: " ")]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

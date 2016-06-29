@@ -1,14 +1,11 @@
 package com.mycompany.myapp.report;
 
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.*;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,26 +14,74 @@ import java.util.Map;
  */
 public class Report {
 
-    public  void generateFirstReport(){
+    public  void generateFirstReport(String racun, Date pocetak, Date kraj){
+        JasperPrint jp = null;
         try {
             Map params = new HashMap(1);
-            params.put("racun", "001900000000000101" );
-            params.put("pocetak", new SimpleDateFormat("yyyy-MM-dd").parse("2008-01-01"));
-            params.put("kraj", new SimpleDateFormat("yyyy-MM-dd").parse("2017-01-01"));
+            params.put("racun", racun );
+            params.put("pocetak", pocetak);
+            params.put("kraj", kraj);
 
 
             String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=basepass&useSSL=false";
             Connection connection = null;
-            connection = DriverManager.getConnection(kobaja);
-            JasperPrint jp = JasperFillManager.fillReport(
-                new FileInputStream(new File("./jasper/izvodiPoKlijentu.jasper")),
-                params, connection);
-            JasperViewer.viewReport(jp, false);
 
+            BufferedInputStream bufferedInputStream = new BufferedInputStream( new FileInputStream("./jasper/izvodiPoKlijentu.jasper"));
+
+            JasperReport jasperReport = JasperCompileManager.compileReport("./jasper/izvodiPoKlijentu.jrxml");
+            connection = DriverManager.getConnection(kobaja);
+            jp = JasperFillManager.fillReport(jasperReport
+                ,
+                params, connection);
+            JasperExportManager.exportReportToHtmlFile(jp,"JasperReport1.html");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
 
+    public void generateSecondReport(String sifraBanke){
+        JasperPrint jp = null;
+        try{
+            Map params = new HashMap(1);
+            params.put("sifraBanke",sifraBanke);
+
+
+            String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=admin&useSSL=false";
+            Connection connection = null;
+            JasperReport jasperReport = JasperCompileManager.compileReport("./jasper/racuniBanke.jrxml");
+            connection = DriverManager.getConnection(kobaja);
+            jp = JasperFillManager.fillReport(jasperReport
+                ,
+                params, connection);
+            JasperExportManager.exportReportToHtmlFile(jp,"JasperReport2.html");
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void generateFirstReportXml(String racun, Date pocetak, Date kraj){
+        JasperPrint jp = null;
+        try {
+            Map params = new HashMap(1);
+            params.put("racun", racun );
+            params.put("pocetak", pocetak);
+            params.put("kraj", kraj);
+
+
+            String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=admin&useSSL=false";
+            Connection connection = null;
+
+            BufferedInputStream bufferedInputStream = new BufferedInputStream( new FileInputStream("./jasper/izvodiPoKlijentu.jasper"));
+
+            JasperReport jasperReport = JasperCompileManager.compileReport("./jasper/izvodiPoKlijentu.jrxml");
+            connection = DriverManager.getConnection(kobaja);
+            jp = JasperFillManager.fillReport(jasperReport
+                ,
+                params, connection);
+            JasperExportManager.exportReportToXmlFile(jp,"JasperReport1.xml",true);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

@@ -60,6 +60,5 @@ public class TestMain {
 
     public  static void testReports(){
         Report report = new Report();
-        report.generateFirstReport();
     }
 }

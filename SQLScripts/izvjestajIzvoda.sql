@@ -6,8 +6,7 @@ DROP PROCEDURE IF EXISTS `izvestajIzvoda`$$
 CREATE PROCEDURE `izvestajIzvoda` ( IN racun VARCHAR(30), IN pocetak date, IN kraj date)
 BEGIN
 
-	DECLARE pocetnoStanje double;
-    DECLARE krajnjeStanje double;
+	
     
 	CREATE TEMPORARY  TABLE IF NOT EXISTS Duznici 
 	AS  (
@@ -20,7 +19,8 @@ BEGIN
 		on k.naseljeno_mesto_id = nm.id
 		INNER JOIN pinf_pro.drzava dr
 		ON nm.drzava_id = dr.id
-		WHERE a.racun_duznika = racun);
+		WHERE a.racun_duznika = racun
+        AND DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ);
         
 	CREATE TEMPORARY  TABLE IF NOT EXISTS Poverioci
 	AS  (
@@ -33,28 +33,11 @@ BEGIN
 		on k.naseljeno_mesto_id = nm.id
 		INNER JOIN pinf_pro.drzava dr
 		ON nm.drzava_id = dr.id
-		WHERE a.racun_poverioca = racun);
+		WHERE a.racun_poverioca = racun
+        AND DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ);
     
 	CREATE TEMPORARY TABLE IF NOT EXISTS Klijent AS SELECT * FROM Duznici UNION SELECT * FROM Poverioci;
         
-
-	SELECT novo_stanje into pocetnoStanje from pinf_pro.dnevno_stanje_racuna dsr
-    INNER JOIN pinf_pro.racun_pravnog_lica r
-    ON dsr.dnevni_izvod_banke_id  = r.id
-    INNER JOIN Klijent k
-    ON r.broj_racuna = k.broj_racuna
-    WHERE DATE(dsr.datum) BETWEEN pocetak AND kraj
-    ORDER BY dsr.datum ASC
-    LIMIT 1;
-    
-    SELECT novo_stanje into krajnjeStanje from pinf_pro.dnevno_stanje_racuna dsr
-    INNER JOIN pinf_pro.racun_pravnog_lica r
-    ON dsr.dnevni_izvod_banke_id  = r.id
-    INNER JOIN Klijent k
-    ON r.broj_racuna = k.broj_racuna
-    WHERE DATE(dsr.datum) BETWEEN pocetak AND kraj
-    ORDER BY dsr.datum DESC
-    LIMIT 1;
     
     CREATE TEMPORARY TABLE IF NOT EXISTS Rezultat (datum date, svrha VARCHAR(256), duguje double, potrazuje double);
     
@@ -62,13 +45,15 @@ BEGIN
     (datum, svrha,duguje)
     SELECT a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
     INNER JOIN Klijent k
-	ON k.broj_racuna = a.racun_duznika;
+	ON k.broj_racuna = a.racun_duznika
+    WHERE DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ;
     
     INSERT INTO Rezultat 
     (datum, svrha,potrazuje)
     SELECT a.datum_prijema,a.svrha,a.iznos FROM pinf_pro.analitika_izvoda a
     INNER JOIN Klijent k
-	ON k.broj_racuna = a.racun_poverioca;
+	ON k.broj_racuna = a.racun_poverioca
+    WHERE DATE(a.datum_prijema) BETWEEN pocetak AND KRAJ;
     
     #SELECT * FROM Klijent;
     #SELECT pocetnoStanje, krajnjeStanje;

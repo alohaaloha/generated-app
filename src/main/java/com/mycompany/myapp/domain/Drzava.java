@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,7 +31,7 @@ public class Drzava implements Serializable {
     private String dr_naziv;
 
     @OneToMany(mappedBy = "drzava", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonManagedReference
     private Set<NaseljenoMesto> naseljenoMestos = new HashSet<>();
 
     @OneToMany(mappedBy = "drzava", fetch = FetchType.EAGER)

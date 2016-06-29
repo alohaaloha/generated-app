@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -34,7 +35,8 @@ public class NaseljenoMesto implements Serializable {
     @Column(name = "nm_pttoznaka", length = 12, nullable = false)
     private String nm_pttoznaka;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonBackReference
     private Drzava drzava;
 
     @OneToMany(mappedBy = "naseljenoMesto")

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- MODELUJE NALOG ZA PRENOS U IZMEDJU DJOKE KOJI DAJE NOVCE LANMIJU KOJI NIJE IZ ISTE BANKE
+        STAVKA KLIRINGA -->
+
+<nalog-za-prenos xmlns="http://www.najjacabanka.com/"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.najjacabanka.com/ file:/C:/Users/FS-LB/Desktop/PoslovnaInformatika/Projekat/pinf_pro/XMLSchemas/NalogZaPrenos.xsd">
+    <duznik>Djoka Djokić</duznik>
+    <svrha-placanja>Probno placanje medjubankarskog prenosa</svrha-placanja>
+    <poverilac>Lanmi Trićmi</poverilac>
+    <datum-prijema>2016-06-26T11:22:25</datum-prijema>
+    <mesto-prijema>Novi Sad</mesto-prijema>
+    <datum-valute>2016-06-25T06:00:00</datum-valute>
+    <racun-duznika>001900000000000101</racun-duznika>
+    <model-zaduzenja>97</model-zaduzenja>
+    <poziv-na-broj-zaduzenja>3334444</poziv-na-broj-zaduzenja>
+    <racun-poverioca>002900000000000202</racun-poverioca>
+    <model-odobrenja>97</model-odobrenja>
+    <poziv-na-broj-odobrenja>0001111</poziv-na-broj-odobrenja>
+    <vrsta-placanja>287</vrsta-placanja>
+    <valuta-placanja>RSD</valuta-placanja>
+    <iznos>1000.00</iznos>
+    <hitno>false</hitno>
+    <tip-greske>0</tip-greske>
+    <status></status>
+</nalog-za-prenos>

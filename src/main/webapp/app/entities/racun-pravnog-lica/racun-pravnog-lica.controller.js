@@ -44,7 +44,8 @@
                 method: 'GET',
                 url: resourceUrl
             }).then(function successCallback(response) {
-                alert("Sve kul, radi!");
+                //alert("Sve kul, radi!");
+                window.open("http://localhost:8080/api/dwn1");
             }, function errorCallback(response) {
                 alert("Doslo je do greske. Izvod nije generisan.");
             });

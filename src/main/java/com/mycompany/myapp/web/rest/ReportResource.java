@@ -12,15 +12,21 @@ import com.mycompany.myapp.report.Report;
 import com.mycompany.myapp.repository.AnalitikaIzvodaRepository;
 import com.mycompany.myapp.repository.DnevnoStanjeRacunaRepository;
 import com.mycompany.myapp.repository.RacunPravnogLicaRepository;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,7 +114,7 @@ public class ReportResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void generateReportXML(@PathVariable String racID) {
+    public HttpStatus generateReportXML(@PathVariable String racID) {
         log.debug("REST request to mitricev izvestaj");
 
         Report report=new Report();
@@ -128,22 +134,38 @@ public class ReportResource {
         System.out.println("UKUPNO MOJI ANALITIKA: " +analitike.size());
 
         try {
-            report.generateFirstReportXml(racID, new FileOutputStream(new File("tmp.xml")), analitike);
+            report.generateFirstReportXml(racID, new FileOutputStream(new File("output/tmp.xml")), analitike);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.out.println("SVE KUL RADI LUDILO ZJUU");
+        return HttpStatus.OK;
     }
 
 
 
 
 
+    @RequestMapping(value = "/dwn1",
+        method = RequestMethod.GET,
+        produces = "application/octet-stream")
+    public ResponseEntity<InputStreamResource> dwn1()
+        throws IOException {
 
+        ClassPathResource pdfFile = new ClassPathResource("tmp.xml");
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
 
-
-
+        return ResponseEntity
+            .ok()
+            .headers(headers)
+            .contentLength(pdfFile.contentLength())
+            .contentType(MediaType.parseMediaType("application/octet-stream"))
+            .body(new InputStreamResource(pdfFile.getInputStream()));
+    }
 
 
 

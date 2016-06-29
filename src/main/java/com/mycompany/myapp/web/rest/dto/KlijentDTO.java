@@ -1,22 +1,20 @@
-package com.mycompany.myapp.domain;
+package com.mycompany.myapp.web.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import com.mycompany.myapp.domain.Klijent;
+import com.mycompany.myapp.domain.NaseljenoMesto;
+import com.mycompany.myapp.domain.PravnoLice;
+import com.mycompany.myapp.domain.RacunPravnogLica;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
-/**
- * A Klijent.
- */
-@Entity
-@Table(name = "klijent")
-public class Klijent implements Serializable {
+public class KlijentDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -67,8 +65,7 @@ public class Klijent implements Serializable {
     @Column(name = "sifra_delatnosti")
     private Integer sifraDelatnosti;
 
-    @OneToMany(mappedBy = "vlasnik", fetch = FetchType.EAGER)
-    @JsonIgnore
+
     private Set<RacunPravnogLica> racunis = new HashSet<>();
 
     @ManyToOne
@@ -197,7 +194,7 @@ public class Klijent implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Klijent klijent = (Klijent) o;
+        KlijentDTO klijent = (KlijentDTO) o;
         if(klijent.id == null || id == null) {
             return false;
         }
@@ -224,5 +221,23 @@ public class Klijent implements Serializable {
             ", pib='" + pib + "'" +
             ", sifraDelatnosti='" + sifraDelatnosti + "'" +
             '}';
+    }
+
+
+    public KlijentDTO(Klijent k) {
+        this.id = k.getId();
+        this.nazivPravnogLica = k.getNazivPravnogLica();
+        this.ime = k.getIme();
+        this.prezime = k.getPrezime();
+        this.jmbg = k.getJmbg();
+        this.adresa = k.getAdresa();
+        this.telefon = k.getTelefon();
+        this.fax = k.getFax();
+        this.email = k.getEmail();
+        this.pib = k.getPib();
+        this.sifraDelatnosti = k.getSifraDelatnosti();
+        this.racunis = k.getRacunis();
+        this.pravnoLice = k.getPravnoLice();
+        this.naseljenoMesto = k.getNaseljenoMesto();
     }
 }

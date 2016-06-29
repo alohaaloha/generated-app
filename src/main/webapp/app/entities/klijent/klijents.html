@@ -54,6 +54,19 @@
                         <a ui-sref="naseljeno-mesto-detail({id:klijent.naseljenoMesto.id})">{{klijent.naseljenoMesto.id}}</a>
                     </td>
 
+
+                    <td>
+                        <!--ui-sref="drzava-detail({id:drzava.id})"-->
+                        <button type="submit"
+                                ui-sref="racun-pravnog-lica({klijent:klijent})"
+                                class="btn btn-info btn-sm" ng-hide="isZoom">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm"> Racuni ... </span>
+                        </button>
+                    </td>
+
+
+
                     <td>
                         <button type="submit"
                                 ng-click="pick(klijent)"

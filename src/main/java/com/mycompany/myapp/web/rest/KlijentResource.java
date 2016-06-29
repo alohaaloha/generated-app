@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.domain.Klijent;
 import com.mycompany.myapp.repository.KlijentRepository;
+import com.mycompany.myapp.web.rest.dto.KlijentDTO;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,10 +88,15 @@ public class KlijentResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Klijent> getAllKlijents() {
+    public List<KlijentDTO> getAllKlijents() {
         log.debug("REST request to get all Klijents");
         List<Klijent> klijents = klijentRepository.findAll();
-        return klijents;
+        List<KlijentDTO> klijentDTOs = new ArrayList<>();
+        for(Klijent klijent: klijents){
+            klijentDTOs.add(new KlijentDTO(klijent));
+        }
+
+        return klijentDTOs;
     }
 
     /**

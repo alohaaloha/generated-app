@@ -5,19 +5,40 @@
         .module('pinfProApp')
         .controller('RacunPravnogLicaController', RacunPravnogLicaController);
 
-    RacunPravnogLicaController.$inject = ['$scope', '$state', 'RacunPravnogLica','$rootScope', '$window', '$uibModal', '$http'];
+    RacunPravnogLicaController.$inject = ['$scope', '$state', 'RacunPravnogLica','$rootScope', '$window', '$uibModal', '$http', '$stateParams'];
 
-    function RacunPravnogLicaController ($scope, $state, RacunPravnogLica,$rootScope,$window, $uibModal, $http) {
+    function RacunPravnogLicaController ($scope, $state, RacunPravnogLica,$rootScope,$window, $uibModal, $http, $stateParams) {
         var vm = this;
 
-        vm.racunPravnogLicas = [];
-        vm.loadAll = function() {
-            RacunPravnogLica.query(function(result) {
-                vm.racunPravnogLicas = result;
-            });
-        };
 
-        vm.loadAll();
+
+        if($stateParams.klijent){
+
+            console.log("ZOOMARA MAMARA");
+            console.log($stateParams.klijent);
+            vm.racunPravnogLicas = $stateParams.klijent.racunis;
+
+
+        }else{
+
+            console.log("REGULAR");
+             vm.racunPravnogLicas = [];
+                vm.loadAll = function() {
+                    RacunPravnogLica.query(function(result) {
+                        vm.racunPravnogLicas = result;
+                    });
+                };
+
+                vm.loadAll();
+
+
+        }
+
+
+
+
+
+
 
 
         //MODAL

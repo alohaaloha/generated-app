@@ -41,7 +41,7 @@ public class RacunPravnogLica implements Serializable {
     @ManyToOne
     private Banka banka;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Klijent vlasnik;
 
     @OneToMany(mappedBy = "dnevniIzvodBanke", fetch = FetchType.EAGER)

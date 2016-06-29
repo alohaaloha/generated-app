@@ -16,6 +16,7 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'RacunPravnogLicas'
             },
+            params: { 'klijent' : null},
             views: {
                 'content@': {
                     templateUrl: 'app/entities/racun-pravnog-lica/racun-pravnog-licas.html',

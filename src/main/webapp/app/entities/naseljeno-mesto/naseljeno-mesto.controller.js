@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('NaseljenoMestoController', NaseljenoMestoController);
 
-    NaseljenoMestoController.$inject = ['$scope', '$state', 'NaseljenoMesto', '$stateParams', '$rootScope'];
+    NaseljenoMestoController.$inject = ['$scope', '$state', 'NaseljenoMesto', '$stateParams', '$rootScope', 'Drzava'];
 
-    function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, $rootScope) {
+    function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, $rootScope,Drzava) {
         var vm = this;
 
 
@@ -27,6 +27,7 @@
 
             $scope.drzava=$stateParams.drzava;
             console.log("TRAZIM NAS.MESTA ZA DRZAVU");
+            console.log($stateParams.drzava);
             vm.naseljenoMestos = $scope.drzava.naseljenoMestos;
 
         }else{

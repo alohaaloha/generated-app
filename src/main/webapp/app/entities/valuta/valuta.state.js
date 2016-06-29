@@ -16,6 +16,7 @@
                 authorities: ['ROLE_USER'],
                 pageTitle: 'Valutas'
             },
+            params: { 'drzava' : null},
             views: {
                 'content@': {
                     templateUrl: 'app/entities/valuta/valutas.html',

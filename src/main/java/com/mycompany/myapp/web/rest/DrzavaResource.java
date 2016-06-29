@@ -3,6 +3,7 @@ package com.mycompany.myapp.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.domain.Drzava;
 import com.mycompany.myapp.repository.DrzavaRepository;
+import com.mycompany.myapp.web.rest.dto.DrzavaDTO;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,10 +88,15 @@ public class DrzavaResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<Drzava> getAllDrzavas() {
+    public List<DrzavaDTO> getAllDrzavas() {
         log.debug("REST request to get all Drzavas");
+
         List<Drzava> drzavas = drzavaRepository.findAll();
-        return drzavas;
+        List<DrzavaDTO> drzavaDTOs = new ArrayList<DrzavaDTO>();
+        for(Drzava drzava : drzavas){
+            drzavaDTOs.add(new DrzavaDTO(drzava));
+        }
+        return drzavaDTOs;
     }
 
     /**
@@ -102,11 +109,11 @@ public class DrzavaResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Drzava> getDrzava(@PathVariable Long id) {
+    public ResponseEntity<DrzavaDTO> getDrzava(@PathVariable Long id) {
         log.debug("REST request to get Drzava : {}", id);
         Drzava drzava = drzavaRepository.findOne(id);
-
-        return Optional.ofNullable(drzava)
+        DrzavaDTO drzavaDTO = new DrzavaDTO(drzava);
+        return Optional.ofNullable(drzavaDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))

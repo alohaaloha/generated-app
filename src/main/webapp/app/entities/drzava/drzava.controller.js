@@ -47,5 +47,16 @@
 
         vm.loadAll();
 
+
+        $scope.gotoNaseljenaMesta=function(drzava){
+            $state.go("naseljeno-mesto",{"drzava":drzava});
+        }
+
+        $scope.gotoValute=function(drzava){
+            $state.go("valuta",{"drzava":drzava});
+        }
+
+
+
     }
 })();

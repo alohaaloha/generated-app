@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('ValutaController', ValutaController);
 
-    ValutaController.$inject = ['$scope', '$state', 'Valuta','$rootScope'];
+    ValutaController.$inject = ['$scope', '$state', 'Valuta','$rootScope','$stateParams'];
 
-    function ValutaController ($scope, $state, Valuta,$rootScope) {
+    function ValutaController ($scope, $state, Valuta,$rootScope,$stateParams) {
         var vm = this;
 
          if($rootScope.valutaZOOM)
@@ -28,14 +28,29 @@
                      /*3*/
                  }
 
-        vm.valutas = [];
-        vm.loadAll = function() {
-            Valuta.query(function(result) {
-                vm.valutas = result;
-            });
-        };
 
-        vm.loadAll();
+
+        if($stateParams.drzava){
+
+                    $scope.drzava=$stateParams.drzava;
+//                    console.log("TRAZIM VALUTE ZA DRZAVU");
+//                    console.log($stateParams.drzava);
+                    vm.valutas = $scope.drzava.drzavnaValutas;
+
+                }else{
+
+
+                 console.log("TRAZIM SVE VALUTE.");
+                  vm.valutas = [];
+                         vm.loadAll = function() {
+                             Valuta.query(function(result) {
+                                 vm.valutas = result;
+                             });
+                         };
+
+                         vm.loadAll();
+
+                }
 
     }
 })();

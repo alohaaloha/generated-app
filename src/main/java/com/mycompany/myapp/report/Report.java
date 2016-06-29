@@ -25,7 +25,7 @@ public class Report {
             params.put("kraj", new SimpleDateFormat("yyyy-MM-dd").parse("2017-01-01"));
 
 
-            String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=admin&useSSL=false";
+            String kobaja = "jdbc:mysql://localhost:3306/pinf_pro?"+"user=root&password=basepass&useSSL=false";
             Connection connection = null;
             connection = DriverManager.getConnection(kobaja);
             JasperPrint jp = JasperFillManager.fillReport(

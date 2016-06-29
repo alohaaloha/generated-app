@@ -1,0 +1,52 @@
+<div>
+
+
+    <!--DATE 1-->
+    <div class="form-group">
+        <label class="control-label" for="field_datum">Datum 'Od'</label>
+        <div class="input-group">
+            <input id="field_datum" type="text" class="form-control" name="datum" datetime-picker="{{dateformat}}" ng-model="dataForIzvestaj.datum1" is-open="datePickerOpenStatus.datum"
+                   required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openCalendar('datum')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+        </div>
+    </div>
+
+    <!--DATE 2-->
+    <div class="form-group">
+        <label class="control-label" for="field_datum">Datum 'Do'</label>
+        <div class="input-group">
+            <input id="field_datum" type="text" class="form-control" name="datum" datetime-picker="{{dateformat}}" ng-model="dataForIzvestaj.datum2" is-open="datePickerOpenStatus.datum2"
+                   required  />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openCalendar('datum2')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+        </div>
+    </div>
+
+    <!--RACUN SHOW-->
+    <label class="control-label" for="field_datum">Za izabrani racun</label>
+    <input type="text" class="form-control"
+           ng-model="dataForIzvestaj.racun"  readonly />
+
+
+    <br><br>
+
+    <!--BTN-->
+    <button type="submit"
+           ng-click="zatvori()";
+            class="btn btn-danger btn-sm">
+        <span class="hidden-xs hidden-sm">Zatvori</span>
+    </button>
+
+    <!--BTN-->
+    <button type="submit"
+            ng-click="zemozemo()";
+            class="btn btn-success btn-sm">
+        <span class="hidden-xs hidden-sm">Pogledaj izvestaj</span>
+    </button>
+
+    <br><br>
+
+</div>

@@ -43,6 +43,18 @@
                     <td>
                         <a ui-sref="valuta-detail({id:racunPravnogLica.valuta.id})">{{racunPravnogLica.valuta.zvanicnaSifra}}</a>
                     </td>
+
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                   ng-click="openDialogForIzvestajDatePicker(racunPravnogLica.brojRacuna)"
+                                    class="btn btn-success btn-sm">
+
+                                <span class="hidden-xs hidden-sm">Izvestaj</span>
+                            </button>
+                        </div>
+
+
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

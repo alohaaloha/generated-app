@@ -5,9 +5,9 @@
         .module('pinfProApp')
         .controller('NaseljenoMestoController', NaseljenoMestoController);
 
-    NaseljenoMestoController.$inject = ['$scope', '$state', 'NaseljenoMesto', '$stateParams', 'naseljenoMestoService', '$rootScope'];
+    NaseljenoMestoController.$inject = ['$scope', '$state', 'NaseljenoMesto', '$stateParams', '$rootScope'];
 
-    function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, naseljenoMestoService, $rootScope) {
+    function NaseljenoMestoController ($scope, $state, NaseljenoMesto, $stateParams, $rootScope) {
         var vm = this;
 
 
@@ -22,29 +22,12 @@
         }
         //ZOOM STUFF end---------------------------//
 
-
-
         /*NASELJENA MESTA ZA POSLATI ID*/
         if($stateParams.drzava){
 
             $scope.drzava=$stateParams.drzava;
             console.log("TRAZIM NAS.MESTA ZA DRZAVU");
-
-            naseljenoMestoService.getByDrzavaId(
-
-                $scope.drzava.id,
-                function(res){
-                console.log("SUCCESS");
-                console.log(res.data)
-                 vm.naseljenoMestos = res.data;
-                },
-                function(res){
-
-                }
-
-            );
-
-
+            vm.naseljenoMestos = $scope.drzava.naseljenoMestos;
 
         }else{
 

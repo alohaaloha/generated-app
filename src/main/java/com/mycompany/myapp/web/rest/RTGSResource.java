@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.domain.RTGS;
 import com.mycompany.myapp.repository.RTGSRepository;
 import com.mycompany.myapp.web.rest.util.HeaderUtil;
+import org.bouncycastle.ocsp.Req;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -27,11 +31,36 @@ import java.util.Optional;
 public class RTGSResource {
 
     private final Logger log = LoggerFactory.getLogger(RTGSResource.class);
-        
+
     @Inject
     private RTGSRepository rTGSRepository;
-    
-    /**
+
+
+
+    @RequestMapping(value = "/generatexml/{id}",method = RequestMethod.GET,
+                 produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @Timed
+    public void returntGeneratedXml(HttpServletRequest request,
+                                    HttpServletResponse response, @PathVariable String id) {
+        RTGS rtgs = rTGSRepository.findOne(Long.parseLong(id));
+        try {
+            rtgs.exportToXml(new FileOutputStream(new File("tmp.xml"))); // ovde export finish
+        } catch (FileNotFoundException e) {
+            log.info("RTGS Resource EXEPTION WITH CONVERTING TO XML");
+        }
+        response.setContentType("applicaton/octet-stream"); //AJD PROBACEMO SA OVIM SAD IZ POSTMENTA MOZE???
+        response.setHeader("Content-Disposition","attachment; filename=someFileName.xml");
+        try (InputStream is = new FileInputStream(new File("tmp.xml"))) {
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream()); /// KOJI MI JE TO ENTITET I KOJI JE NJEGOV ID????
+            response.flushBuffer();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+        /**
      * POST  /r-tgs : Create a new rTGS.
      *
      * @param rTGS the rTGS to create

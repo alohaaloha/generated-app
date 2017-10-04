@@ -1,3 +1,6 @@
+- Faculty of Technical Sciences, University of Novi Sad, 2016
+- Team project (4 people)
+
 # pinf_pro
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
